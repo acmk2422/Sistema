@@ -34,6 +34,7 @@ public class Frm_InventarioA extends javax.swing.JFrame {
     private ImageIcon icon1 = new javax.swing.ImageIcon(getClass().getResource("/imagenes/tornavica.png"));
     Paq_Base_Datos.Operaciones_BD operaciones = new Paq_Base_Datos.Operaciones_BD();
     Paq_Clases.Cla_Fecha fecha = new Paq_Clases.Cla_Fecha();
+    private boolean update;
     
     public Frm_InventarioA() {
         initComponents();
@@ -655,7 +656,19 @@ this.Borrar(1);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-       this.dispose();
+       this.txtC.setText(null);
+        update = true;
+        cbxP.removeAllItems();
+        try {
+            String sql = "select * from proveedores";
+            ResultSet rs = operaciones.Consultar(sql);
+            while (rs.next()) {
+             cbxP.addItem(rs.getString("nombre"));
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        update = false;      
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
