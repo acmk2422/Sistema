@@ -41,6 +41,7 @@ public class Frm_ClientesA extends javax.swing.JFrame {
     public void restringir(){
         RestrictedTextField restricted3 = new RestrictedTextField(this.txtC);
         restricted3.setOnlyNums(true);
+        restricted3.setLimit(8);
         RestrictedTextField restricted4 = new RestrictedTextField(this.txtT1);
         restricted4.setOnlyNums(true);
         RestrictedTextField restricted = new RestrictedTextField(this.txtT2);
@@ -139,6 +140,11 @@ public class Frm_ClientesA extends javax.swing.JFrame {
         txtN1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtN1ActionPerformed(evt);
+            }
+        });
+        txtN1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtN1KeyTyped(evt);
             }
         });
         jPanel2.add(txtN1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 50, 130, -1));
@@ -490,6 +496,10 @@ if (this.verificacion()){
     private void formWindowLostFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowLostFocus
  this.requestFocus();
     }//GEN-LAST:event_formWindowLostFocus
+
+    private void txtN1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtN1KeyTyped
+    
+    }//GEN-LAST:event_txtN1KeyTyped
 
     /**
      * @param args the command line arguments

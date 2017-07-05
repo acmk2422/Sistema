@@ -363,7 +363,7 @@ public class Frm_VentasA extends javax.swing.JFrame {
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 300, 420, 130));
 
         lblIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tornavica.png"))); // NOI18N
-        jPanel1.add(lblIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 300, -1));
+        jPanel1.add(lblIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, 300, -1));
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 102, 51), new java.awt.Color(0, 153, 51), new java.awt.Color(0, 102, 51), new java.awt.Color(0, 153, 51)), "Datos del Cliente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 3, 14), new java.awt.Color(0, 153, 51))); // NOI18N
@@ -522,7 +522,7 @@ public class Frm_VentasA extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Verdana", 3, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 153, 51));
         jLabel1.setText("Realizar Venta");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 50, 210, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 50, 210, -1));
 
         jScrollPane1.setViewportView(jPanel1);
 

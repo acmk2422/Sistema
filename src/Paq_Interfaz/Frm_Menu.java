@@ -1,4 +1,5 @@
 package Paq_Interfaz;
+
 import java.awt.Image;
 import java.io.File;
 import java.sql.PreparedStatement;
@@ -32,12 +33,11 @@ import net.sf.jasperreports.view.JasperViewer;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author ACMK
  */
-public class Frm_Menu extends javax.swing.JFrame implements Runnable{
+public class Frm_Menu extends javax.swing.JFrame implements Runnable {
 
     private String ampm;
     private String hora;
@@ -45,13 +45,12 @@ public class Frm_Menu extends javax.swing.JFrame implements Runnable{
     private String segundos;
     private ImageIcon icon1 = new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondo.png"));
     private Thread h1;
-    private int i=0;
+    private int i = 0;
     public String usuario;
     java.sql.Connection conn;
     Paq_Base_Datos.Operaciones_BD operaciones = new Paq_Base_Datos.Operaciones_BD();
     Paq_Clases.Cla_Ruta ruta = new Paq_Clases.Cla_Ruta();
     private Object fecha;
-
 
     /**
      * Creates new form menu
@@ -64,25 +63,25 @@ public class Frm_Menu extends javax.swing.JFrame implements Runnable{
         h1.start();
         setLocationRelativeTo(null);
         setVisible(true);
- 
+
         lblfecha.setText(new Paq_Clases.Cla_Fecha().getFecha());
     }
-    public void look(){
+
+    public void look() {
         //este metodo establece el look and feels de la aplicacion
-        try{
-          UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-        }catch(Exception e){
-          e.printStackTrace();
-        } 
+        try {
+            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-    
-    public void Ajustar(JLabel label, ImageIcon icon){
+
+    public void Ajustar(JLabel label, ImageIcon icon) {
         //esta funcion ajusta un icono(parametro) al tamaño del label (parametro)
         Icon icono = new ImageIcon(icon.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_DEFAULT));
         label.setIcon(icono);
-        this.repaint(); 
+        this.repaint();
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -140,6 +139,7 @@ public class Frm_Menu extends javax.swing.JFrame implements Runnable{
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenuItem14 = new javax.swing.JMenuItem();
+        jMenuItem16 = new javax.swing.JMenuItem();
 
         jFrame1.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         jFrame1.setMinimumSize(new java.awt.Dimension(300, 150));
@@ -489,6 +489,16 @@ public class Frm_Menu extends javax.swing.JFrame implements Runnable{
         });
         jMenu7.add(jMenuItem14);
 
+        jMenuItem16.setFont(new java.awt.Font("Verdana", 3, 12)); // NOI18N
+        jMenuItem16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/1498176758_human-folder-tar.png"))); // NOI18N
+        jMenuItem16.setText("Inventario");
+        jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem16ActionPerformed(evt);
+            }
+        });
+        jMenu7.add(jMenuItem16);
+
         jMenuBar1.add(jMenu7);
 
         setJMenuBar(jMenuBar1);
@@ -497,117 +507,117 @@ public class Frm_Menu extends javax.swing.JFrame implements Runnable{
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    usuario = "";
-    lblUsuario.setText("Usuario: ");
-    this.dispose();
-    new Paq_Interfaz.Frm_login().setVisible(true);
+        usuario = "";
+        lblUsuario.setText("Usuario: ");
+        this.dispose();
+        new Paq_Interfaz.Frm_login().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-    new Paq_Interfaz.Frm_ClientesC().setVisible(true);
-     
+        new Paq_Interfaz.Frm_ClientesC().setVisible(true);
+
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
-    new Paq_Interfaz.Frm_ClientesA().setVisible(true);
-     
+        new Paq_Interfaz.Frm_ClientesA().setVisible(true);
+
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
-    new Paq_Interfaz.Frm_ProveedoresA().setVisible(true);
-     
+        new Paq_Interfaz.Frm_ProveedoresA().setVisible(true);
+
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-    new Paq_Interfaz.Frm_ProveedoresC().setVisible(true);
-     
+        new Paq_Interfaz.Frm_ProveedoresC().setVisible(true);
+
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-    new Paq_Interfaz.Frm_InventarioC().setVisible(true);
-     
+        new Paq_Interfaz.Frm_InventarioC().setVisible(true);
+
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-int seleccion = JOptionPane.showOptionDialog(
-   null,
-   "¿Desea ingresar un producto nuevo o añadir a uno existente?", 
-   "Selector de opciones",
-   JOptionPane.YES_NO_OPTION,
-   JOptionPane.QUESTION_MESSAGE,
-   null,    // null para icono por defecto.
-   new Object[] { "Nuevo", "Existente" },   // null para YES, NO y CANCEL
-   "Nuevo");
-    if (seleccion == 0) {
-    System.out.println("seleccionada opcion " + (seleccion + 1));
-    Paq_Interfaz.Frm_InventarioA ventana = new Paq_Interfaz.Frm_InventarioA();
-    ventana.setVisible(true);
-    ventana.txtR.setText(usuario);
-    } else if (seleccion ==1) {
-    System.out.println("seleccionada opcion " + (seleccion + 1));
-    Paq_Interfaz.Frm_InventarioA2 ventana = new Paq_Interfaz.Frm_InventarioA2();
-    ventana.setVisible(true);
-    ventana.txtR.setText(usuario);  
-    }
+        int seleccion = JOptionPane.showOptionDialog(
+                null,
+                "¿Desea ingresar un producto nuevo o añadir a uno existente?",
+                "Selector de opciones",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null, // null para icono por defecto.
+                new Object[]{"Nuevo", "Existente"}, // null para YES, NO y CANCEL
+                "Nuevo");
+        if (seleccion == 0) {
+            System.out.println("seleccionada opcion " + (seleccion + 1));
+            Paq_Interfaz.Frm_InventarioA ventana = new Paq_Interfaz.Frm_InventarioA();
+            ventana.setVisible(true);
+            ventana.txtR.setText(usuario);
+        } else if (seleccion == 1) {
+            System.out.println("seleccionada opcion " + (seleccion + 1));
+            Paq_Interfaz.Frm_InventarioA2 ventana = new Paq_Interfaz.Frm_InventarioA2();
+            ventana.setVisible(true);
+            ventana.txtR.setText(usuario);
+        }
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
-    new Paq_Interfaz.Frm_Usuario().setVisible(true);
+        new Paq_Interfaz.Frm_Usuario().setVisible(true);
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-    Paq_Interfaz.Frm_VentasA ventana = new Paq_Interfaz.Frm_VentasA();
-    ventana.setVisible(true);
-    ventana.lblResponsable.setText(usuario);
+        Paq_Interfaz.Frm_VentasA ventana = new Paq_Interfaz.Frm_VentasA();
+        ventana.setVisible(true);
+        ventana.lblResponsable.setText(usuario);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-    Paq_Interfaz.Frm_VentasC ventana = new Paq_Interfaz.Frm_VentasC();
-    ventana.setVisible(true);
+        Paq_Interfaz.Frm_VentasC ventana = new Paq_Interfaz.Frm_VentasC();
+        ventana.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-    JFileChooser explorador = new JFileChooser("\\home\\");
-    explorador.setDialogTitle("Abrir ubicacion de los reportes...");
-    explorador.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-    int seleccion = explorador.showDialog(null, "Abrir!");
-    //Podemos crear un File con lo seleccionado
-    File archivo = explorador.getSelectedFile();
+        JFileChooser explorador = new JFileChooser("\\home\\");
+        explorador.setDialogTitle("Abrir ubicacion de los reportes...");
+        explorador.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        int seleccion = explorador.showDialog(null, "Abrir!");
+        //Podemos crear un File con lo seleccionado
+        File archivo = explorador.getSelectedFile();
 
-    //y guardar una ruta
-    String ruta = archivo.getPath();
-    //analizamos la respuesta
-    switch(seleccion) {
-    case JFileChooser.APPROVE_OPTION:
-        JOptionPane.showMessageDialog(null, ruta);
-        try {
-                String sql = "update valores set direccion=?";
-                PreparedStatement ps = operaciones.Actualizar(sql);
-                ps.setString(1, ruta);    
-                int n = ps.executeUpdate();
-                if (n > 0) {
-                    JOptionPane.showMessageDialog(null, "RUTA DE REPORTES ACTUALIZADA CORRECTAMENTE");
-                }
+        //y guardar una ruta
+        String ruta = archivo.getPath();
+        //analizamos la respuesta
+        switch (seleccion) {
+            case JFileChooser.APPROVE_OPTION:
+                JOptionPane.showMessageDialog(null, ruta);
+                try {
+                    String sql = "update valores set direccion=?";
+                    PreparedStatement ps = operaciones.Actualizar(sql);
+                    ps.setString(1, ruta);
+                    int n = ps.executeUpdate();
+                    if (n > 0) {
+                        JOptionPane.showMessageDialog(null, "RUTA DE REPORTES ACTUALIZADA CORRECTAMENTE");
+                    }
                 } catch (Exception e) {
-                        JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR LOS DATOS VERIFIQUE QUE SEAN CORRECTOS\n" + e.getMessage()); 
+                    JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR LOS DATOS VERIFIQUE QUE SEAN CORRECTOS\n" + e.getMessage());
                 }
-     break;
+                break;
 
-    case JFileChooser.CANCEL_OPTION:
-     //dio click en cancelar o cerro la ventana
-     break;
+            case JFileChooser.CANCEL_OPTION:
+                //dio click en cancelar o cerro la ventana
+                break;
 
-    case JFileChooser.ERROR_OPTION:
-     //llega aqui si sucede un error
-     break;
-    }
-        
+            case JFileChooser.ERROR_OPTION:
+                //llega aqui si sucede un error
+                break;
+        }
+
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-try {
+        try {
             conn = Paq_Base_Datos.Conexion_DB.geConnection();
-            String dir = ruta.getRuta()+"\\Reporte_Ventas.jrxml";
+            String dir = ruta.getRuta() + "\\Reporte_Ventas.jrxml";
             Map<String, Object> p2 = new HashMap<>();
             p2.put("usuario", usuario);
             JasperReport reporteJasper = JasperCompileManager.compileReport(dir);
@@ -615,14 +625,14 @@ try {
             JasperViewer visor = new JasperViewer(mostrarReporte, false);
             visor.setVisible(true);
         } catch (JRException ex) {
-            JOptionPane.showMessageDialog(null, "OCURRIO UN ERROR AL CARGAR EL REPORTE POR FAVOR COMPRUEBE\nQUE LA RUTA SEA LA CORRECTA\n"+ex, "ERROR", JOptionPane.ERROR_MESSAGE);
-    }
+            JOptionPane.showMessageDialog(null, "OCURRIO UN ERROR AL CARGAR EL REPORTE POR FAVOR COMPRUEBE\nQUE LA RUTA SEA LA CORRECTA\n" + ex, "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
- try {
+        try {
             conn = Paq_Base_Datos.Conexion_DB.geConnection();
-            String dir = ruta.getRuta()+"\\Reporte_Clientes.jrxml";
+            String dir = ruta.getRuta() + "\\Reporte_Clientes.jrxml";
             Map<String, Object> p2 = new HashMap<>();
             p2.put("usuario", usuario);
             JasperReport reporteJasper = JasperCompileManager.compileReport(dir);
@@ -630,14 +640,14 @@ try {
             JasperViewer visor = new JasperViewer(mostrarReporte, false);
             visor.setVisible(true);
         } catch (JRException ex) {
-            JOptionPane.showMessageDialog(null, "OCURRIO UN ERROR AL CARGAR EL REPORTE POR FAVOR COMPRUEBE\nQUE LA RUTA SEA LA CORRECTA\n"+ex, "ERROR", JOptionPane.ERROR_MESSAGE);
-    }
+            JOptionPane.showMessageDialog(null, "OCURRIO UN ERROR AL CARGAR EL REPORTE POR FAVOR COMPRUEBE\nQUE LA RUTA SEA LA CORRECTA\n" + ex, "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
- try {
+        try {
             conn = Paq_Base_Datos.Conexion_DB.geConnection();
-            String dir = ruta.getRuta()+"\\proveedores.jrxml";
+            String dir = ruta.getRuta() + "\\proveedores.jrxml";
             Map<String, Object> p2 = new HashMap<>();
             p2.put("usuario", usuario);
             JasperReport reporteJasper = JasperCompileManager.compileReport(dir);
@@ -645,20 +655,20 @@ try {
             JasperViewer visor = new JasperViewer(mostrarReporte, false);
             visor.setVisible(true);
         } catch (JRException ex) {
-            JOptionPane.showMessageDialog(null, "OCURRIO UN ERROR AL CARGAR EL REPORTE POR FAVOR COMPRUEBE\nQUE LA RUTA SEA LA CORRECTA\n"+ex, "ERROR", JOptionPane.ERROR_MESSAGE);
-    }
+            JOptionPane.showMessageDialog(null, "OCURRIO UN ERROR AL CARGAR EL REPORTE POR FAVOR COMPRUEBE\nQUE LA RUTA SEA LA CORRECTA\n" + ex, "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
-int seleccion = JOptionPane.showOptionDialog(
-   null,
-   "¡Como desea realizar la consulta de ventas?", 
-   "Selector de opciones",
-   JOptionPane.YES_NO_CANCEL_OPTION,
-   JOptionPane.QUESTION_MESSAGE,
-   null,    // null para icono por defecto.
-   new Object[] { "Dia", "Mes", "Año" },   // null para YES, NO y CANCEL
-   "Dia");
+        int seleccion = JOptionPane.showOptionDialog(
+                null,
+                "¡Como desea realizar la consulta de ventas?",
+                "Selector de opciones",
+                JOptionPane.YES_NO_CANCEL_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null, // null para icono por defecto.
+                new Object[]{"Dia", "Mes", "Año"}, // null para YES, NO y CANCEL
+                "Dia");
         switch (seleccion) {
             case 0:
                 this.jFrame1.setLocationRelativeTo(null);
@@ -678,9 +688,9 @@ int seleccion = JOptionPane.showOptionDialog(
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
- try {
+        try {
             conn = Paq_Base_Datos.Conexion_DB.geConnection();
-            String dir = ruta.getRuta()+"\\Reporte_Usuarios.jrxml";
+            String dir = ruta.getRuta() + "\\Reporte_Usuarios.jrxml";
             Map<String, Object> p2 = new HashMap<>();
             p2.put("usuario", usuario);
             JasperReport reporteJasper = JasperCompileManager.compileReport(dir);
@@ -688,31 +698,29 @@ int seleccion = JOptionPane.showOptionDialog(
             JasperViewer visor = new JasperViewer(mostrarReporte, false);
             visor.setVisible(true);
         } catch (JRException ex) {
-            JOptionPane.showMessageDialog(null, "OCURRIO UN ERROR AL CARGAR EL REPORTE POR FAVOR COMPRUEBE\nQUE LA RUTA SEA LA CORRECTA\n"+ex, "ERROR", JOptionPane.ERROR_MESSAGE);
-    }    
+            JOptionPane.showMessageDialog(null, "OCURRIO UN ERROR AL CARGAR EL REPORTE POR FAVOR COMPRUEBE\nQUE LA RUTA SEA LA CORRECTA\n" + ex, "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jMenuItem14ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-     SimpleDateFormat Formato = new SimpleDateFormat("dd/MM/yyyy");
-     jDateChooser1.getJCalendar().setMaxSelectableDate(new Date());
-     fecha = Formato.format(jDateChooser1.getDate());
-     this.jFrame1.dispose();
+        SimpleDateFormat Formato = new SimpleDateFormat("dd/MM/yyyy");
+        jDateChooser1.getJCalendar().setMaxSelectableDate(new Date());
+        fecha = Formato.format(jDateChooser1.getDate());
+        this.jFrame1.dispose();
         if (!fecha.equals("")) {
-         try {
-            conn = Paq_Base_Datos.Conexion_DB.geConnection();
-            String dir = ruta.getRuta()+"\\Reporte_Ventas_Consulta.jrxml";
-            Map<String, Object> p2 = new HashMap<>();
-            p2.put("Fecha", fecha);
-            p2.put("usuario", usuario);
-            JasperReport reporteJasper = JasperCompileManager.compileReport(dir);
-            JasperPrint mostrarReporte = JasperFillManager.fillReport(reporteJasper, p2, conn);
-            JasperViewer visor = new JasperViewer(mostrarReporte, false);
-            visor.setVisible(true);
-        } catch (JRException ex) {
-            JOptionPane.showMessageDialog(null, "OCURRIO UN ERROR AL CARGAR EL REPORTE POR FAVOR COMPRUEBE\nQUE LA RUTA SEA LA CORRECTA\n"+ex, "ERROR", JOptionPane.ERROR_MESSAGE);
-    } 
-        }else{
-            
+            try {
+                conn = Paq_Base_Datos.Conexion_DB.geConnection();
+                String dir = ruta.getRuta() + "\\Reporte_Ventas_Consulta.jrxml";
+                Map<String, Object> p2 = new HashMap<>();
+                p2.put("Fecha", fecha);
+                p2.put("usuario", usuario);
+                JasperReport reporteJasper = JasperCompileManager.compileReport(dir);
+                JasperPrint mostrarReporte = JasperFillManager.fillReport(reporteJasper, p2, conn);
+                JasperViewer visor = new JasperViewer(mostrarReporte, false);
+                visor.setVisible(true);
+            } catch (JRException ex) {
+                JOptionPane.showMessageDialog(null, "OCURRIO UN ERROR AL CARGAR EL REPORTE POR FAVOR COMPRUEBE\nQUE LA RUTA SEA LA CORRECTA\n" + ex, "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -725,16 +733,16 @@ int seleccion = JOptionPane.showOptionDialog(
     }//GEN-LAST:event_jFrame1WindowLostFocus
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-    this.jFrame2.dispose();
-    String mes="";
-        if (jMonthChooser2.getMonth()<=9) {
-            mes = "0"+String.valueOf(jMonthChooser2.getMonth()+1);
+        this.jFrame2.dispose();
+        String mes = "";
+        if (jMonthChooser2.getMonth() <= 9) {
+            mes = "0" + String.valueOf(jMonthChooser2.getMonth() + 1);
         } else {
-            mes = String.valueOf(jMonthChooser2.getMonth()+1);
+            mes = String.valueOf(jMonthChooser2.getMonth() + 1);
         }
-    try {
+        try {
             conn = Paq_Base_Datos.Conexion_DB.geConnection();
-            String dir = ruta.getRuta()+"\\Reporte_Ventas_ConsultaM.jrxml";
+            String dir = ruta.getRuta() + "\\Reporte_Ventas_ConsultaM.jrxml";
             Map<String, Object> p2 = new HashMap<>();
             p2.put("Fecha", mes);
             p2.put("usuario", usuario);
@@ -743,9 +751,9 @@ int seleccion = JOptionPane.showOptionDialog(
             JasperViewer visor = new JasperViewer(mostrarReporte, false);
             visor.setVisible(true);
         } catch (JRException ex) {
-            JOptionPane.showMessageDialog(null, "OCURRIO UN ERROR AL CARGAR EL REPORTE POR FAVOR COMPRUEBE\nQUE LA RUTA SEA LA CORRECTA\n"+ex, "ERROR", JOptionPane.ERROR_MESSAGE);
-    } 
-    
+            JOptionPane.showMessageDialog(null, "OCURRIO UN ERROR AL CARGAR EL REPORTE POR FAVOR COMPRUEBE\nQUE LA RUTA SEA LA CORRECTA\n" + ex, "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -757,10 +765,10 @@ int seleccion = JOptionPane.showOptionDialog(
     }//GEN-LAST:event_jFrame2WindowLostFocus
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-     this.jFrame3.dispose();
-    try {
+        this.jFrame3.dispose();
+        try {
             conn = Paq_Base_Datos.Conexion_DB.geConnection();
-            String dir = ruta.getRuta()+"\\Reporte_Ventas_ConsultaA.jrxml";
+            String dir = ruta.getRuta() + "\\Reporte_Ventas_ConsultaA.jrxml";
             Map<String, Object> p2 = new HashMap<>();
             p2.put("Fecha", jYearChooser1.getYear());
             p2.put("usuario", usuario);
@@ -769,8 +777,8 @@ int seleccion = JOptionPane.showOptionDialog(
             JasperViewer visor = new JasperViewer(mostrarReporte, false);
             visor.setVisible(true);
         } catch (JRException ex) {
-            JOptionPane.showMessageDialog(null, "OCURRIO UN ERROR AL CARGAR EL REPORTE POR FAVOR COMPRUEBE\nQUE LA RUTA SEA LA CORRECTA\n"+ex, "ERROR", JOptionPane.ERROR_MESSAGE);
-    }
+            JOptionPane.showMessageDialog(null, "OCURRIO UN ERROR AL CARGAR EL REPORTE POR FAVOR COMPRUEBE\nQUE LA RUTA SEA LA CORRECTA\n" + ex, "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -781,23 +789,41 @@ int seleccion = JOptionPane.showOptionDialog(
         // TODO add your handling code here:
     }//GEN-LAST:event_jFrame3WindowLostFocus
 
-    
-        public void run() {
+    private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
+        try {
+            conn = Paq_Base_Datos.Conexion_DB.geConnection();
+            String dir = ruta.getRuta() + "\\Reporte_Ventas.jrxml";
+            Map<String, Object> p2 = new HashMap<>();
+            p2.put("usuario", usuario);
+            JasperReport reporteJasper = JasperCompileManager.compileReport(dir);
+            JasperPrint mostrarReporte = JasperFillManager.fillReport(reporteJasper, p2, conn);
+            JasperViewer visor = new JasperViewer(mostrarReporte, false);
+            visor.setVisible(true);
+        } catch (JRException ex) {
+            JOptionPane.showMessageDialog(null, "OCURRIO UN ERROR AL CARGAR EL REPORTE POR FAVOR COMPRUEBE\nQUE LA RUTA SEA LA CORRECTA\n" + ex, "ERROR", JOptionPane.ERROR_MESSAGE);
+        }// TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem16ActionPerformed
+
+public void run() {
         //metodo run para que hilo inicie llamando la funcion calcula tiempo y establece el tiempo en el label
         Thread ct= Thread.currentThread();
         while(ct==h1){
             try {
                 calculaTiempo();
                 usuario = lblUsuario.getText();
-            } catch (ParseException ex) {
-                Logger.getLogger(Frm_Menu.class.getName()).log(Level.SEVERE, null, ex);
+            
+
+} catch (ParseException ex) {
+                Logger.getLogger(Frm_Menu.class
+.getName()).log(Level.SEVERE, null, ex);
             }
             jLabel4.setText(hora+":"+minutos+":"+segundos);
             try{
                 Thread.sleep(1000);
-            }catch(InterruptedException e){}
+            }catch(InterruptedException e){
+            }
         }
-    }
+}
         
     private void calculaTiempo() throws ParseException {
         //esta funcion genera los valores para el tiempo
@@ -849,6 +875,7 @@ int seleccion = JOptionPane.showOptionDialog(
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem15;
+    private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;

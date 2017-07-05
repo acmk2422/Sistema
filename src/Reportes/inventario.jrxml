@@ -43,7 +43,7 @@ FROM
 				<reportElement mode="Opaque" x="0" y="0" width="802" height="66" backcolor="#FFFFFF" uuid="b88e638b-1756-4f3b-a538-495a91b5d496"/>
 				<image hAlign="Center">
 					<reportElement x="313" y="0" width="413" height="66" uuid="ae2b89f9-f411-4d7e-9eba-236f49eff603"/>
-					<imageExpression><![CDATA["D:\\sistema de ventas tornavica Ultimo\\src\\imagenes\\tornavica.PNG"]]></imageExpression>
+					<imageExpression><![CDATA["G:\\sistema de ventas tornavica Ultimo\\src\\imagenes\\Tornavica.PNG"]]></imageExpression>
 				</image>
 			</frame>
 			<frame>
