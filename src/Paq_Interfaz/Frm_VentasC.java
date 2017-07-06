@@ -54,6 +54,7 @@ public class Frm_VentasC extends javax.swing.JFrame {
                 model.addRow(fila);      
             }
             tbl.setModel(model);
+            operaciones.conn.close();
             } catch (SQLException e) {
                JOptionPane.showMessageDialog(null, e.getMessage());    
     }
@@ -230,6 +231,7 @@ if (rs.getString("tipo_persona").equals("juridica")) {
                 model.addRow(fila); 
                 }
                 tbl.setModel(model);
+                operaciones.conn.close();
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e.getMessage());
             }
@@ -274,6 +276,7 @@ if (rs.getString("tipo_persona").equals("juridica")) {
                 model.addRow(fila); 
                 }
                     tbl.setModel(model);
+                    operaciones.conn.close();
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e.getMessage());
             }
@@ -299,6 +302,7 @@ if (rs.getString("tipo_persona").equals("juridica")) {
                 model.addRow(fila); 
                 }
                 tbl.setModel(model);
+                operaciones.conn.close();
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e.getMessage());
             }

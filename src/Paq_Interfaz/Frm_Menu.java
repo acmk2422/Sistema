@@ -598,6 +598,7 @@ public class Frm_Menu extends javax.swing.JFrame implements Runnable {
                     if (n > 0) {
                         JOptionPane.showMessageDialog(null, "RUTA DE REPORTES ACTUALIZADA CORRECTAMENTE");
                     }
+                    operaciones.conn.close();
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR LOS DATOS VERIFIQUE QUE SEAN CORRECTOS\n" + e.getMessage());
                 }

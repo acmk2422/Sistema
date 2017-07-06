@@ -69,6 +69,7 @@ public class Frm_ProveedoresC extends javax.swing.JFrame {
                 model.addRow(fila);      
             }
             tbl.setModel(model);
+            operaciones.conn.close();
             } catch (SQLException e) {
                JOptionPane.showMessageDialog(null, e.getMessage());    
     }
@@ -455,6 +456,7 @@ public class Frm_ProveedoresC extends javax.swing.JFrame {
                         this.Borrar(3);
                         this.Deshabilitar(1);
                     }
+                    operaciones.conn.close();
                     } catch (Exception e) {
                             JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR LOS DATOS VERIFIQUE QUE SEAN CORRECTOS\n" + e.getMessage()); 
                     }
@@ -502,6 +504,7 @@ public class Frm_ProveedoresC extends javax.swing.JFrame {
                 
                 this.Habilitar(1);
             }
+            operaciones.conn.close();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Datos incompletos\n"+e);
         }
@@ -559,6 +562,7 @@ public class Frm_ProveedoresC extends javax.swing.JFrame {
             model.addRow(fila);
             tbl.setModel(model);
             }
+            operaciones.conn.close();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
@@ -584,6 +588,7 @@ public class Frm_ProveedoresC extends javax.swing.JFrame {
             model.addRow(fila);
             tbl.setModel(model);
             }
+            operaciones.conn.close();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
@@ -609,6 +614,7 @@ public class Frm_ProveedoresC extends javax.swing.JFrame {
             model.addRow(fila);
             tbl.setModel(model);
             }
+            operaciones.conn.close();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }

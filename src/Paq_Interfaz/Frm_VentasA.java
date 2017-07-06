@@ -52,6 +52,7 @@ public class Frm_VentasA extends javax.swing.JFrame {
             while (rs.next()) {
                 cod = rs.getInt("cod_cliente");
             }
+            operaciones.conn.close();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
@@ -77,6 +78,7 @@ public class Frm_VentasA extends javax.swing.JFrame {
                     cbxN.addItem(rs.getString("primer_nombre") + " " + rs.getString("primer_apellido"));
                 }
             }
+            operaciones.conn.close();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
@@ -96,6 +98,7 @@ public class Frm_VentasA extends javax.swing.JFrame {
                 model.addRow(fila);
             }
             tbl.setModel(model);
+            operaciones.conn.close();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
@@ -105,6 +108,7 @@ public class Frm_VentasA extends javax.swing.JFrame {
             while (rs.next()) {
                 iva = Float.parseFloat(rs.getString("iva"));
             }
+            operaciones.conn.close();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
@@ -120,6 +124,7 @@ public class Frm_VentasA extends javax.swing.JFrame {
             while (rs.next()) {
                 numero = Long.parseLong(this.NumeroAleatorio());
             }
+            operaciones.conn.close();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
@@ -136,6 +141,7 @@ public class Frm_VentasA extends javax.swing.JFrame {
             while (rs.next()) {
                 numero = Long.parseLong(this.NumeroAleatorio());
             }
+            operaciones.conn.close();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
@@ -617,6 +623,7 @@ public class Frm_VentasA extends javax.swing.JFrame {
                     model.addRow(fila);
                 }
                 tbl.setModel(model);
+                operaciones.conn.close();
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e.getMessage());
             }
@@ -658,6 +665,7 @@ public class Frm_VentasA extends javax.swing.JFrame {
                         if (n > 0 && tbl.getRowCount() == (i + 1)) {
                             //JOptionPane.showMessageDialog(null, "VENDIDO CON EXITO");
                         }
+                        operaciones.conn.close();
                     } catch (Exception e) {
                         JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR LOS DATOS VERIFIQUE QUE SEAN CORRECTOS\n" + e.getMessage());
                     }
@@ -683,6 +691,7 @@ public class Frm_VentasA extends javax.swing.JFrame {
                         ps.setInt(6, Integer.parseInt(lblNumeroRegistro.getText()));
                         ps.setInt(7, descuento);
                         int n = ps.executeUpdate();
+                        operaciones.conn.close();
                     } catch (Exception e) {
                         JOptionPane.showMessageDialog(null, "ERROR AL GUARDAR\ncodigo error:" + e.getMessage());
                     }
@@ -724,6 +733,7 @@ public class Frm_VentasA extends javax.swing.JFrame {
                         lblNumeroRegistro.setText(this.NumeroAleatorio());
                         this.Llenar();
                     }
+                    operaciones.conn.close();
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(null, "ERROR AL GUARDAR\ncodigo error:" + e.getMessage());
                 }
@@ -748,6 +758,7 @@ public class Frm_VentasA extends javax.swing.JFrame {
                     txtC.setText(rs.getString("cedula"));
                     resultado = true;
                 }
+                operaciones.conn.close();
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e.getMessage());
             }
@@ -759,6 +770,7 @@ public class Frm_VentasA extends javax.swing.JFrame {
                         txtC.setText(rs.getString("cedula"));
                         resultado = true;
                     }
+                    operaciones.conn.close();
                 } catch (SQLException e) {
                     JOptionPane.showMessageDialog(null, e.getMessage());
                 }
@@ -785,6 +797,7 @@ public class Frm_VentasA extends javax.swing.JFrame {
                     cbxN.addItem(rs.getString("primer_nombre") + " " + rs.getString("primer_apellido"));
                 }
             }
+            operaciones.conn.close();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
@@ -826,6 +839,7 @@ public class Frm_VentasA extends javax.swing.JFrame {
                     model.addRow(fila);
                     tbl.setModel(model);
                 }
+                operaciones.conn.close();
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e.getMessage());
             }
@@ -848,6 +862,7 @@ public class Frm_VentasA extends javax.swing.JFrame {
                     tbl.setModel(model);
 
                 }
+                operaciones.conn.close();
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e.getMessage());
             }
@@ -869,6 +884,7 @@ public class Frm_VentasA extends javax.swing.JFrame {
                     model.addRow(fila);
                 }
                 tbl.setModel(model);
+                operaciones.conn.close();
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e.getMessage());
             }

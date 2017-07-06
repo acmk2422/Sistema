@@ -340,6 +340,7 @@ public class Frm_ProveedoresA extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "PROVEEDOR INGRESADO CON EXITO");
                     this.Borrar(3);
                 }
+            operaciones.conn.close();   
             } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"ERROR AL GUARDAR\ncodigo error:"+e.getMessage());
         }

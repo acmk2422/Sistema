@@ -65,6 +65,7 @@ public class Frm_InventarioC extends javax.swing.JFrame {
                 model.addRow(fila);      
             }
             tbl.setModel(model);
+            operaciones.conn.close();
             } catch (SQLException e) {
                JOptionPane.showMessageDialog(null, e.getMessage());    
     }
@@ -75,6 +76,7 @@ public class Frm_InventarioC extends javax.swing.JFrame {
             while(rs.next()){
             cbxP.addItem(rs.getString("nombre")); 
             }
+            operaciones.conn.close();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
@@ -84,6 +86,7 @@ public class Frm_InventarioC extends javax.swing.JFrame {
             while(rs.next()){
             txtIva.setText(rs.getString("iva"));
             }
+            operaciones.conn.close();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
@@ -492,6 +495,7 @@ public class Frm_InventarioC extends javax.swing.JFrame {
                         this.Borrar(3);
                         this.Deshabilitar(1);
                     }
+                    operaciones.conn.close();
                     } catch (Exception e) {
                             JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR LOS DATOS VERIFIQUE QUE SEAN CORRECTOS\n" + e.getMessage()); 
                     }
@@ -534,6 +538,7 @@ public class Frm_InventarioC extends javax.swing.JFrame {
                 
                 this.Habilitar(1);
             }
+            operaciones.conn.close();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error\n"+e);
         }
@@ -572,6 +577,7 @@ if(cbxOpcion.getSelectedIndex()==1){
                 this.llenar();
                 resultado = false;
             }
+            operaciones.conn.close();
             } catch (SQLException e) {
                JOptionPane.showMessageDialog(null, e.getMessage());    
     }
@@ -711,6 +717,7 @@ if(cbxOpcion.getSelectedIndex()==1){
                 tbl.setModel(model);
                 
             }
+            operaciones.conn.close();
             } catch (SQLException e) {
                JOptionPane.showMessageDialog(null, e.getMessage());    
     }
@@ -736,6 +743,7 @@ if(cbxOpcion.getSelectedIndex()==1){
                 tbl.setModel(model);
                 
             }
+            operaciones.conn.close();
             } catch (SQLException e) {
                JOptionPane.showMessageDialog(null, e.getMessage());    
     }
@@ -761,6 +769,7 @@ if(cbxOpcion.getSelectedIndex()==1){
                 tbl.setModel(model);
                 
             }
+            operaciones.conn.close();
             } catch (SQLException e) {
                JOptionPane.showMessageDialog(null, e.getMessage());    
     }

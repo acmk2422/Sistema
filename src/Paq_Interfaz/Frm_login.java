@@ -161,6 +161,7 @@ public class Frm_login extends javax.swing.JFrame {
                     PreparedStatement ps = operaciones.Actualizar(sql1);
                     ps.setString(1, fecha.getFecha());    
                     int n = ps.executeUpdate();
+                    operaciones.conn.close();
                 } catch (Exception e) {
                         JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR ULTIMO ACCESO" + e.getMessage()); 
                 }
@@ -175,6 +176,7 @@ public class Frm_login extends javax.swing.JFrame {
             if(nombre==false){
                    JOptionPane.showMessageDialog(null, "Usuario no encontrado" );
             }
+            operaciones.conn.close();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Problemas con la base de datos\n"+e);
         }     

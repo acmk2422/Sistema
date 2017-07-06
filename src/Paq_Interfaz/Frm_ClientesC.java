@@ -84,6 +84,7 @@ public class Frm_ClientesC extends javax.swing.JFrame {
                 model.addRow(fila);      
             }
             tbl.setModel(model);
+            operaciones.conn.close();
             } catch (SQLException e) {
                JOptionPane.showMessageDialog(null, e.getMessage());    
     }
@@ -615,9 +616,10 @@ int respuesta = JOptionPane.showConfirmDialog(null, "¿ESTA SEGURO QUE DESEA ELI
             int n = st.executeUpdate(sql);
             if (n > 0) {
                 this.llenar();
+                JOptionPane.showMessageDialog(null, " DATOS ELIMINADOS CORRECTAMENTE");
             }
-            JOptionPane.showMessageDialog(null, " DATOS ELIMINADOS CORRECTAMENTE");
-            } catch (Exception e) {
+            operaciones.conn.close();
+           } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "ERROR Al ELIMINAR DATOS, COMPRUEBE QUE ESTE SELECCIONADO UN REGISTRO");
             }
         }else{
@@ -653,6 +655,7 @@ int respuesta = JOptionPane.showConfirmDialog(null, "¿ESTA SEGURO QUE DESEA ELI
                         this.Borrar(3);
                         this.Deshabilitar(3);
                     }
+                    operaciones.conn.close();
                     } catch (Exception e) {
                             JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR LOS DATOS VERIFIQUE QUE SEAN CORRECTOS" + e.getMessage()); 
                     }
@@ -675,6 +678,7 @@ int respuesta = JOptionPane.showConfirmDialog(null, "¿ESTA SEGURO QUE DESEA ELI
                         this.Borrar(3);
                         this.Deshabilitar(3);
                     }
+                    operaciones.conn.close();
                     } catch (Exception e) {
                             JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR LOS DATOS VERIFIQUE QUE SEAN CORRECTOS" + e.getMessage()); 
                     }
@@ -736,6 +740,7 @@ int respuesta = JOptionPane.showConfirmDialog(null, "¿ESTA SEGURO QUE DESEA ELI
                     }
                 }
             }
+            operaciones.conn.close();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Datos incompletos\n"+e);
         }
@@ -821,6 +826,7 @@ if(cbxOpcion.getSelectedIndex()==1){
                 this.llenar();
                 resultado = false;
             }
+            operaciones.conn.close();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
@@ -854,6 +860,7 @@ if(cbxOpcion.getSelectedIndex()==1){
                 this.llenar();
                 resultado = false;
             }
+            operaciones.conn.close();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
@@ -900,6 +907,7 @@ if(cbxOpcion.getSelectedIndex()==1){
             model.addRow(fila);  
             tbl.setModel(model);
             }
+            operaciones.conn.close();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
@@ -926,6 +934,7 @@ if(cbxOpcion.getSelectedIndex()==1){
             model.addRow(fila);  
             tbl.setModel(model);
             }
+            operaciones.conn.close();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
@@ -952,6 +961,7 @@ if(cbxOpcion.getSelectedIndex()==1){
             model.addRow(fila);  
             tbl.setModel(model);
             }
+            operaciones.conn.close();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }

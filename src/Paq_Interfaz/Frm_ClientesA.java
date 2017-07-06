@@ -395,6 +395,7 @@ if (this.verificacion()){
                     JOptionPane.showMessageDialog(null, "CLIENTE INGRESADO CON EXITO");
                     this.Borrar(3);
                 }
+            operaciones.conn.close();   
             } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"ERROR AL GUARDAR\ncodigo error:"+e.getMessage());
         }
@@ -419,6 +420,7 @@ if (this.verificacion()){
                     JOptionPane.showMessageDialog(null, "CLIENTE INGRESADO CON EXITO");
                     this.Borrar(3);
                 }
+            operaciones.conn.close();
             } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"ERROR AL GUARDAR\ncodigo error:"+e.getMessage());
         }

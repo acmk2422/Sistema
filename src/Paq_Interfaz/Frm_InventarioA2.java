@@ -64,6 +64,7 @@ public class Frm_InventarioA2 extends javax.swing.JFrame {
                 model.addRow(fila);      
             }
             tbl.setModel(model);
+            operaciones.conn.close();
             } catch (SQLException e) {
                JOptionPane.showMessageDialog(null, e.getMessage());    
         }
@@ -356,6 +357,7 @@ if (this.verificacion()){
             while(rs.next()){
                 cantidad = Integer.parseInt(rs.getString("cantidad"));
             }
+            operaciones.conn.close();
             } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"ERROR AL GUARDAR\ncodigo error:"+e.getMessage());
         }
@@ -370,6 +372,7 @@ if (this.verificacion()){
                     this.Borrar(1);
                     this.Llenar();
                 }
+                operaciones.conn.close();
             } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"ERROR AL GUARDAR\ncodigo error:"+e.getMessage());
         }
@@ -418,6 +421,7 @@ this.Borrar(1);
                     model.addRow(fila);
                     tbl.setModel(model);
                 }
+                operaciones.conn.close();
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e.getMessage());
             }
@@ -440,6 +444,7 @@ this.Borrar(1);
                     tbl.setModel(model);
 
                 }
+                operaciones.conn.close();
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e.getMessage());
             }
@@ -461,6 +466,7 @@ this.Borrar(1);
                     model.addRow(fila);
                 }
                 tbl.setModel(model);
+                operaciones.conn.close();
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e.getMessage());
             }
@@ -503,6 +509,7 @@ this.Borrar(1);
                     model.addRow(fila);
                 }
                 tbl.setModel(model);
+                operaciones.conn.close();
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e.getMessage());
             }

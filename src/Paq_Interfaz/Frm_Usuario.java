@@ -277,6 +277,7 @@ public class Frm_Usuario extends javax.swing.JFrame {
                 }
             }
         }
+        operaciones.conn.close();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Datos incompletos\n"+e);
         }
@@ -318,6 +319,7 @@ if (!c1.equals("") && !c3.equals("") && !c2.equals("")) {
                     cbxP.setSelectedIndex(0);
                     this.Borrar();
                 }
+                operaciones.conn.close();
         } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR LOS DATOS VERIFIQUE QUE SEAN CORRECTOS\n" + e.getMessage()); 
         }
@@ -352,6 +354,7 @@ if (!c1.equals("") && !c3.equals("") && !c2.equals("")) {
                             JOptionPane.showMessageDialog(null, "Usuario Creado CON EXITO",null,1, new javax.swing.ImageIcon(getClass().getResource("/imagenes/bien 48x48.png")));
                             this.Borrar();
                         }
+                        operaciones.conn.close();
             } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"ERROR AL GUARDAR\ncodigo error:"+e.getMessage());
         }
@@ -382,6 +385,7 @@ int respuesta = JOptionPane.showConfirmDialog(null, "¿ESTA SEGURO QUE DESEA ELI
                 btnA.setText("Agregar");
                 btnE1.setEnabled(false);
             }
+            operaciones.conn.close();
             } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "ERROR Al ELIMINAR DATOS \n"+e);
             }

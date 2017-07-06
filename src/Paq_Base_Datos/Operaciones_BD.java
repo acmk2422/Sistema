@@ -16,7 +16,7 @@ import java.sql.Statement;
 
 public class Operaciones_BD {
     
-    java.sql.Connection conn;
+    public java.sql.Connection conn;
     Statement st;
     
     public ResultSet Consultar(String sql) throws SQLException{
