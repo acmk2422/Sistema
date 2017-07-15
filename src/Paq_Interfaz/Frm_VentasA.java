@@ -1,5 +1,6 @@
 package Paq_Interfaz;
 
+import Atxy2k.CustomTextField.RestrictedTextField;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.sql.PreparedStatement;
@@ -35,14 +36,27 @@ public class Frm_VentasA extends javax.swing.JFrame {
     private boolean igual;
     private int acum = 0;
     private String res;
+   
 
     public Frm_VentasA() {
         initComponents();
         setLocationRelativeTo(null);
         update = false;
         this.Llenar();
+       this.restringir();
         lblNumeroRegistro.setText(String.valueOf(this.NumeroAleatorio()));
     }
+    
+     public void restringir(){
+        RestrictedTextField restricted3 = new RestrictedTextField(this.txtB);
+        restricted3.setLimit(15);
+        
+           RestrictedTextField restricted4 = new RestrictedTextField(this.txtDes);
+        restricted4.setOnlyNums(true);
+        restricted4.setLimit(4);
+        
+        
+     }
 
     public int getCodigoCli(String cedula) {
         int cod = 0;
@@ -148,6 +162,8 @@ public class Frm_VentasA extends javax.swing.JFrame {
         return String.valueOf(numero);
     }
 
+        
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -236,6 +252,7 @@ public class Frm_VentasA extends javax.swing.JFrame {
         jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblNumeroRegistro.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        lblNumeroRegistro.setEnabled(false);
         jPanel7.add(lblNumeroRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, 110, 30));
 
         jLabel34.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -260,6 +277,7 @@ public class Frm_VentasA extends javax.swing.JFrame {
         jPanel7.add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 80, 30));
 
         lblFecha.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        lblFecha.setEnabled(false);
         jPanel7.add(lblFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, 110, 30));
 
         jPanel1.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 140, 420, 120));
@@ -324,6 +342,7 @@ public class Frm_VentasA extends javax.swing.JFrame {
         jPanel3.add(txtDes, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, 80, 30));
 
         lblIva.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        lblIva.setEnabled(false);
         jPanel3.add(lblIva, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, 110, 30));
 
         jLabel11.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -335,6 +354,7 @@ public class Frm_VentasA extends javax.swing.JFrame {
         jPanel3.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 50, 130, 30));
 
         lblCan.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        lblCan.setEnabled(false);
         jPanel3.add(lblCan, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 50, 50, 30));
 
         jLabel20.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -348,6 +368,7 @@ public class Frm_VentasA extends javax.swing.JFrame {
         jPanel3.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 60, 30));
 
         lblTotal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        lblTotal.setEnabled(false);
         jPanel3.add(lblTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 110, 30));
 
         jLabel29.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -360,6 +381,7 @@ public class Frm_VentasA extends javax.swing.JFrame {
         jPanel3.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 60, 30));
 
         lblSubtotal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        lblSubtotal.setEnabled(false);
         jPanel3.add(lblSubtotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 110, 30));
 
         jLabel32.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -385,6 +407,7 @@ public class Frm_VentasA extends javax.swing.JFrame {
 
         txtC.setEditable(false);
         txtC.setFont(new java.awt.Font("Verdana", 0, 10)); // NOI18N
+        txtC.setEnabled(false);
         txtC.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtCMouseClicked(evt);
@@ -670,7 +693,7 @@ public class Frm_VentasA extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR LOS DATOS VERIFIQUE QUE SEAN CORRECTOS\n" + e.getMessage());
                     }
                 }
-
+ 
                 //añadir en descripcion
                 String codigoDes = "";
                 for (int i = 0; i < tbl2.getRowCount(); i++) {

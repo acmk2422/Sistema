@@ -41,10 +41,26 @@ public class Frm_ProveedoresA extends javax.swing.JFrame {
     public void restringir(){
         RestrictedTextField restricted3 = new RestrictedTextField(this.txtC);
         restricted3.setOnlyNums(true);
+        restricted3.setLimit(8);
+        
         RestrictedTextField restricted4 = new RestrictedTextField(this.txtT1);
         restricted4.setOnlyNums(true);
+         restricted4.setLimit(11);
+         
         RestrictedTextField restricted5 = new RestrictedTextField(this.txtT2);
         restricted5.setOnlyNums(true);
+         restricted5.setLimit(11);
+         
+          RestrictedTextField restricted6 = new RestrictedTextField(this.txtN);
+        restricted6.setOnlyText(true);
+        restricted6.setLimit(15);
+        
+         RestrictedTextField restricted7 = new RestrictedTextField(this.txtE);
+        restricted7.setLimit(30);
+        
+        
+        
+         
     }
     private boolean verificacion(){
             if (!"".equals(txtN.getText()) && !"".equals(txtC.getText()) && 

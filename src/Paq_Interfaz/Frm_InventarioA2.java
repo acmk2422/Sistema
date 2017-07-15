@@ -80,6 +80,13 @@ public class Frm_InventarioA2 extends javax.swing.JFrame {
      public void restringir(){
         RestrictedTextField restricted3 = new RestrictedTextField(this.txtCa);
         restricted3.setOnlyNums(true);
+          restricted3.setLimit(3);
+        
+        RestrictedTextField restricted4 = new RestrictedTextField(this.txtB);
+ 
+        restricted4.setLimit(10);
+       
+       
     }
      
      public boolean verificacion(){
