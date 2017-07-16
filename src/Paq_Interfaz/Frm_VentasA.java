@@ -42,7 +42,7 @@ public class Frm_VentasA extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         update = false;
         this.restringir();
-        this.Llenar();
+//        this.Llenar();
         lblNumeroRegistro.setText(String.valueOf(this.NumeroAleatorio()));
     }
     
