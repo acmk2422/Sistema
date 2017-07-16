@@ -12,7 +12,7 @@ import Paq_Interfaz.Frm_login;
  */
 public class Cla_Main {
     public static void main(String [] args){
-        Paq_Interfaz.Frm_login registro = new Paq_Interfaz.Frm_login();
+        Paq_Interfaz.Frm_Menu registro = new Paq_Interfaz.Frm_Menu();
         registro.setVisible(true);
     }
 }

@@ -10,30 +10,36 @@
 	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
 		<conditionalStyle>
 			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
-			<style mode="Opaque" backcolor="#F0EFEF"/>
+			<style mode="Opaque" backcolor="#EFFFEF"/>
 		</conditionalStyle>
 	</style>
-	<queryString language="SQL">
+	<queryString>
 		<![CDATA[SELECT
-     inventario."cod_producto" AS inventario_cod_producto,
      inventario."nombre_producto" AS inventario_nombre_producto,
      inventario."descripcion" AS inventario_descripcion,
      inventario."precio_unitario" AS inventario_precio_unitario,
      inventario."cantidad" AS inventario_cantidad,
      inventario."fecha_ingreso" AS inventario_fecha_ingreso,
      inventario."linea_producto" AS inventario_linea_producto,
-     inventario."tipo_producto" AS inventario_tipo_producto
+     inventario."responsable" AS inventario_responsable,
+     inventario."margen" AS inventario_margen,
+     inventario."precio_venta" AS inventario_precio_venta,
+     inventario."cod_producto" AS inventario_cod_producto,
+     inventario."cod_proveedor" AS inventario_cod_proveedor
 FROM
      "public"."inventario" inventario]]>
 	</queryString>
-	<field name="inventario_cod_producto" class="java.lang.Integer"/>
 	<field name="inventario_nombre_producto" class="java.lang.String"/>
-	<field name="inventario_linea_producto" class="java.lang.String"/>
-	<field name="inventario_tipo_producto" class="java.lang.String"/>
 	<field name="inventario_descripcion" class="java.lang.String"/>
 	<field name="inventario_precio_unitario" class="java.lang.Float"/>
 	<field name="inventario_cantidad" class="java.math.BigDecimal"/>
 	<field name="inventario_fecha_ingreso" class="java.lang.String"/>
+	<field name="inventario_linea_producto" class="java.lang.String"/>
+	<field name="inventario_responsable" class="java.lang.String"/>
+	<field name="inventario_margen" class="java.math.BigDecimal"/>
+	<field name="inventario_precio_venta" class="java.math.BigDecimal"/>
+	<field name="inventario_cod_producto" class="java.math.BigDecimal"/>
+	<field name="inventario_cod_proveedor" class="java.lang.Integer"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -42,8 +48,8 @@ FROM
 			<frame>
 				<reportElement mode="Opaque" x="0" y="0" width="802" height="66" backcolor="#FFFFFF" uuid="b88e638b-1756-4f3b-a538-495a91b5d496"/>
 				<image hAlign="Center">
-					<reportElement x="313" y="0" width="413" height="66" uuid="ae2b89f9-f411-4d7e-9eba-236f49eff603"/>
-					<imageExpression><![CDATA["G:\\sistema de ventas tornavica Ultimo\\src\\imagenes\\Tornavica.PNG"]]></imageExpression>
+					<reportElement x="127" y="0" width="599" height="66" uuid="ae2b89f9-f411-4d7e-9eba-236f49eff603"/>
+					<imageExpression><![CDATA["tornavica.PNG"]]></imageExpression>
 				</image>
 			</frame>
 			<frame>
@@ -71,58 +77,58 @@ FROM
 	<columnHeader>
 		<band height="18" splitType="Stretch">
 			<staticText>
-				<reportElement style="Column header" x="2" y="0" width="48" height="18" forecolor="#000000" uuid="0c96ee8d-40db-4b08-bd4d-7b776f55c693"/>
+				<reportElement style="Column header" x="2" y="0" width="61" height="18" forecolor="#000000" uuid="0c96ee8d-40db-4b08-bd4d-7b776f55c693"/>
 				<textElement textAlignment="Center">
-					<font fontName="Verdana" size="12" isBold="true"/>
+					<font fontName="Verdana" size="12" isBold="true" isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[codigo]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="50" y="0" width="113" height="18" forecolor="#000000" uuid="b01816a2-a7fd-4fe1-a30c-ec3c1c508107"/>
+				<reportElement style="Column header" x="63" y="0" width="100" height="18" forecolor="#000000" uuid="b01816a2-a7fd-4fe1-a30c-ec3c1c508107"/>
 				<textElement textAlignment="Center">
-					<font fontName="Verdana" size="12" isBold="true"/>
+					<font fontName="Verdana" size="12" isBold="true" isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[nombre]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="163" y="0" width="85" height="18" forecolor="#000000" uuid="99e299f3-7b14-43dc-b268-c8e07fc3aae2"/>
 				<textElement textAlignment="Center">
-					<font fontName="Verdana" size="12" isBold="true"/>
+					<font fontName="Verdana" size="12" isBold="true" isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[linea]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="248" y="0" width="99" height="18" forecolor="#000000" uuid="e8bd3599-d9ef-4bfa-b92b-f8615731a70f"/>
 				<textElement textAlignment="Center">
-					<font fontName="Verdana" size="12" isBold="true"/>
+					<font fontName="Verdana" size="12" isBold="true" isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[tipo producto]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="347" y="0" width="203" height="18" forecolor="#000000" uuid="8766a8e9-f6ff-483b-bd1e-462056f98457"/>
 				<textElement textAlignment="Center">
-					<font fontName="Verdana" size="12" isBold="true"/>
+					<font fontName="Verdana" size="12" isBold="true" isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[descripcion]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="550" y="0" width="70" height="18" forecolor="#000000" uuid="25b40334-6e8a-4c75-b088-21cf2041d3d2"/>
 				<textElement textAlignment="Center">
-					<font fontName="Verdana" size="12" isBold="true"/>
+					<font fontName="Verdana" size="12" isBold="true" isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[precio]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="620" y="0" width="63" height="18" forecolor="#000000" uuid="c67cbf08-cfff-4d4b-bf2d-c50b80c5b95e"/>
 				<textElement textAlignment="Center">
-					<font fontName="Verdana" size="12" isBold="true"/>
+					<font fontName="Verdana" size="12" isBold="true" isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[cantidad]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="683" y="0" width="119" height="18" forecolor="#000000" uuid="9e7639ca-47cc-45bb-8f6c-79c9c298d3b9"/>
 				<textElement textAlignment="Center">
-					<font fontName="Verdana" size="12" isBold="true"/>
+					<font fontName="Verdana" size="12" isBold="true" isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[fecha de ingreso]]></text>
 			</staticText>
@@ -133,57 +139,57 @@ FROM
 			<frame>
 				<reportElement style="Row" mode="Opaque" x="0" y="0" width="797" height="18" uuid="7e5accc5-0a9f-4fdd-965c-402b941a6f73"/>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="0" y="0" width="50" height="18" uuid="5db04456-1fd0-43fc-b82f-c5cb8f5c9a97"/>
-					<textElement>
+					<reportElement style="Detail" positionType="Float" x="0" y="0" width="63" height="18" uuid="5db04456-1fd0-43fc-b82f-c5cb8f5c9a97"/>
+					<textElement textAlignment="Center">
 						<font fontName="Verdana" size="10"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{inventario_cod_producto}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="50" y="0" width="113" height="18" uuid="839424e3-3951-49a9-96e6-6771bdfc13cf"/>
-					<textElement>
+					<reportElement style="Detail" positionType="Float" x="63" y="0" width="100" height="18" uuid="839424e3-3951-49a9-96e6-6771bdfc13cf"/>
+					<textElement textAlignment="Center">
 						<font fontName="Verdana" size="10"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{inventario_nombre_producto}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
 					<reportElement style="Detail" positionType="Float" x="163" y="0" width="85" height="18" uuid="c8014b85-8c67-4cfc-9bd8-1e83946eb5cd"/>
-					<textElement>
+					<textElement textAlignment="Center">
 						<font fontName="Verdana" size="10"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{inventario_linea_producto}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
 					<reportElement style="Detail" positionType="Float" x="248" y="0" width="99" height="18" uuid="61dc02e3-28e9-4141-8ea1-56718cb66079"/>
-					<textElement>
+					<textElement textAlignment="Center">
 						<font fontName="Verdana" size="10"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{inventario_tipo_producto}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{inventario_linea_producto}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
 					<reportElement style="Detail" positionType="Float" x="347" y="0" width="203" height="18" uuid="97d383ed-0c4b-4724-921a-6eebe4e6dbfc"/>
-					<textElement>
+					<textElement textAlignment="Center">
 						<font fontName="Verdana" size="10"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{inventario_descripcion}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
 					<reportElement style="Detail" positionType="Float" x="550" y="0" width="70" height="18" uuid="16b13ec9-8284-4c8d-9ef0-1309dc04dc68"/>
-					<textElement>
+					<textElement textAlignment="Center">
 						<font fontName="Verdana" size="10"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{inventario_precio_unitario}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
 					<reportElement style="Detail" positionType="Float" x="620" y="0" width="63" height="18" uuid="8c2b80e4-1daa-4b7d-a10b-43293e5f4f00"/>
-					<textElement>
+					<textElement textAlignment="Center">
 						<font fontName="Verdana" size="10"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{inventario_cantidad}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
 					<reportElement style="Detail" positionType="Float" x="683" y="0" width="114" height="18" uuid="950fbe3d-ca70-4a5a-82c6-984c3369b828"/>
-					<textElement>
+					<textElement textAlignment="Center">
 						<font fontName="Verdana" size="10"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{inventario_fecha_ingreso}]]></textFieldExpression>

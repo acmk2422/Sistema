@@ -147,6 +147,36 @@ public class Frm_VentasA extends javax.swing.JFrame {
         }
         return String.valueOf(numero);
     }
+    
+    public int getMinimo() {
+        int numero = 0;
+        try {
+            String sql = "select * from valores where id_valor= '1'";
+            ResultSet rs = operaciones.Consultar(sql);
+            while (rs.next()) {
+                numero = rs.getInt("minimo");
+            }
+            operaciones.conn.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        return numero;
+    }
+    
+     public int getSeguridad() {
+        int numero = 0;
+        try {
+            String sql = "select * from valores where id_valor= '1'";
+            ResultSet rs = operaciones.Consultar(sql);
+            while (rs.next()) {
+                numero = rs.getInt("seguridad");
+            }
+            operaciones.conn.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        return numero;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -1035,12 +1065,20 @@ public class Frm_VentasA extends javax.swing.JFrame {
     }
 
     private void Añadir() {
+        
         res = JOptionPane.showInputDialog("Cantidad a vender del producto");
         if ("".equals(res)) {
             res = "1";
         }
         if (res != null) {
-            if (Integer.parseInt(res) <= Integer.parseInt(this.tbl.getValueAt(tbl.getSelectedRow(), 4).toString())) {
+            int cantidadTotal = Integer.parseInt(this.tbl.getValueAt(tbl.getSelectedRow(), 4).toString());
+            int cantidadMinimo = Integer.parseInt(this.tbl.getValueAt(tbl.getSelectedRow(), 4).toString())-getMinimo();
+            int cantidadSeguridad = Integer.parseInt(this.tbl.getValueAt(tbl.getSelectedRow(), 4).toString())-getSeguridad();
+            int resultado = cantidadTotal - Integer.parseInt(res);
+            System.out.println(cantidadTotal+","+cantidadMinimo+","+cantidadSeguridad);
+            if (resultado >= cantidadMinimo) {
+                JOptionPane.showMessageDialog(null, "El producto seleccionado ha llegado al inventario minimo.", null, JOptionPane.WARNING_MESSAGE);
+                if (Integer.parseInt(res) <= cantidadSeguridad) {
                 //cantidad menor a disponible en stock
                 fila1[0] = tbl.getValueAt(this.tbl.getSelectedRow(), 0).toString();
                 fila1[1] = tbl.getValueAt(this.tbl.getSelectedRow(), 1).toString();
@@ -1070,8 +1108,10 @@ public class Frm_VentasA extends javax.swing.JFrame {
                 tbl.setModel(model);
                 this.Calcular();
             } else {
-                JOptionPane.showMessageDialog(null, "Cantidad no disponible en inventario", null, JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "El producto selecionado ha llegado al inventario de seguridad..."
+                        + "\nLa cantidad maxima disponble para la venta es: "+cantidadSeguridad, null, JOptionPane.ERROR_MESSAGE);
             }
+            } 
         }
     }
 }

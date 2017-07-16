@@ -43,7 +43,7 @@ public class Frm_Menu extends javax.swing.JFrame implements Runnable {
     private String hora;
     private String minutos;
     private String segundos;
-    private ImageIcon icon1 = new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondo.png"));
+    private ImageIcon icon1 = new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondo3.png"));
     private Thread h1;
     private int i = 0;
     public String usuario;
@@ -63,7 +63,7 @@ public class Frm_Menu extends javax.swing.JFrame implements Runnable {
         h1.start();
         setLocationRelativeTo(null);
         setVisible(true);
-
+        this.Ajustar(lblFondo, icon1);
         lblfecha.setText(new Paq_Clases.Cla_Fecha().getFecha());
     }
 
@@ -117,6 +117,7 @@ public class Frm_Menu extends javax.swing.JFrame implements Runnable {
         jButton1 = new javax.swing.JButton();
         lblfecha = new javax.swing.JLabel();
         lblUsuario = new javax.swing.JLabel();
+        lblFondo = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -133,6 +134,7 @@ public class Frm_Menu extends javax.swing.JFrame implements Runnable {
         jMenu5 = new javax.swing.JMenu();
         jMenuItem11 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem17 = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem12 = new javax.swing.JMenuItem();
@@ -304,6 +306,7 @@ public class Frm_Menu extends javax.swing.JFrame implements Runnable {
         lblUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblUsuario.setText("Usuario:");
         jPanel2.add(lblUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, 90, 30));
+        jPanel2.add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 660, 330));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 660, 330));
 
@@ -434,6 +437,15 @@ public class Frm_Menu extends javax.swing.JFrame implements Runnable {
         });
         jMenu5.add(jMenuItem3);
 
+        jMenuItem17.setFont(new java.awt.Font("Verdana", 3, 12)); // NOI18N
+        jMenuItem17.setText("Gestion Inventario");
+        jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem17ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem17);
+
         jMenuBar1.add(jMenu5);
 
         jMenu7.setText("Reportes");
@@ -490,8 +502,7 @@ public class Frm_Menu extends javax.swing.JFrame implements Runnable {
         jMenu7.add(jMenuItem14);
 
         jMenuItem16.setFont(new java.awt.Font("Verdana", 3, 12)); // NOI18N
-        jMenuItem16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/1498176758_human-folder-tar.png"))); // NOI18N
-        jMenuItem16.setText("Inventario");
+        jMenuItem16.setText("Ventas por Clientes");
         jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem16ActionPerformed(evt);
@@ -805,6 +816,10 @@ public class Frm_Menu extends javax.swing.JFrame implements Runnable {
         }// TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem16ActionPerformed
 
+    private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
+    new Paq_Interfaz.Frm_AjusteInventario().setVisible(true);
+    }//GEN-LAST:event_jMenuItem17ActionPerformed
+
 public void run() {
         //metodo run para que hilo inicie llamando la funcion calcula tiempo y establece el tiempo en el label
         Thread ct= Thread.currentThread();
@@ -877,6 +892,7 @@ public void run() {
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem16;
+    private javax.swing.JMenuItem jMenuItem17;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
@@ -891,6 +907,7 @@ public void run() {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private com.toedter.calendar.JYearChooser jYearChooser1;
+    private javax.swing.JLabel lblFondo;
     public javax.swing.JLabel lblUsuario;
     private javax.swing.JLabel lblfecha;
     // End of variables declaration//GEN-END:variables
