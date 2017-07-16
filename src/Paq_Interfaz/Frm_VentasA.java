@@ -48,7 +48,7 @@ public class Frm_VentasA extends javax.swing.JFrame {
     
     public void restringir(){
         RestrictedTextField restricted3 = new RestrictedTextField(this.txtDes);
-        restricted3.setOnlyNums(true);
+//        restricted3.setOnlyNums(true);
     }
 
     public int getCodigoCli(String cedula) {
