@@ -1,5 +1,6 @@
 package Paq_Interfaz;
 
+import Atxy2k.CustomTextField.RestrictedTextField;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.sql.PreparedStatement;
@@ -40,8 +41,14 @@ public class Frm_VentasA extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         update = false;
+        this.restringir();
         this.Llenar();
         lblNumeroRegistro.setText(String.valueOf(this.NumeroAleatorio()));
+    }
+    
+    public void restringir(){
+        RestrictedTextField restricted3 = new RestrictedTextField(this.txtDes);
+        restricted3.setOnlyNums(true);
     }
 
     public int getCodigoCli(String cedula) {
