@@ -134,7 +134,7 @@ public class Frm_Menu extends javax.swing.JFrame implements Runnable {
         jMenu5 = new javax.swing.JMenu();
         jMenuItem11 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem17 = new javax.swing.JMenuItem();
+        jMenuItem19 = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem12 = new javax.swing.JMenuItem();
@@ -142,7 +142,7 @@ public class Frm_Menu extends javax.swing.JFrame implements Runnable {
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenuItem14 = new javax.swing.JMenuItem();
         jMenuItem16 = new javax.swing.JMenuItem();
-        jMenuItem17 = new javax.swing.JMenuItem();
+        jMenuItem18 = new javax.swing.JMenuItem();
 
         jFrame1.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         jFrame1.setMinimumSize(new java.awt.Dimension(300, 150));
@@ -438,14 +438,14 @@ public class Frm_Menu extends javax.swing.JFrame implements Runnable {
         });
         jMenu5.add(jMenuItem3);
 
-        jMenuItem17.setFont(new java.awt.Font("Verdana", 3, 12)); // NOI18N
-        jMenuItem17.setText("Gestion Inventario");
-        jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem19.setFont(new java.awt.Font("Verdana", 3, 12)); // NOI18N
+        jMenuItem19.setText("Gestion Inventario");
+        jMenuItem19.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem17ActionPerformed(evt);
+                jMenuItem19ActionPerformed(evt);
             }
         });
-        jMenu5.add(jMenuItem17);
+        jMenu5.add(jMenuItem19);
 
         jMenuBar1.add(jMenu5);
 
@@ -511,15 +511,15 @@ public class Frm_Menu extends javax.swing.JFrame implements Runnable {
         });
         jMenu7.add(jMenuItem16);
 
-        jMenuItem17.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jMenuItem17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar 32x32.png"))); // NOI18N
-        jMenuItem17.setText("Clientes (Consulta)");
-        jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem18.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jMenuItem18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar 32x32.png"))); // NOI18N
+        jMenuItem18.setText("Clientes (Consulta)");
+        jMenuItem18.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem17ActionPerformed(evt);
             }
         });
-        jMenu7.add(jMenuItem17);
+        jMenu7.add(jMenuItem18);
 
         jMenuBar1.add(jMenu7);
 
@@ -828,8 +828,12 @@ public class Frm_Menu extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_jMenuItem16ActionPerformed
 
     private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
-    new Paq_Interfaz.Frm_AjusteInventario().setVisible(true);
+    
     }//GEN-LAST:event_jMenuItem17ActionPerformed
+
+    private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
+   new Paq_Interfaz.Frm_AjusteInventario().setVisible(true);
+    }//GEN-LAST:event_jMenuItem19ActionPerformed
 
 public void run() {
         //metodo run para que hilo inicie llamando la funcion calcula tiempo y establece el tiempo en el label
@@ -903,7 +907,8 @@ public void run() {
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem16;
-    private javax.swing.JMenuItem jMenuItem17;
+    private javax.swing.JMenuItem jMenuItem18;
+    private javax.swing.JMenuItem jMenuItem19;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
