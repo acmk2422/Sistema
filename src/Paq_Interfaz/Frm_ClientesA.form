@@ -149,7 +149,6 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txtC">
               <Properties>
-                <Property name="text" type="java.lang.String" value="24035416"/>
                 <Property name="selectionColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="40" green="60" red="40" type="rgb"/>
                 </Property>

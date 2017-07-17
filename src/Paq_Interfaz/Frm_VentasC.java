@@ -1,5 +1,6 @@
 package Paq_Interfaz;
 
+import Atxy2k.CustomTextField.RestrictedTextField;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -30,8 +31,13 @@ public class Frm_VentasC extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         this.llenar();
+        this.restringir();
     }
-    
+      public void restringir(){ 
+        RestrictedTextField restricted3 = new RestrictedTextField(this.txtB1);
+      
+        restricted3.setLimit(10);
+        }
 
     
     public void llenar(){
@@ -58,6 +64,7 @@ public class Frm_VentasC extends javax.swing.JFrame {
             } catch (SQLException e) {
                JOptionPane.showMessageDialog(null, e.getMessage());    
     }
+      
     }
 
     /**

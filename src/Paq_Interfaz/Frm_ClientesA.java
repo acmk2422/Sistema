@@ -9,6 +9,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
 import javax.swing.UIManager;
 
 /*
@@ -42,10 +43,42 @@ public class Frm_ClientesA extends javax.swing.JFrame {
         RestrictedTextField restricted3 = new RestrictedTextField(this.txtC);
         restricted3.setOnlyNums(true);
         restricted3.setLimit(8);
+        
         RestrictedTextField restricted4 = new RestrictedTextField(this.txtT1);
         restricted4.setOnlyNums(true);
+         restricted4.setLimit(11);
+         
         RestrictedTextField restricted = new RestrictedTextField(this.txtT2);
         restricted.setOnlyNums(true);
+         restricted.setLimit(11);
+         
+         RestrictedTextField restricted5= new RestrictedTextField(this.txtN1);
+        restricted5.setOnlyText(true);
+        restricted5.setLimit(10);
+         
+          RestrictedTextField restricted10= new RestrictedTextField(this.txtN2);
+        restricted10.setOnlyText(true);
+        restricted10.setLimit(10);
+        
+         RestrictedTextField restricted12= new RestrictedTextField(this.txtA1);
+        restricted12.setOnlyText(true);
+        restricted12.setLimit(10);
+         
+          RestrictedTextField restricted11= new RestrictedTextField(this.txtA2);
+        restricted11.setOnlyText(true);
+        restricted11.setLimit(10);
+         
+          RestrictedTextField restricted14= new RestrictedTextField(this.txtNe);
+        restricted14.setOnlyText(true);
+        restricted14.setLimit(10);
+         
+    
+         RestrictedTextField restricted7 = new RestrictedTextField(this.txtE);
+         restricted7.setLimit(40);
+         
+      
+         
+         
     }
     
     public void Ajustar(JLabel label, ImageIcon icon){
@@ -157,7 +190,6 @@ public class Frm_ClientesA extends javax.swing.JFrame {
         });
         jPanel2.add(txtA2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 80, 120, -1));
 
-        txtC.setText("24035416");
         txtC.setSelectionColor(new java.awt.Color(64, 96, 64));
         txtC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -623,4 +655,6 @@ if (this.verificacion()){
             }
         }
     } 
+
+   
 }

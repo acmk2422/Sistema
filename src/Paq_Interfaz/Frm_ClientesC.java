@@ -1,5 +1,6 @@
 package Paq_Interfaz;
 
+import Atxy2k.CustomTextField.RestrictedTextField;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -29,6 +30,49 @@ public class Frm_ClientesC extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         this.llenar();
+        this.restringir();
+    }
+    
+    public void restringir(){
+        RestrictedTextField restricted3 = new RestrictedTextField(this.txtC);
+        restricted3.setOnlyNums(true);
+        restricted3.setLimit(8);
+        
+        RestrictedTextField restricted4 = new RestrictedTextField(this.txtT1);
+        restricted4.setOnlyNums(true);
+         restricted4.setLimit(11);
+         
+        RestrictedTextField restricted = new RestrictedTextField(this.txtT2);
+        restricted.setOnlyNums(true);
+         restricted.setLimit(11);
+         
+         RestrictedTextField restricted5= new RestrictedTextField(this.txtN1);
+        restricted5.setOnlyText(true);
+        restricted5.setLimit(10);
+         
+          RestrictedTextField restricted10= new RestrictedTextField(this.txtN2);
+        restricted10.setOnlyText(true);
+        restricted10.setLimit(10);
+        
+         RestrictedTextField restricted12= new RestrictedTextField(this.txtA1);
+        restricted12.setOnlyText(true);
+        restricted12.setLimit(10);
+         
+          RestrictedTextField restricted11= new RestrictedTextField(this.txtA2);
+        restricted11.setOnlyText(true);
+        restricted11.setLimit(10);
+         
+          RestrictedTextField restricted14= new RestrictedTextField(this.txtNe);
+        restricted14.setOnlyText(true);
+        restricted14.setLimit(10);
+         
+    
+         RestrictedTextField restricted7 = new RestrictedTextField(this.txtE);
+         restricted7.setLimit(40);
+         
+      
+       
+         
     }
     
     private void Borrar(int tipo) {
