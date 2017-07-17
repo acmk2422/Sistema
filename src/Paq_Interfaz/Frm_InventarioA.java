@@ -48,8 +48,28 @@ public class Frm_InventarioA extends javax.swing.JFrame {
     public void restringir(){
         RestrictedTextField restricted3 = new RestrictedTextField(this.txtC);
         restricted3.setOnlyNums(true);
+        restricted3.setLimit(10);
+        
         RestrictedTextField restricted4 = new RestrictedTextField(this.txtCa);
         restricted4.setOnlyNums(true);
+        restricted4.setLimit(3);
+        
+        RestrictedTextField restricted6 = new RestrictedTextField(this.txtN);
+       
+        restricted6.setLimit(20);
+        
+        RestrictedTextField restricted5 = new RestrictedTextField(this.txtC);
+        restricted5.setOnlyNums(true);
+         
+          RestrictedTextField restricted9 = new RestrictedTextField(this.txtPrecio);
+        restricted9.setOnlyNums(true);
+        restricted9.setLimit(10);
+        
+         RestrictedTextField restricted10 = new RestrictedTextField(this.txtMargen);
+        restricted10.setOnlyNums(true);
+        restricted10.setLimit(2);
+        
+        
         RestrictedTextField r1 = new RestrictedTextField(txtPrecio, "0123456789.");
         RestrictedTextField r2 = new RestrictedTextField(txtMargen, "0123456789.");
     }

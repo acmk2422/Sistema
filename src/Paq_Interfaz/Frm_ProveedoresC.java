@@ -1,5 +1,6 @@
 package Paq_Interfaz;
 
+import Atxy2k.CustomTextField.RestrictedTextField;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -31,8 +32,33 @@ public class Frm_ProveedoresC extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         this.llenar();
         this.Deshabilitar(1);
+        this.restringir();
+         
+    }     
+     public void restringir(){
+        RestrictedTextField restricted3 = new RestrictedTextField(this.txtC);
+        restricted3.setOnlyNums(true);
+        restricted3.setLimit(8);
+        
+        RestrictedTextField restricted4 = new RestrictedTextField(this.txtT1);
+        restricted4.setOnlyNums(true);
+         restricted4.setLimit(11);
+         
+        RestrictedTextField restricted5 = new RestrictedTextField(this.txtT2);
+        restricted5.setOnlyNums(true);
+         restricted5.setLimit(11);
+         
+          RestrictedTextField restricted6 = new RestrictedTextField(this.txtN);
+        restricted6.setOnlyText(true);
+        restricted6.setLimit(15);
+        
+         RestrictedTextField restricted7 = new RestrictedTextField(this.txtE);
+        restricted7.setLimit(30);
+            
     }
     
+   
+   
     private void Borrar(int tipo) {
         //Elimina campos llenos en el formulario
         switch (tipo){
