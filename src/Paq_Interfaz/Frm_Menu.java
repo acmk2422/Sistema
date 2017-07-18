@@ -648,7 +648,7 @@ public class Frm_Menu extends javax.swing.JFrame implements Runnable {
             JasperViewer visor = new JasperViewer(mostrarReporte, false);
             visor.setVisible(true);
         } catch (JRException ex) {
-            JOptionPane.showMessageDialog(null, "OCURRIO UN ERROR AL CARGAR EL REPORTE POR FAVOR COMPRUEBE\nQUE LA RUTA SEA LA CORRECTA\n" + ex, "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "OCURRIO UN ERROR AL CARGAR EL REPORTE.\n" + ex, "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
@@ -658,12 +658,15 @@ public class Frm_Menu extends javax.swing.JFrame implements Runnable {
             String dir = ruta.getRuta() + "\\Reporte_Clientes.jrxml";
             Map<String, Object> p2 = new HashMap<>();
             p2.put("usuario", usuario);
+            /****Añade esta linea de abajo a todas donde se genere reporte******/
+            p2.put("ruta", ruta.getRuta());
+            /******************************************************************/
             JasperReport reporteJasper = JasperCompileManager.compileReport(dir);
             JasperPrint mostrarReporte = JasperFillManager.fillReport(reporteJasper, p2, conn);
             JasperViewer visor = new JasperViewer(mostrarReporte, false);
             visor.setVisible(true);
         } catch (JRException ex) {
-            JOptionPane.showMessageDialog(null, "OCURRIO UN ERROR AL CARGAR EL REPORTE POR FAVOR COMPRUEBE\nQUE LA RUTA SEA LA CORRECTA\n" + ex, "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "OCURRIO UN ERROR AL CARGAR EL REPORTE.\n" + ex, "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
@@ -678,7 +681,7 @@ public class Frm_Menu extends javax.swing.JFrame implements Runnable {
             JasperViewer visor = new JasperViewer(mostrarReporte, false);
             visor.setVisible(true);
         } catch (JRException ex) {
-            JOptionPane.showMessageDialog(null, "OCURRIO UN ERROR AL CARGAR EL REPORTE POR FAVOR COMPRUEBE\nQUE LA RUTA SEA LA CORRECTA\n" + ex, "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "OCURRIO UN ERROR AL CARGAR EL REPORTE.\n" + ex, "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
@@ -721,7 +724,7 @@ public class Frm_Menu extends javax.swing.JFrame implements Runnable {
             JasperViewer visor = new JasperViewer(mostrarReporte, false);
             visor.setVisible(true);
         } catch (JRException ex) {
-            JOptionPane.showMessageDialog(null, "OCURRIO UN ERROR AL CARGAR EL REPORTE POR FAVOR COMPRUEBE\nQUE LA RUTA SEA LA CORRECTA\n" + ex, "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "OCURRIO UN ERROR AL CARGAR EL REPORTE.\n" + ex, "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jMenuItem14ActionPerformed
 
@@ -742,7 +745,7 @@ public class Frm_Menu extends javax.swing.JFrame implements Runnable {
                 JasperViewer visor = new JasperViewer(mostrarReporte, false);
                 visor.setVisible(true);
             } catch (JRException ex) {
-                JOptionPane.showMessageDialog(null, "OCURRIO UN ERROR AL CARGAR EL REPORTE POR FAVOR COMPRUEBE\nQUE LA RUTA SEA LA CORRECTA\n" + ex, "ERROR", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "OCURRIO UN ERROR AL CARGAR EL REPORTE.\n" + ex, "ERROR", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -774,7 +777,7 @@ public class Frm_Menu extends javax.swing.JFrame implements Runnable {
             JasperViewer visor = new JasperViewer(mostrarReporte, false);
             visor.setVisible(true);
         } catch (JRException ex) {
-            JOptionPane.showMessageDialog(null, "OCURRIO UN ERROR AL CARGAR EL REPORTE POR FAVOR COMPRUEBE\nQUE LA RUTA SEA LA CORRECTA\n" + ex, "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "OCURRIO UN ERROR AL CARGAR EL REPORTE.\n" + ex, "ERROR", JOptionPane.ERROR_MESSAGE);
         }
 
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -793,19 +796,19 @@ public class Frm_Menu extends javax.swing.JFrame implements Runnable {
             conn = Paq_Base_Datos.Conexion_DB.geConnection();
             String dir = ruta.getRuta() + "\\Reporte_Ventas_ConsultaA.jrxml";
             Map<String, Object> p2 = new HashMap<>();
-            p2.put("Fecha", jYearChooser1.getYear());
+            p2.put("fecha", jYearChooser1.getYear());
             p2.put("usuario", usuario);
             JasperReport reporteJasper = JasperCompileManager.compileReport(dir);
             JasperPrint mostrarReporte = JasperFillManager.fillReport(reporteJasper, p2, conn);
             JasperViewer visor = new JasperViewer(mostrarReporte, false);
             visor.setVisible(true);
         } catch (JRException ex) {
-            JOptionPane.showMessageDialog(null, "OCURRIO UN ERROR AL CARGAR EL REPORTE POR FAVOR COMPRUEBE\nQUE LA RUTA SEA LA CORRECTA\n" + ex, "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "OCURRIO UN ERROR AL CARGAR EL REPORTE.\n" + ex, "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
+this.jFrame3.dispose();
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jFrame3WindowLostFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_jFrame3WindowLostFocus
@@ -813,17 +816,20 @@ public class Frm_Menu extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_jFrame3WindowLostFocus
 
     private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
+        
         try {
             conn = Paq_Base_Datos.Conexion_DB.geConnection();
-            String dir = ruta.getRuta() + "\\Reporte_Ventas.jrxml";
+            String dir = ruta.getRuta() + "\\Reporte_Venta_Cliente.jrxml";
             Map<String, Object> p2 = new HashMap<>();
             p2.put("usuario", usuario);
+            p2.put("nombre", "Junior Navarro");
+            p2.put("cliente", 11);
             JasperReport reporteJasper = JasperCompileManager.compileReport(dir);
             JasperPrint mostrarReporte = JasperFillManager.fillReport(reporteJasper, p2, conn);
             JasperViewer visor = new JasperViewer(mostrarReporte, false);
             visor.setVisible(true);
         } catch (JRException ex) {
-            JOptionPane.showMessageDialog(null, "OCURRIO UN ERROR AL CARGAR EL REPORTE POR FAVOR COMPRUEBE\nQUE LA RUTA SEA LA CORRECTA\n" + ex, "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "OCURRIO UN ERROR AL CARGAR EL REPORTE.\n" + ex, "ERROR", JOptionPane.ERROR_MESSAGE);
         }// TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem16ActionPerformed
 

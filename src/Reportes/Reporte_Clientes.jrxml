@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a6622fa1-389a-4a31-bc1a-4740f6efcc2e">
 	<property name="ireport.zoom" value="1.5"/>
-	<property name="ireport.x" value="65"/>
+	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
 	<style name="SubTitle" forecolor="#666666" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
@@ -15,6 +15,7 @@
 	</style>
 	<subDataset name="PieChartDataset" uuid="005d8692-e3a1-4e44-ae92-bbd14a526f16"/>
 	<parameter name="usuario" class="java.lang.String"/>
+	<parameter name="ruta" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT
      clientes."cod_cliente" AS clientes_cod_cliente,
@@ -46,10 +47,6 @@ FROM
 	<field name="clientes_segundo_nombre" class="java.lang.String"/>
 	<title>
 		<band height="98" splitType="Stretch">
-			<image hAlign="Center">
-				<reportElement x="0" y="0" width="553" height="66" uuid="a05eff6f-baca-4fd8-8fb0-87d0b8d24a52"/>
-				<imageExpression><![CDATA["tornavica.PNG"]]></imageExpression>
-			</image>
 			<frame>
 				<reportElement mode="Opaque" x="3" y="66" width="553" height="32" forecolor="#000000" backcolor="#406040" uuid="e1de3e50-76cf-47c1-aacf-d10f80c11d7d"/>
 				<staticText>
@@ -67,6 +64,10 @@ FROM
 					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 				</textField>
 			</frame>
+			<image>
+				<reportElement x="118" y="0" width="301" height="66" uuid="dd51d4ea-95e3-4d75-9eba-697b7c1ca50e"/>
+				<imageExpression><![CDATA[$P{ruta}+"\\tornavica.png"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>

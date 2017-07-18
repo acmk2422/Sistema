@@ -51,7 +51,7 @@ FROM
 		<band height="98" splitType="Stretch">
 			<image hAlign="Center">
 				<reportElement x="0" y="0" width="553" height="66" uuid="a05eff6f-baca-4fd8-8fb0-87d0b8d24a52"/>
-				<imageExpression><![CDATA["tornavica.PNG"]]></imageExpression>
+				<imageExpression><![CDATA["C:\\SistemaTornavica\\Sistema\\src\\Reportes\\tornavica.PNG"]]></imageExpression>
 			</image>
 			<frame>
 				<reportElement mode="Opaque" x="3" y="66" width="553" height="32" forecolor="#000000" backcolor="#406040" uuid="e1de3e50-76cf-47c1-aacf-d10f80c11d7d"/>
