@@ -52,7 +52,7 @@ public class Frm_InventarioA extends javax.swing.JFrame {
         
         RestrictedTextField restricted4 = new RestrictedTextField(this.txtCa);
         restricted4.setOnlyNums(true);
-        restricted4.setLimit(3);
+        restricted4.setLimit(8);
         
         RestrictedTextField restricted6 = new RestrictedTextField(this.txtN);
        
@@ -67,7 +67,7 @@ public class Frm_InventarioA extends javax.swing.JFrame {
         
          RestrictedTextField restricted10 = new RestrictedTextField(this.txtMargen);
         restricted10.setOnlyNums(true);
-        restricted10.setLimit(2);
+        restricted10.setLimit(3);
         
         
         RestrictedTextField r1 = new RestrictedTextField(txtPrecio, "0123456789.");

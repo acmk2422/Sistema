@@ -80,7 +80,7 @@ public class Frm_InventarioA2 extends javax.swing.JFrame {
      public void restringir(){
         RestrictedTextField restricted3 = new RestrictedTextField(this.txtCa);
         restricted3.setOnlyNums(true);
-          restricted3.setLimit(3);
+          restricted3.setLimit(8);
         
         RestrictedTextField restricted4 = new RestrictedTextField(this.txtB);
  
@@ -173,6 +173,11 @@ public class Frm_InventarioA2 extends javax.swing.JFrame {
         jLabel2.setText("Cantidad que Ingresa");
         jPanel5.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, 30));
 
+        txtCa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCaActionPerformed(evt);
+            }
+        });
         txtCa.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtCaKeyPressed(evt);
@@ -530,6 +535,11 @@ this.Borrar(1);
     private void txtPKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPKeyPressed
+
+    private void txtCaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCaActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_txtCaActionPerformed
 
     /**
      * @param args the command line arguments

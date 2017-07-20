@@ -14,7 +14,10 @@
 		</conditionalStyle>
 	</style>
 	<parameter name="usuario" class="java.lang.String"/>
-	<queryString language="SQL">
+	<parameter name="ruta" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
 		<![CDATA[SELECT
      proveedores."cod_proveedor" AS proveedores_cod_proveedor,
      proveedores."nombre" AS proveedores_nombre,
@@ -29,8 +32,8 @@ FROM
 	</queryString>
 	<field name="proveedores_cod_proveedor" class="java.lang.Integer"/>
 	<field name="proveedores_nombre" class="java.lang.String"/>
-	<field name="proveedores_rif" class="java.lang.String"/>
 	<field name="proveedores_email" class="java.lang.String"/>
+	<field name="proveedores_rif" class="java.lang.String"/>
 	<field name="proveedores_direccion" class="java.lang.String"/>
 	<field name="proveedores_telefono1" class="java.math.BigDecimal"/>
 	<field name="proveedores_pais" class="java.lang.String"/>
@@ -62,7 +65,7 @@ FROM
 			</frame>
 			<image hAlign="Center">
 				<reportElement x="0" y="0" width="553" height="66" uuid="57ff114a-dd8e-4d01-878c-4e0980d95349"/>
-				<imageExpression><![CDATA["C:\\SistemaTornavica\\Sistema\\src\\Reportes\\tornavica.PNG"]]></imageExpression>
+				<imageExpression><![CDATA[$P{ruta}+"\\tornavica.PNG"]]></imageExpression>
 			</image>
 		</band>
 	</title>

@@ -33,7 +33,10 @@ public class Frm_login extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.Ajustar(lblLogo, icon2);
+        
     }
+  
+    
     
     public void look(){
         //este metodo establece el look and feels de la aplicacion
@@ -234,4 +237,5 @@ public class Frm_login extends javax.swing.JFrame {
     private javax.swing.JPasswordField txtCo;
     private javax.swing.JTextField txtUs;
     // End of variables declaration//GEN-END:variables
+
 }

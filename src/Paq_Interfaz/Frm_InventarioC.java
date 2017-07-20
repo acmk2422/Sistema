@@ -1,5 +1,6 @@
 package Paq_Interfaz;
 
+import Atxy2k.CustomTextField.RestrictedTextField;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -31,8 +32,20 @@ public class Frm_InventarioC extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         this.llenar();
         this.Deshabilitar(1);
+        this.restringir();
     }
     
+       public void restringir(){
+        RestrictedTextField restricted3 = new RestrictedTextField(this.txtN);
+        restricted3.setOnlyText(true);
+        restricted3.setLimit(20);
+         RestrictedTextField restricted4 = new RestrictedTextField(this.txtMargen);
+        restricted4.setOnlyNums(true);
+        restricted4.setLimit(3);
+           RestrictedTextField restricted5 = new RestrictedTextField(this.txtPrecio);
+        restricted5.setOnlyNums(true);
+        restricted5.setLimit(10);
+       }
     private void Borrar(int tipo) {
         //Elimina campos llenos en el formulario
         switch (tipo){
@@ -170,6 +183,7 @@ public class Frm_InventarioC extends javax.swing.JFrame {
         jLabel31 = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -244,7 +258,7 @@ public class Frm_InventarioC extends javax.swing.JFrame {
                 btnEActionPerformed(evt);
             }
         });
-        jPanel1.add(btnE, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 430, 112, 32));
+        jPanel1.add(btnE, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 450, 112, 32));
 
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Atras-10.png"))); // NOI18N
         jButton6.setContentAreaFilled(false);
@@ -254,7 +268,7 @@ public class Frm_InventarioC extends javax.swing.JFrame {
                 jButton6ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 430, 112, 32));
+        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 450, 112, 32));
 
         lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tornavica.png"))); // NOI18N
         jPanel1.add(lblLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 310, 60));
@@ -453,6 +467,11 @@ public class Frm_InventarioC extends javax.swing.JFrame {
         jPanel4.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, 20, 30));
 
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 360, 330, 120));
+
+        jLabel2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel2.setText("Hacer doble click en la tabla para editar los datos.");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 410, 330, -1));
 
         jScrollPane2.setViewportView(jPanel1);
 
@@ -820,6 +839,7 @@ if(cbxOpcion.getSelectedIndex()==1){
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;

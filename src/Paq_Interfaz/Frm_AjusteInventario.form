@@ -65,11 +65,11 @@
         <Component class="javax.swing.JButton" name="jButton1">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/imagenes/Salir-10.png"/>
+              <Image iconType="3" name="/imagenes/Atras-10.png"/>
             </Property>
             <Property name="contentAreaFilled" type="boolean" value="false"/>
             <Property name="rolloverIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/imagenes/Salir-14.png"/>
+              <Image iconType="3" name="/imagenes/Atras-14.png"/>
             </Property>
           </Properties>
           <Events>
@@ -127,11 +127,11 @@
         <Component class="javax.swing.JButton" name="btnE">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/imagenes/Entrar-10.png"/>
+              <Image iconType="3" name="/imagenes/Guardar-10.png"/>
             </Property>
             <Property name="contentAreaFilled" type="boolean" value="false"/>
             <Property name="rolloverIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/imagenes/Entrar-14.png"/>
+              <Image iconType="3" name="/imagenes/Guardar-14.png"/>
             </Property>
           </Properties>
           <Events>

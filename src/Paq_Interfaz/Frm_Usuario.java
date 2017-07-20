@@ -1,5 +1,6 @@
 package Paq_Interfaz;
 
+import Atxy2k.CustomTextField.RestrictedTextField;
 import java.awt.Component;
 import java.awt.Image;
 import java.sql.PreparedStatement;
@@ -36,7 +37,7 @@ public class Frm_Usuario extends javax.swing.JFrame {
         initComponents();
         this.Ajustar(lblLogo, icon1);
         setLocationRelativeTo(null);
-        
+        this.restringir();
     }
     
      public void Ajustar(JLabel label, ImageIcon icon){
@@ -45,7 +46,17 @@ public class Frm_Usuario extends javax.swing.JFrame {
         label.setIcon(icono);
         this.repaint(); 
     }
-     
+     public void restringir(){
+        RestrictedTextField restricted4 = new RestrictedTextField(this.txtNA);
+        restricted4.setLimit(20);
+        RestrictedTextField restricted5 = new RestrictedTextField(this.txtC1);
+        restricted5.setLimit(10);
+          RestrictedTextField restricted6 = new RestrictedTextField(this.txtC2);
+        restricted6.setLimit(10);
+          RestrictedTextField restricted7 = new RestrictedTextField(this.txtR);
+        restricted7.setLimit(20);
+        
+     }
      public void Borrar(){
          txtN.setText(null);
          txtC1.setText(null);

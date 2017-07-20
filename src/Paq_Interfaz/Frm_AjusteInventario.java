@@ -118,9 +118,9 @@ public class Frm_AjusteInventario extends javax.swing.JFrame {
         });
         jPanel1.add(txtMaximo, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 160, 70, 30));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Salir-10.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Atras-10.png"))); // NOI18N
         jButton1.setContentAreaFilled(false);
-        jButton1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Salir-14.png"))); // NOI18N
+        jButton1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Atras-14.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -142,9 +142,9 @@ public class Frm_AjusteInventario extends javax.swing.JFrame {
         lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tornavica.png"))); // NOI18N
         jPanel1.add(lblLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 300, 70));
 
-        btnE.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Entrar-10.png"))); // NOI18N
+        btnE.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Guardar-10.png"))); // NOI18N
         btnE.setContentAreaFilled(false);
-        btnE.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Entrar-14.png"))); // NOI18N
+        btnE.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Guardar-14.png"))); // NOI18N
         btnE.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEActionPerformed(evt);
@@ -233,11 +233,13 @@ public class Frm_AjusteInventario extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "El valor de Seguridad debe ser mayo a 0");
         }
+        this.dispose();
     }//GEN-LAST:event_btnEActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        this.dispose();
+            this.dispose();
+    
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void formWindowLostFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowLostFocus

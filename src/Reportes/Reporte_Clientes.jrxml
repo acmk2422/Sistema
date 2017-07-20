@@ -16,6 +16,7 @@
 	<subDataset name="PieChartDataset" uuid="005d8692-e3a1-4e44-ae92-bbd14a526f16"/>
 	<parameter name="usuario" class="java.lang.String"/>
 	<parameter name="ruta" class="java.lang.String"/>
+	<parameter name="parameter1" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT
      clientes."cod_cliente" AS clientes_cod_cliente,

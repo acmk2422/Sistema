@@ -209,6 +209,7 @@ public class Frm_ProveedoresC extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         cbxOpcion = new javax.swing.JComboBox<>();
         cbxC1 = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
 
         jDialog2.setModal(true);
 
@@ -271,7 +272,7 @@ public class Frm_ProveedoresC extends javax.swing.JFrame {
                 btnEActionPerformed(evt);
             }
         });
-        jPanel1.add(btnE, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 390, 112, 32));
+        jPanel1.add(btnE, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 400, 112, 32));
 
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Atras-10.png"))); // NOI18N
         jButton6.setContentAreaFilled(false);
@@ -281,7 +282,7 @@ public class Frm_ProveedoresC extends javax.swing.JFrame {
                 jButton6ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 390, 112, 32));
+        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 400, 112, 32));
 
         lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tornavica.png"))); // NOI18N
         jPanel1.add(lblLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 310, 60));
@@ -367,7 +368,7 @@ public class Frm_ProveedoresC extends javax.swing.JFrame {
         });
         jPanel4.add(cbxE, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 30, 150, 30));
 
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 510, 150));
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 510, 150));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 102, 51), new java.awt.Color(0, 153, 51), new java.awt.Color(0, 102, 51), new java.awt.Color(0, 153, 51)), "Datos Contacto", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 3, 14), new java.awt.Color(0, 153, 51))); // NOI18N
@@ -425,7 +426,7 @@ public class Frm_ProveedoresC extends javax.swing.JFrame {
         jLabel19.setText("*Datos Obligatorios");
         jPanel2.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 20, 100, 20));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 230, 520, 150));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 250, 520, 150));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 102, 51), new java.awt.Color(0, 153, 51), new java.awt.Color(0, 102, 51), new java.awt.Color(0, 153, 51)), "Filtro de busqueda", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 153, 51))); // NOI18N
@@ -449,6 +450,11 @@ public class Frm_ProveedoresC extends javax.swing.JFrame {
         jPanel3.add(cbxC1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 50, 30));
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 10, 200, 60));
+
+        jLabel1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel1.setText("Hacer doble click en la tabla para editar los datos.");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 220, 330, -1));
 
         jScrollPane2.setViewportView(jPanel1);
 
@@ -694,6 +700,7 @@ if ("".equals(txtB.getText())){
     private javax.swing.JComboBox<String> cbxP;
     private javax.swing.JButton jButton6;
     private javax.swing.JDialog jDialog2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;

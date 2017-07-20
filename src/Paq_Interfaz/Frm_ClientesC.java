@@ -276,6 +276,7 @@ public class Frm_ClientesC extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -457,7 +458,7 @@ public class Frm_ClientesC extends javax.swing.JFrame {
         jLabel18.setText("*Datos Obligatorios");
         jPanel3.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 110, 120, 20));
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 230, 490, 140));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 240, 490, 140));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED, new java.awt.Color(0, 102, 51), new java.awt.Color(0, 153, 51), new java.awt.Color(0, 102, 51), new java.awt.Color(0, 153, 51)), "Datos Personales", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 3, 14), new java.awt.Color(0, 153, 51))); // NOI18N
@@ -592,7 +593,12 @@ public class Frm_ClientesC extends javax.swing.JFrame {
         jLabel20.setText("*");
         jPanel2.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, 20, 20));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 520, -1));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 520, -1));
+
+        jLabel21.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel21.setText("Hacer doble click en la tabla para editar los datos.");
+        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 220, 330, -1));
 
         jScrollPane2.setViewportView(jPanel1);
 
@@ -1063,6 +1069,7 @@ if(cbxOpcion.getSelectedIndex()==1){
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

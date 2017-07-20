@@ -439,6 +439,7 @@ public class Frm_Menu extends javax.swing.JFrame implements Runnable {
         jMenu5.add(jMenuItem3);
 
         jMenuItem19.setFont(new java.awt.Font("Verdana", 3, 12)); // NOI18N
+        jMenuItem19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/1498177689_gnome-mime-application-x-bzip-compressed-tar.png"))); // NOI18N
         jMenuItem19.setText("Gestion Inventario");
         jMenuItem19.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -503,6 +504,7 @@ public class Frm_Menu extends javax.swing.JFrame implements Runnable {
         jMenu7.add(jMenuItem14);
 
         jMenuItem16.setFont(new java.awt.Font("Verdana", 3, 12)); // NOI18N
+        jMenuItem16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/consultacliente32x32.png"))); // NOI18N
         jMenuItem16.setText("Ventas por Clientes");
         jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -643,6 +645,7 @@ public class Frm_Menu extends javax.swing.JFrame implements Runnable {
             String dir = ruta.getRuta() + "\\Reporte_Ventas.jrxml";
             Map<String, Object> p2 = new HashMap<>();
             p2.put("usuario", usuario);
+                p2.put("ruta", ruta.getRuta());
             JasperReport reporteJasper = JasperCompileManager.compileReport(dir);
             JasperPrint mostrarReporte = JasperFillManager.fillReport(reporteJasper, p2, conn);
             JasperViewer visor = new JasperViewer(mostrarReporte, false);
@@ -658,8 +661,7 @@ public class Frm_Menu extends javax.swing.JFrame implements Runnable {
             String dir = ruta.getRuta() + "\\Reporte_Clientes.jrxml";
             Map<String, Object> p2 = new HashMap<>();
             p2.put("usuario", usuario);
-            /****Añade esta linea de abajo a todas donde se genere reporte******/
-            p2.put("ruta", ruta.getRuta());
+             p2.put("ruta", ruta.getRuta());
             /******************************************************************/
             JasperReport reporteJasper = JasperCompileManager.compileReport(dir);
             JasperPrint mostrarReporte = JasperFillManager.fillReport(reporteJasper, p2, conn);
@@ -676,6 +678,9 @@ public class Frm_Menu extends javax.swing.JFrame implements Runnable {
             String dir = ruta.getRuta() + "\\proveedores.jrxml";
             Map<String, Object> p2 = new HashMap<>();
             p2.put("usuario", usuario);
+            p2.put("ruta", ruta.getRuta());
+                
+            
             JasperReport reporteJasper = JasperCompileManager.compileReport(dir);
             JasperPrint mostrarReporte = JasperFillManager.fillReport(reporteJasper, p2, conn);
             JasperViewer visor = new JasperViewer(mostrarReporte, false);
@@ -688,7 +693,7 @@ public class Frm_Menu extends javax.swing.JFrame implements Runnable {
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
         int seleccion = JOptionPane.showOptionDialog(
                 null,
-                "¡Como desea realizar la consulta de ventas?",
+                "¿Como desea realizar la consulta de ventas?",
                 "Selector de opciones",
                 JOptionPane.YES_NO_CANCEL_OPTION,
                 JOptionPane.QUESTION_MESSAGE,
@@ -719,6 +724,7 @@ public class Frm_Menu extends javax.swing.JFrame implements Runnable {
             String dir = ruta.getRuta() + "\\Reporte_Usuarios.jrxml";
             Map<String, Object> p2 = new HashMap<>();
             p2.put("usuario", usuario);
+            p2.put("ruta", ruta.getRuta());
             JasperReport reporteJasper = JasperCompileManager.compileReport(dir);
             JasperPrint mostrarReporte = JasperFillManager.fillReport(reporteJasper, p2, conn);
             JasperViewer visor = new JasperViewer(mostrarReporte, false);
@@ -740,6 +746,7 @@ public class Frm_Menu extends javax.swing.JFrame implements Runnable {
                 Map<String, Object> p2 = new HashMap<>();
                 p2.put("Fecha", fecha);
                 p2.put("usuario", usuario);
+                    p2.put("ruta", ruta.getRuta());
                 JasperReport reporteJasper = JasperCompileManager.compileReport(dir);
                 JasperPrint mostrarReporte = JasperFillManager.fillReport(reporteJasper, p2, conn);
                 JasperViewer visor = new JasperViewer(mostrarReporte, false);
@@ -772,6 +779,7 @@ public class Frm_Menu extends javax.swing.JFrame implements Runnable {
             Map<String, Object> p2 = new HashMap<>();
             p2.put("Fecha", mes);
             p2.put("usuario", usuario);
+                p2.put("ruta", ruta.getRuta());
             JasperReport reporteJasper = JasperCompileManager.compileReport(dir);
             JasperPrint mostrarReporte = JasperFillManager.fillReport(reporteJasper, p2, conn);
             JasperViewer visor = new JasperViewer(mostrarReporte, false);
@@ -798,6 +806,7 @@ public class Frm_Menu extends javax.swing.JFrame implements Runnable {
             Map<String, Object> p2 = new HashMap<>();
             p2.put("fecha", jYearChooser1.getYear());
             p2.put("usuario", usuario);
+                p2.put("ruta", ruta.getRuta());
             JasperReport reporteJasper = JasperCompileManager.compileReport(dir);
             JasperPrint mostrarReporte = JasperFillManager.fillReport(reporteJasper, p2, conn);
             JasperViewer visor = new JasperViewer(mostrarReporte, false);
@@ -824,6 +833,7 @@ this.jFrame3.dispose();
             p2.put("usuario", usuario);
             p2.put("nombre", "Junior Navarro");
             p2.put("cliente", 11);
+                p2.put("ruta", ruta.getRuta());
             JasperReport reporteJasper = JasperCompileManager.compileReport(dir);
             JasperPrint mostrarReporte = JasperFillManager.fillReport(reporteJasper, p2, conn);
             JasperViewer visor = new JasperViewer(mostrarReporte, false);

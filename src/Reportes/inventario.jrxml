@@ -13,6 +13,8 @@
 			<style mode="Opaque" backcolor="#EFFFEF"/>
 		</conditionalStyle>
 	</style>
+	<parameter name="ruta" class="java.lang.String"/>
+	<parameter name="parameter1" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT
      inventario."nombre_producto" AS inventario_nombre_producto,
@@ -49,7 +51,7 @@ FROM
 				<reportElement mode="Opaque" x="0" y="0" width="802" height="66" backcolor="#FFFFFF" uuid="b88e638b-1756-4f3b-a538-495a91b5d496"/>
 				<image hAlign="Center">
 					<reportElement x="127" y="0" width="599" height="66" uuid="ae2b89f9-f411-4d7e-9eba-236f49eff603"/>
-					<imageExpression><![CDATA["C:\\SistemaTornavica\\Sistema\\src\\Reportes\\tornavica.PNG"]]></imageExpression>
+					<imageExpression><![CDATA[$P{ruta}+"\\tornavica.PNG"]]></imageExpression>
 				</image>
 			</frame>
 			<frame>
