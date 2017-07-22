@@ -645,7 +645,7 @@ public class Frm_Menu extends javax.swing.JFrame implements Runnable {
             String dir = ruta.getRuta() + "\\Reporte_Ventas.jrxml";
             Map<String, Object> p2 = new HashMap<>();
             p2.put("usuario", usuario);
-                p2.put("ruta", ruta.getRuta());
+            p2.put("ruta", ruta.getRuta());
             JasperReport reporteJasper = JasperCompileManager.compileReport(dir);
             JasperPrint mostrarReporte = JasperFillManager.fillReport(reporteJasper, p2, conn);
             JasperViewer visor = new JasperViewer(mostrarReporte, false);
@@ -661,8 +661,10 @@ public class Frm_Menu extends javax.swing.JFrame implements Runnable {
             String dir = ruta.getRuta() + "\\Reporte_Clientes.jrxml";
             Map<String, Object> p2 = new HashMap<>();
             p2.put("usuario", usuario);
-             p2.put("ruta", ruta.getRuta());
-            /******************************************************************/
+            p2.put("ruta", ruta.getRuta());
+            /**
+             * ***************************************************************
+             */
             JasperReport reporteJasper = JasperCompileManager.compileReport(dir);
             JasperPrint mostrarReporte = JasperFillManager.fillReport(reporteJasper, p2, conn);
             JasperViewer visor = new JasperViewer(mostrarReporte, false);
@@ -744,7 +746,7 @@ public class Frm_Menu extends javax.swing.JFrame implements Runnable {
                 Map<String, Object> p2 = new HashMap<>();
                 p2.put("Fecha", fecha);
                 p2.put("usuario", usuario);
-                    p2.put("ruta", ruta.getRuta());
+                p2.put("ruta", ruta.getRuta());
                 JasperReport reporteJasper = JasperCompileManager.compileReport(dir);
                 JasperPrint mostrarReporte = JasperFillManager.fillReport(reporteJasper, p2, conn);
                 JasperViewer visor = new JasperViewer(mostrarReporte, false);
@@ -756,7 +758,7 @@ public class Frm_Menu extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jFrame1WindowLostFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_jFrame1WindowLostFocus
@@ -777,7 +779,7 @@ public class Frm_Menu extends javax.swing.JFrame implements Runnable {
             Map<String, Object> p2 = new HashMap<>();
             p2.put("Fecha", mes);
             p2.put("usuario", usuario);
-                p2.put("ruta", ruta.getRuta());
+            p2.put("ruta", ruta.getRuta());
             JasperReport reporteJasper = JasperCompileManager.compileReport(dir);
             JasperPrint mostrarReporte = JasperFillManager.fillReport(reporteJasper, p2, conn);
             JasperViewer visor = new JasperViewer(mostrarReporte, false);
@@ -804,7 +806,7 @@ public class Frm_Menu extends javax.swing.JFrame implements Runnable {
             Map<String, Object> p2 = new HashMap<>();
             p2.put("fecha", jYearChooser1.getYear());
             p2.put("usuario", usuario);
-                p2.put("ruta", ruta.getRuta());
+            p2.put("ruta", ruta.getRuta());
             JasperReport reporteJasper = JasperCompileManager.compileReport(dir);
             JasperPrint mostrarReporte = JasperFillManager.fillReport(reporteJasper, p2, conn);
             JasperViewer visor = new JasperViewer(mostrarReporte, false);
@@ -815,7 +817,7 @@ public class Frm_Menu extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-this.jFrame3.dispose();
+        this.jFrame3.dispose();
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jFrame3WindowLostFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_jFrame3WindowLostFocus
@@ -823,69 +825,95 @@ this.jFrame3.dispose();
     }//GEN-LAST:event_jFrame3WindowLostFocus
 
     private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
-        
+        String entrada2 = "";
+        boolean entrada2Correcto = true;
+        do {
+            if (entrada2Correcto) {
+                entrada2 = JOptionPane.showInputDialog(null, "Ingrese el nombre del cliente:", null, JOptionPane.INFORMATION_MESSAGE);
+                entrada2Correcto = entrada2.matches("[a-z]+");
+            } else {
+                entrada2 = JOptionPane.showInputDialog(null, "Ingrese el nombre del cliente:", null, JOptionPane.WARNING_MESSAGE);
+                entrada2Correcto = entrada2.matches("[a-z]+");
+            }
+        } while (!entrada2Correcto);
+        String codigo;
+        boolean encontro = false;
         try {
-            conn = Paq_Base_Datos.Conexion_DB.geConnection();
-            String dir = ruta.getRuta() + "\\Reporte_Venta_Cliente.jrxml";
-            Map<String, Object> p2 = new HashMap<>();
-            p2.put("usuario", usuario);
-            p2.put("nombre", "Junior Navarro");
-            p2.put("cliente", 11);
-                p2.put("ruta", ruta.getRuta());
-            JasperReport reporteJasper = JasperCompileManager.compileReport(dir);
-            JasperPrint mostrarReporte = JasperFillManager.fillReport(reporteJasper, p2, conn);
-            JasperViewer visor = new JasperViewer(mostrarReporte, false);
-            visor.setVisible(true);
-        } catch (JRException ex) {
-            JOptionPane.showMessageDialog(null, "OCURRIO UN ERROR AL CARGAR EL REPORTE.\n" + ex, "ERROR", JOptionPane.ERROR_MESSAGE);
-        }// TODO add your handling code here:
+            String sql = "select * from clientes where primer_nombre = '" + entrada2 + "' or nombre_empresa = '" + entrada2 + "'";
+            ResultSet rs = operaciones.Consultar(sql);
+            while (rs.next()) {
+                codigo = rs.getString("cod_cliente");
+                encontro = true;
+                try {
+                    conn = Paq_Base_Datos.Conexion_DB.geConnection();
+                    String dir = ruta.getRuta() + "\\Reporte_Venta_Cliente.jrxml";
+                    Map<String, Object> p2 = new HashMap<>();
+                    p2.put("usuario", usuario);
+                    p2.put("ruta", ruta.getRuta());
+                    p2.put("nombre", entrada2);
+                    p2.put("codigo", codigo);
+                    JasperReport reporteJasper = JasperCompileManager.compileReport(dir);
+                    JasperPrint mostrarReporte = JasperFillManager.fillReport(reporteJasper, p2, conn);
+                    JasperViewer visor = new JasperViewer(mostrarReporte, false);
+                    visor.setVisible(true);
+                } catch (JRException ex) {
+                    JOptionPane.showMessageDialog(null, "OCURRIO UN ERROR AL CARGAR EL REPORTE.\n" + ex, "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+            if (encontro == false) {
+                JOptionPane.showMessageDialog(null, "Cliente no existe", null, JOptionPane.WARNING_MESSAGE);
+            }
+            operaciones.conn.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem16ActionPerformed
 
     private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
-    
+
     }//GEN-LAST:event_jMenuItem17ActionPerformed
 
     private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
-   new Paq_Interfaz.Frm_AjusteInventario().setVisible(true);
+        new Paq_Interfaz.Frm_AjusteInventario().setVisible(true);
     }//GEN-LAST:event_jMenuItem19ActionPerformed
 
-public void run() {
+    public void run() {
         //metodo run para que hilo inicie llamando la funcion calcula tiempo y establece el tiempo en el label
-        Thread ct= Thread.currentThread();
-        while(ct==h1){
+        Thread ct = Thread.currentThread();
+        while (ct == h1) {
             try {
                 calculaTiempo();
                 usuario = lblUsuario.getText();
-            
 
-} catch (ParseException ex) {
+            } catch (ParseException ex) {
                 Logger.getLogger(Frm_Menu.class
-.getName()).log(Level.SEVERE, null, ex);
+                        .getName()).log(Level.SEVERE, null, ex);
             }
-            jLabel4.setText(hora+":"+minutos+":"+segundos);
-            try{
+            jLabel4.setText(hora + ":" + minutos + ":" + segundos);
+            try {
                 Thread.sleep(1000);
-            }catch(InterruptedException e){
+            } catch (InterruptedException e) {
             }
         }
-}
-        
+    }
+
     private void calculaTiempo() throws ParseException {
         //esta funcion genera los valores para el tiempo
         Calendar calendario = new GregorianCalendar();
         Date fechaHoraActual = new Date();
-        
+
         calendario.setTime(fechaHoraActual);
-        ampm= calendario.get(Calendar.AM_PM)==Calendar.AM?"AM":"PM";
-        
-        if(ampm.equals("PM")){
-            int h=calendario.get(Calendar.HOUR_OF_DAY);
-            hora = h>9?""+h:"0"+h;
-        }else{
-            hora= calendario.get(Calendar.HOUR_OF_DAY)>9?""+calendario.get(Calendar.HOUR_OF_DAY):"0"+calendario.get(Calendar.HOUR_OF_DAY); 
+        ampm = calendario.get(Calendar.AM_PM) == Calendar.AM ? "AM" : "PM";
+
+        if (ampm.equals("PM")) {
+            int h = calendario.get(Calendar.HOUR_OF_DAY);
+            hora = h > 9 ? "" + h : "0" + h;
+        } else {
+            hora = calendario.get(Calendar.HOUR_OF_DAY) > 9 ? "" + calendario.get(Calendar.HOUR_OF_DAY) : "0" + calendario.get(Calendar.HOUR_OF_DAY);
         }
-        minutos = calendario.get(Calendar.MINUTE)>9?""+calendario.get(Calendar.MINUTE):"0"+calendario.get(Calendar.MINUTE);
-        segundos = calendario.get(Calendar.SECOND)>9?""+calendario.get(Calendar.SECOND):"0"+calendario.get(Calendar.SECOND);
+        minutos = calendario.get(Calendar.MINUTE) > 9 ? "" + calendario.get(Calendar.MINUTE) : "0" + calendario.get(Calendar.MINUTE);
+        segundos = calendario.get(Calendar.SECOND) > 9 ? "" + calendario.get(Calendar.SECOND) : "0" + calendario.get(Calendar.SECOND);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
