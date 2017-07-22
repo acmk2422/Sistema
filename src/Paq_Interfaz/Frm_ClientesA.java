@@ -637,12 +637,18 @@ if (this.verificacion()){
     }
     
     private boolean verificacion(){
+             String email;
+            boolean emailCorrecto=true;
+            email=txtE.getText();
+            emailCorrecto=email.matches("[-\\w.]+@\\w+\\.\\w+");  
+            
         if (cbxN.isSelected()) {
             if (!"".equals(txtN1.getText()) && !"".equals(txtA1.getText()) && !"".equals(txtC.getText()) && 
-            !"".equals(txtT1.getText()) && !"".equals(txtD.getText()) && !"".equals(txtE.getText())) {
+            !"".equals(txtT1.getText()) && !"".equals(txtD.getText()) && !"".equals(txtE.getText()) && emailCorrecto ) {
                 return true; 
             }else{
-                JOptionPane.showMessageDialog(rootPane, "Faltan Campos por llenar");
+                JOptionPane.showMessageDialog(rootPane, "Compruebe los siguiente:\n1.El formato del correo y telefonos\n2.No existan campos vacios"
+                        + "\n3.Los telefonos tengan 11 digitos");
                 return false; 
             }
         } else {
@@ -650,7 +656,8 @@ if (this.verificacion()){
                 && !"".equals(txtD.getText()) && !"".equals(txtE.getText())) {
                 return true; 
             }else{
-                JOptionPane.showMessageDialog(rootPane, "Faltan Campos por llenar");
+                JOptionPane.showMessageDialog(rootPane, "Compruebe los siguiente:\n1.El formato del correo y telefonos\n2.No existan campos vacios"
+                        + "\n3.Los telefonos tengan 11 digitos");
                 return false; 
             }
         }
