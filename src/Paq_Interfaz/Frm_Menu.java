@@ -277,16 +277,16 @@ public class Frm_Menu extends javax.swing.JFrame implements Runnable {
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tornavica.png"))); // NOI18N
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, 360, -1));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, 310, -1));
 
         jLabel2.setFont(new java.awt.Font("Verdana", 3, 36)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("SISTEMA DE VENTAS");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, 440, -1));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 440, -1));
 
         jLabel4.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 150, 240, 30));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, 240, 30));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Cerrar sesion-10.png"))); // NOI18N
         jButton1.setContentAreaFilled(false);
@@ -296,7 +296,7 @@ public class Frm_Menu extends javax.swing.JFrame implements Runnable {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 270, 112, 32));
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 270, 112, 32));
 
         lblfecha.setFont(new java.awt.Font("Verdana", 3, 18)); // NOI18N
         lblfecha.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -679,8 +679,6 @@ public class Frm_Menu extends javax.swing.JFrame implements Runnable {
             Map<String, Object> p2 = new HashMap<>();
             p2.put("usuario", usuario);
             p2.put("ruta", ruta.getRuta());
-                
-            
             JasperReport reporteJasper = JasperCompileManager.compileReport(dir);
             JasperPrint mostrarReporte = JasperFillManager.fillReport(reporteJasper, p2, conn);
             JasperViewer visor = new JasperViewer(mostrarReporte, false);

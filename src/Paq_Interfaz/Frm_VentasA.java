@@ -1072,11 +1072,24 @@ public class Frm_VentasA extends javax.swing.JFrame {
     }
 
     private void Añadir() {
-        
-        res = JOptionPane.showInputDialog("Cantidad a vender del producto");
-        if ("".equals(res)) {
-            res = "1";
-        }
+        /*verifcacion del joptionpanel*/
+        String cantidad;
+        boolean entrada=true;
+        do{
+            if (entrada) {
+            cantidad=JOptionPane.showInputDialog(null,"Seleccione la Cantidad a vender del producto","",JOptionPane.QUESTION_MESSAGE);
+            entrada=cantidad.matches("\\d+");
+            } else {
+            cantidad=JOptionPane.showInputDialog(null,"Seleccione la Cantidad a vender del producto\nEj: 1","Validacion",JOptionPane.WARNING_MESSAGE);
+            entrada=cantidad.matches("\\d+");
+            }  
+            System.out.println(entrada);                 
+        }while(!entrada);
+        /*verifcacion del joptionpanel*/
+//        res = JOptionPane.showInputDialog("Cantidad a vender del producto");
+//        if ("".equals(res)) {
+//            res = "1";
+//        }
         if (res != null) {
             int cantidadTotal = Integer.parseInt(this.tbl.getValueAt(tbl.getSelectedRow(), 4).toString());
             int cantidadMinimo = Integer.parseInt(this.tbl.getValueAt(tbl.getSelectedRow(), 4).toString())-getMinimo();
