@@ -1,6 +1,7 @@
 package Paq_Interfaz;
 
 import Atxy2k.CustomTextField.RestrictedTextField;
+import com.sun.webkit.event.WCKeyEvent;
 import java.awt.Component;
 import java.awt.Image;
 import java.sql.PreparedStatement;
@@ -218,6 +219,16 @@ public class Frm_Usuario extends javax.swing.JFrame {
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 230, 30));
 
         txtNA.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        txtNA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNAActionPerformed(evt);
+            }
+        });
+        txtNA.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNAKeyTyped(evt);
+            }
+        });
         jPanel2.add(txtNA, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 10, 200, 30));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 510, 250));
@@ -407,6 +418,28 @@ int respuesta = JOptionPane.showConfirmDialog(null, "¿ESTA SEGURO QUE DESEA ELI
     private void txtC2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtC2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtC2ActionPerformed
+
+    private void txtNAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNAActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNAActionPerformed
+
+    private void txtNAKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNAKeyTyped
+    char c = evt.getKeyChar();
+        /*verifico que el caracter sea una letra mayuscula o minuscula o sea la tecla de borrar
+         si no emito un sonido e ignoro lo que teclee*/
+        if (c >= 65 && c <= 90 || c >= 97 && c <= 122 || c >= 128 && c <= 165 || c == evt.VK_SPACE || c == WCKeyEvent.VK_BACK) {
+            //establesco limite
+            int lim = txtNA.getText().length();
+            //cambie este numero que es el limite
+            if (lim >= 20) {
+                evt.consume();
+                getToolkit().beep();
+            }
+        } else {
+            evt.consume();
+            getToolkit().beep();
+        }
+    }//GEN-LAST:event_txtNAKeyTyped
 
     /**
      * @param args the command line arguments
