@@ -1,6 +1,7 @@
 package Paq_Interfaz;
 
 import Atxy2k.CustomTextField.RestrictedTextField;
+import com.sun.webkit.event.WCKeyEvent;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.sql.PreparedStatement;
@@ -92,7 +93,7 @@ public class Frm_VentasA extends javax.swing.JFrame {
         try {
             String[] titulos = {"Codigo", "Nombre", "Descripcion", "Precio",
                 "Cantidad"};
-            String sql = "select * from inventario";
+            String sql = "select * from inventario where cantidad > 5";
             model = new DefaultTableModel(null, titulos);
             ResultSet rs = operaciones.Consultar(sql);
             String[] fila = new String[5];
@@ -355,12 +356,20 @@ public class Frm_VentasA extends javax.swing.JFrame {
         });
         jPanel3.add(cbxDes, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, 50, 30));
 
+        txtDes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDesActionPerformed(evt);
+            }
+        });
         txtDes.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtDesKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDesKeyTyped(evt);
+            }
         });
-        jPanel3.add(txtDes, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, 80, 30));
+        jPanel3.add(txtDes, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, 60, 30));
 
         lblIva.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         lblIva.setEnabled(false);
@@ -696,6 +705,7 @@ public class Frm_VentasA extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnProcesarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcesarActionPerformed
+        if (verificacion()) {
 //se actualiza la BD con los datos de la tabla 1
         if (!txtC.getText().equals("")) {
             if (tbl2.getRowCount() > 0) {
@@ -718,7 +728,7 @@ public class Frm_VentasA extends javax.swing.JFrame {
                 //añadir en descripcion
                 String codigoDes = "";
                 for (int i = 0; i < tbl2.getRowCount(); i++) {
-                    float total = Float.parseFloat(res) * Float.parseFloat(tbl.getValueAt(i, 3).toString());
+                    float total = Float.parseFloat(tbl2.getValueAt(i, 2).toString()) * Float.parseFloat(tbl2.getValueAt(i, 3).toString());
                     try {
                         String sql = "insert into descripcion(cod_descripcion, cod_producto, cantidad"
                                 + ", precio, total, cod_venta, descuento)"
@@ -729,8 +739,8 @@ public class Frm_VentasA extends javax.swing.JFrame {
                         PreparedStatement ps = operaciones.Ingresar(sql);
                         ps.setString(1, codigoDes);
                         ps.setInt(2, Integer.parseInt(tbl.getValueAt(i, 0).toString()));
-                        ps.setInt(3, Integer.parseInt(res));
-                        ps.setFloat(4, Float.parseFloat(tbl.getValueAt(i, 3).toString()));
+                        ps.setFloat(3, Float.parseFloat(tbl2.getValueAt(i, 2).toString()));
+                        ps.setFloat(4, Float.parseFloat(tbl2.getValueAt(i, 3).toString()));
                         ps.setFloat(5, total);
                         ps.setInt(6, Integer.parseInt(lblNumeroRegistro.getText()));
                         ps.setInt(7, descuento);
@@ -742,6 +752,7 @@ public class Frm_VentasA extends javax.swing.JFrame {
                 }
 
 // se almacena la venta en la bd
+ System.out.println("parte 3");
                 try {
                     String sql = "insert into ventas(cod_venta, cantidad, descripcion"
                             + ", total, fecha, tipo_de_pago, responsable, descuento, cod_cliente, id_valor)"
@@ -787,8 +798,7 @@ public class Frm_VentasA extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Por favor seleccione un cliente, o añada uno nuevo");
         }
-
-
+}
     }//GEN-LAST:event_btnProcesarActionPerformed
 
     private void cbxNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxNActionPerformed
@@ -944,12 +954,39 @@ public class Frm_VentasA extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowLostFocus
 
     private void txtDesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDesKeyReleased
-        this.Calcular();
+
+                   this.Calcular();
+
     }//GEN-LAST:event_txtDesKeyReleased
 
     private void cbxDesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxDesActionPerformed
         this.Calcular();
     }//GEN-LAST:event_cbxDesActionPerformed
+
+    private void txtDesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDesActionPerformed
+
+    private void txtDesKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDesKeyTyped
+        char c = evt.getKeyChar();
+        int lim = txtDes.getText().length();
+        if (c >= 48 && c <= 57 || c == WCKeyEvent.VK_BACK) {
+            if (cbxDes.getSelectedIndex()==0) {
+                if (this.EventoKeyType(lim, 3)) {
+                    evt.consume();
+                    getToolkit().beep();
+                }
+            } else {
+                if (this.EventoKeyType(lim, 6)) {
+                    evt.consume();
+                    getToolkit().beep();
+                }
+            }
+        } else {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtDesKeyTyped
 
     public String Desencadenar(String datos) {
         //funcion para separar cedula de la letra
@@ -1097,19 +1134,19 @@ public class Frm_VentasA extends javax.swing.JFrame {
 //        if ("".equals(res)) {
 //            res = "1";
 //        }
-        if (res != null) {
+        if (entrada) {
             int cantidadTotal = Integer.parseInt(this.tbl.getValueAt(tbl.getSelectedRow(), 4).toString());
-            int cantidadMinimo = Integer.parseInt(this.tbl.getValueAt(tbl.getSelectedRow(), 4).toString())-getMinimo();
-            int cantidadSeguridad = Integer.parseInt(this.tbl.getValueAt(tbl.getSelectedRow(), 4).toString())-getSeguridad();
-            int resultado = cantidadTotal - Integer.parseInt(res);
+            int cantidadMinimo = getMinimo();
+            int cantidadSeguridad = getSeguridad();
+            int cantidadventa  = Integer.parseInt(this.tbl.getValueAt(tbl.getSelectedRow(), 4).toString())-getSeguridad();
+            int resultado = cantidadTotal - Integer.parseInt(cantidad);
             System.out.println(cantidadTotal+","+cantidadMinimo+","+cantidadSeguridad);
-            if (resultado >= cantidadMinimo) {
-                JOptionPane.showMessageDialog(null, "El producto seleccionado ha llegado al inventario minimo.", null, JOptionPane.WARNING_MESSAGE);
-                if (Integer.parseInt(res) <= cantidadSeguridad) {
-                //cantidad menor a disponible en stock
+            if (Integer.parseInt(cantidad)<cantidadTotal) {
+               if (resultado > cantidadMinimo) {
+               //cantidad menor a disponible en stock
                 fila1[0] = tbl.getValueAt(this.tbl.getSelectedRow(), 0).toString();
                 fila1[1] = tbl.getValueAt(this.tbl.getSelectedRow(), 1).toString();
-                fila1[2] = (res.equals("")) ? "1" : res;
+                fila1[2] = cantidad;
                 fila1[3] = tbl.getValueAt(this.tbl.getSelectedRow(), 3).toString();
                 if (tbl2.getRowCount() == 0) {
                     fila1[4] = String.valueOf(Float.parseFloat(fila1[2]) * Float.parseFloat(fila1[3]));
@@ -1131,14 +1168,67 @@ public class Frm_VentasA extends javax.swing.JFrame {
                 //hacemos la resta a la cantidad en la tabla 1
                 int filatbl1 = tbl.getSelectedRow();
                 int valor1 = Integer.parseInt(model.getValueAt(filatbl1, 4).toString());
-                model.setValueAt(valor1 - Integer.parseInt(res), filatbl1, 4);
+                model.setValueAt(valor1 - Integer.parseInt(cantidad), filatbl1, 4);
                 tbl.setModel(model);
                 this.Calcular();
             } else {
-                JOptionPane.showMessageDialog(null, "El producto selecionado ha llegado al inventario de seguridad..."
-                        + "\nLa cantidad maxima disponble para la venta es: "+cantidadSeguridad, null, JOptionPane.ERROR_MESSAGE);
-            }
+                if (resultado <= cantidadMinimo && resultado >= cantidadSeguridad) {
+                    //cantidad mayor al inventario de seguridad pero menor al minimo
+                    JOptionPane.showMessageDialog(null, "El producto seleccionado ha llegado al inventario minimo.", null, JOptionPane.WARNING_MESSAGE);
+                    fila1[0] = tbl.getValueAt(this.tbl.getSelectedRow(), 0).toString();
+                    fila1[1] = tbl.getValueAt(this.tbl.getSelectedRow(), 1).toString();
+                    fila1[2] = cantidad;
+                    fila1[3] = tbl.getValueAt(this.tbl.getSelectedRow(), 3).toString();
+                    if (tbl2.getRowCount() == 0) {
+                        fila1[4] = String.valueOf(Float.parseFloat(fila1[2]) * Float.parseFloat(fila1[3]));
+                        modelo.addRow(fila1);
+                    } else {
+                        for (int i = 0; i < tbl2.getRowCount(); i++) {
+                            if (tbl2.getValueAt(i, 0).toString().equals(tbl.getValueAt(this.tbl.getSelectedRow(), 0).toString())) {
+                                tbl2.setValueAt(String.valueOf(Integer.parseInt(tbl2.getValueAt(i, 2).toString()) + Integer.parseInt(fila1[2])), i, 2);
+                                tbl2.setValueAt(Float.parseFloat(tbl2.getValueAt(i, 2).toString()) * Float.parseFloat(tbl2.getValueAt(i, 3).toString()), i, 4);
+                                igual = true;
+                            }
+                        }
+                        if (igual == false) {
+                            fila1[4] = String.valueOf(Float.parseFloat(fila1[2]) * Float.parseFloat(fila1[3]));
+                            modelo.addRow(fila1);
+                        }
+                    }
+                    igual = false;
+                    //hacemos la resta a la cantidad en la tabla 1
+                    int filatbl1 = tbl.getSelectedRow();
+                    int valor1 = Integer.parseInt(model.getValueAt(filatbl1, 4).toString());
+                    model.setValueAt(valor1 - Integer.parseInt(cantidad), filatbl1, 4);
+                    tbl.setModel(model);
+                    this.Calcular();
+                } else {
+                    JOptionPane.showMessageDialog(null, "El producto selecionado ha llegado al inventario de seguridad..."
+                        + "\nLa cantidad maxima disponble para la venta es: "+cantidadventa, null, JOptionPane.ERROR_MESSAGE);
+                }
             } 
+            }else{
+                JOptionPane.showMessageDialog(null, "La cantidad seleccionada excede la cantidad disponible", null, JOptionPane.ERROR_MESSAGE);
+            }
+            
+        }
+    }
+    
+     private boolean EventoKeyType(int valor, int limitacion){
+            //pido el valor del text y pido el valor limitante
+            if (valor >= limitacion) {
+                return true;
+            }else{
+                return false;
+            }
+    }
+
+    private boolean verificacion() {
+        if (tbl2.getRowCount()>0 && !cbxN.getSelectedItem().toString().equals("")) {
+            return true;
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleccione al menos producto", null, JOptionPane.ERROR_MESSAGE);
+            return false;
         }
     }
 }
