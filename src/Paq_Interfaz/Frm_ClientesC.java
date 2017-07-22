@@ -1,6 +1,7 @@
 package Paq_Interfaz;
 
 import Atxy2k.CustomTextField.RestrictedTextField;
+import com.sun.webkit.event.WCKeyEvent;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -30,50 +31,10 @@ public class Frm_ClientesC extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         this.llenar();
-        this.restringir();
+
     }
     
-    public void restringir(){
-        RestrictedTextField restricted3 = new RestrictedTextField(this.txtC);
-        restricted3.setOnlyNums(true);
-        restricted3.setLimit(8);
-        
-        RestrictedTextField restricted4 = new RestrictedTextField(this.txtT1);
-        restricted4.setOnlyNums(true);
-         restricted4.setLimit(11);
-         
-        RestrictedTextField restricted = new RestrictedTextField(this.txtT2);
-        restricted.setOnlyNums(true);
-         restricted.setLimit(11);
-         
-         RestrictedTextField restricted5= new RestrictedTextField(this.txtN1);
-        restricted5.setOnlyText(true);
-        restricted5.setLimit(10);
-         
-          RestrictedTextField restricted10= new RestrictedTextField(this.txtN2);
-        restricted10.setOnlyText(true);
-        restricted10.setLimit(10);
-        
-         RestrictedTextField restricted12= new RestrictedTextField(this.txtA1);
-        restricted12.setOnlyText(true);
-        restricted12.setLimit(10);
-         
-          RestrictedTextField restricted11= new RestrictedTextField(this.txtA2);
-        restricted11.setOnlyText(true);
-        restricted11.setLimit(10);
-         
-          RestrictedTextField restricted14= new RestrictedTextField(this.txtNe);
-        restricted14.setOnlyText(true);
-        restricted14.setLimit(10);
-         
     
-         RestrictedTextField restricted7 = new RestrictedTextField(this.txtE);
-         restricted7.setLimit(40);
-         
-      
-       
-         
-    }
     
     private void Borrar(int tipo) {
         //Elimina campos llenos en el formulario
@@ -196,6 +157,33 @@ public class Frm_ClientesC extends javax.swing.JFrame {
         }
         
     }
+     private boolean verificacion(){
+             String email;
+            boolean emailCorrecto=true;
+            email=txtE.getText();
+            emailCorrecto=email.matches("[-\\w.]+@\\w+\\.\\w+");  
+            
+        if (cbxN.isSelected()) {
+            if (!"".equals(txtN1.getText()) && !"".equals(txtA1.getText()) && !"".equals(txtC.getText()) && 
+            !"".equals(txtT1.getText()) && !"".equals(txtD.getText()) && !"".equals(txtE.getText()) && emailCorrecto ) {
+                return true; 
+            }else{
+                JOptionPane.showMessageDialog(rootPane, "Compruebe los siguiente:\n1.El formato del correo y telefonos\n2.No existan campos vacios"
+                        + "\n3.Los telefonos tengan 11 digitos");
+                return false; 
+            }
+        } else {
+            if (!"".equals(txtNe.getText()) && !"".equals(txtC.getText()) && !"".equals(txtT1.getText()) 
+                && !"".equals(txtD.getText()) && !"".equals(txtE.getText())) {
+                return true; 
+            }else{
+                JOptionPane.showMessageDialog(rootPane, "Compruebe los siguiente:\n1.El formato del correo y telefonos\n2.No existan campos vacios"
+                        + "\n3.Los telefonos tengan 11 digitos");
+                return false; 
+            }
+        }
+    } 
+
     
     public void Desencadenar(String datos){
         //funcion para separar cedula de la letra
@@ -305,6 +293,9 @@ public class Frm_ClientesC extends javax.swing.JFrame {
         txtB.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtBKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtBKeyTyped(evt);
             }
         });
         jPanel1.add(txtB, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 30, 180, 30));
@@ -429,6 +420,11 @@ public class Frm_ClientesC extends javax.swing.JFrame {
                 txtT2ActionPerformed(evt);
             }
         });
+        txtT2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtT2KeyTyped(evt);
+            }
+        });
         jPanel3.add(txtT2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 70, 100, -1));
 
         jLabel10.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -436,6 +432,16 @@ public class Frm_ClientesC extends javax.swing.JFrame {
         jPanel3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, 20));
 
         txtT1.setEnabled(false);
+        txtT1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtT1ActionPerformed(evt);
+            }
+        });
+        txtT1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtT1KeyTyped(evt);
+            }
+        });
         jPanel3.add(txtT1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, 100, -1));
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -483,6 +489,11 @@ public class Frm_ClientesC extends javax.swing.JFrame {
                 txtN1ActionPerformed(evt);
             }
         });
+        txtN1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtN1KeyTyped(evt);
+            }
+        });
         jPanel2.add(txtN1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 50, 130, -1));
 
         txtA2.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
@@ -492,14 +503,22 @@ public class Frm_ClientesC extends javax.swing.JFrame {
                 txtA2ActionPerformed(evt);
             }
         });
+        txtA2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtA2KeyTyped(evt);
+            }
+        });
         jPanel2.add(txtA2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 80, 110, -1));
 
-        txtC.setForeground(new java.awt.Color(0, 153, 51));
-        txtC.setText("24035416");
         txtC.setEnabled(false);
         txtC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCActionPerformed(evt);
+            }
+        });
+        txtC.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCKeyTyped(evt);
             }
         });
         jPanel2.add(txtC, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, 70, -1));
@@ -515,6 +534,11 @@ public class Frm_ClientesC extends javax.swing.JFrame {
                 txtN2ActionPerformed(evt);
             }
         });
+        txtN2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtN2KeyTyped(evt);
+            }
+        });
         jPanel2.add(txtN2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 50, 110, -1));
 
         jLabel9.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -526,6 +550,11 @@ public class Frm_ClientesC extends javax.swing.JFrame {
         txtA1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtA1ActionPerformed(evt);
+            }
+        });
+        txtA1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtA1KeyTyped(evt);
             }
         });
         jPanel2.add(txtA1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 130, -1));
@@ -597,7 +626,7 @@ public class Frm_ClientesC extends javax.swing.JFrame {
 
         jLabel21.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel21.setText("Hacer doble click en la tabla para editar los datos.");
+        jLabel21.setText("Hacer  click en la tabla para editar los datos.");
         jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 220, 330, -1));
 
         jScrollPane2.setViewportView(jPanel1);
@@ -683,6 +712,7 @@ int respuesta = JOptionPane.showConfirmDialog(null, "¿ESTA SEGURO QUE DESEA ELI
         if (this.tbl.getSelectedRow()==-1) {
             JOptionPane.showMessageDialog(null, "Seleccione el cliente que desea editar");
         } else {
+            if (verificacion()) {
                 if (this.cbxN.isSelected()){
                     try {
                           String sql = "update clientes set cedula=?, primer_nombre=?, segundo_nombre=?, "
@@ -734,6 +764,8 @@ int respuesta = JOptionPane.showConfirmDialog(null, "¿ESTA SEGURO QUE DESEA ELI
                     }
                       this.llenar();    
                 } 
+            }
+                
             }
     }//GEN-LAST:event_btnEActionPerformed
 
@@ -806,6 +838,7 @@ int respuesta = JOptionPane.showConfirmDialog(null, "¿ESTA SEGURO QUE DESEA ELI
 
     private void txtT2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtT2ActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtT2ActionPerformed
 
     private void btnCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCActionPerformed
@@ -1021,6 +1054,135 @@ if(cbxOpcion.getSelectedIndex()==1){
     }
     }//GEN-LAST:event_txtBKeyReleased
 
+    private void txtT1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtT1KeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        int lim = txtT1.getText().length();
+        if (c >= 48 && c <= 57 || c == WCKeyEvent.VK_BACK) {
+            if (this.EventoKeyType(lim, 11)) {
+                evt.consume();
+                getToolkit().beep();
+            }
+        } else {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtT1KeyTyped
+
+    private void txtT1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtT1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtT1ActionPerformed
+
+    private void txtT2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtT2KeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        int lim = txtT2.getText().length();
+        if (c >= 48 && c <= 57 || c == WCKeyEvent.VK_BACK) {
+            if (this.EventoKeyType(lim, 11)) {
+                evt.consume();
+                getToolkit().beep();
+            }
+        } else {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtT2KeyTyped
+
+    private void txtCKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        int lim = txtC.getText().length();
+        if (c >= 48 && c <= 57 || c == WCKeyEvent.VK_BACK) {
+            if (this.EventoKeyType(lim, 8)) {
+                evt.consume();
+                getToolkit().beep();
+            }
+        } else {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtCKeyTyped
+
+    private void txtN1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtN1KeyTyped
+        // TODO add your handling code here:
+          char c = evt.getKeyChar();
+        /*verifico que el caracter sea una letra mayuscula o minuscula o sea la tecla de borrar
+         si no emito un sonido e ignoro lo que teclee*/
+        if (c >= 65 && c <= 90 || c >= 97 && c <= 122 || c >= 128 && c <= 165 || c == WCKeyEvent.VK_BACK) {
+            //establesco limite
+            int lim = txtN1.getText().length();
+            //cambie este numero que es el limite
+            if (lim >= 10) {
+                evt.consume();
+                getToolkit().beep();
+            }
+        } else {
+            evt.consume();
+            getToolkit().beep();
+        }
+    }//GEN-LAST:event_txtN1KeyTyped
+
+    private void txtN2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtN2KeyTyped
+        // TODO add your handling code here:
+          char c = evt.getKeyChar();
+        /*verifico que el caracter sea una letra mayuscula o minuscula o sea la tecla de borrar
+         si no emito un sonido e ignoro lo que teclee*/
+        if (c >= 65 && c <= 90 || c >= 97 && c <= 122 || c >= 128 && c <= 165 || c == WCKeyEvent.VK_BACK) {
+            //establesco limite
+            int lim = txtN2.getText().length();
+            //cambie este numero que es el limite
+            if (lim >= 10) {
+                evt.consume();
+                getToolkit().beep();
+            }
+        } else {
+            evt.consume();
+            getToolkit().beep();
+        }
+    }//GEN-LAST:event_txtN2KeyTyped
+
+    private void txtA2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtA2KeyTyped
+        // TODO add your handling code here:
+          char c = evt.getKeyChar();
+        /*verifico que el caracter sea una letra mayuscula o minuscula o sea la tecla de borrar
+         si no emito un sonido e ignoro lo que teclee*/
+        if (c >= 65 && c <= 90 || c >= 97 && c <= 122 || c >= 128 && c <= 165 || c == WCKeyEvent.VK_BACK) {
+            //establesco limite
+            int lim = txtA2.getText().length();
+            //cambie este numero que es el limite
+            if (lim >= 10) {
+                evt.consume();
+                getToolkit().beep();
+            }
+        } else {
+            evt.consume();
+            getToolkit().beep();
+        }
+    }//GEN-LAST:event_txtA2KeyTyped
+
+    private void txtA1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtA1KeyTyped
+        // TODO add your handling code here:
+          char c = evt.getKeyChar();
+        /*verifico que el caracter sea una letra mayuscula o minuscula o sea la tecla de borrar
+         si no emito un sonido e ignoro lo que teclee*/
+        if (c >= 65 && c <= 90 || c >= 97 && c <= 122 || c >= 128 && c <= 165 || c == WCKeyEvent.VK_BACK) {
+            //establesco limite
+            int lim = txtN1.getText().length();
+            //cambie este numero que es el limite
+            if (lim >= 10) {
+                evt.consume();
+                getToolkit().beep();
+            }
+        } else {
+            evt.consume();
+            getToolkit().beep();
+        }
+    }//GEN-LAST:event_txtA1KeyTyped
+
+    private void txtBKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBKeyTyped
+
     /**
      * @param args the command line arguments
      */
@@ -1045,7 +1207,14 @@ if(cbxOpcion.getSelectedIndex()==1){
             }
         });
     }
-
+private boolean EventoKeyType(int valor, int limitacion){
+            //pido el valor del text y pido el valor limitante
+            if (valor >= limitacion) {
+                return true;
+            }else{
+                return false;
+            }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnC;
     private javax.swing.JButton btnE;

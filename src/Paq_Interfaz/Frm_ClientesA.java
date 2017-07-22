@@ -2,6 +2,7 @@ package Paq_Interfaz;
 
 import Paq_Interfaz.Frm_Menu;
 import Atxy2k.CustomTextField.RestrictedTextField;
+import com.sun.webkit.event.WCKeyEvent;
 import java.awt.Image;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -246,6 +247,11 @@ public class Frm_ClientesA extends javax.swing.JFrame {
         txtNe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNeActionPerformed(evt);
+            }
+        });
+        txtNe.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNeKeyTyped(evt);
             }
         });
         jPanel2.add(txtNe, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 20, 120, -1));
@@ -534,6 +540,25 @@ if (this.verificacion()){
     private void txtN1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtN1KeyTyped
     
     }//GEN-LAST:event_txtN1KeyTyped
+
+    private void txtNeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNeKeyTyped
+        // TODO add your handling code here:
+          char c = evt.getKeyChar();
+        /*verifico que el caracter sea una letra mayuscula o minuscula o sea la tecla de borrar
+         si no emito un sonido e ignoro lo que teclee*/
+        if (c >= 65 && c <= 90 || c >= 97 && c <= 122 || c >= 128 && c <= 165 ||c >= 48 && c <= 57 || c == evt.VK_SPACE ||c == WCKeyEvent.VK_BACK) {
+            //establesco limite
+            int lim = txtNe.getText().length();
+            //cambie este numero que es el limite
+            if (lim >= 40) {
+                evt.consume();
+                getToolkit().beep();
+            }
+        } else {
+            evt.consume();
+            getToolkit().beep();
+        }
+    }//GEN-LAST:event_txtNeKeyTyped
 
     /**
      * @param args the command line arguments

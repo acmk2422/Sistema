@@ -1,6 +1,7 @@
 package Paq_Interfaz;
 
 import Atxy2k.CustomTextField.RestrictedTextField;
+import com.sun.webkit.event.WCKeyEvent;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -32,20 +33,10 @@ public class Frm_InventarioC extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         this.llenar();
         this.Deshabilitar(1);
-        this.restringir();
+
     }
     
-       public void restringir(){
-        RestrictedTextField restricted3 = new RestrictedTextField(this.txtN);
-        restricted3.setOnlyText(true);
-        restricted3.setLimit(20);
-         RestrictedTextField restricted4 = new RestrictedTextField(this.txtMargen);
-        restricted4.setOnlyNums(true);
-        restricted4.setLimit(3);
-           RestrictedTextField restricted5 = new RestrictedTextField(this.txtPrecio);
-        restricted5.setOnlyNums(true);
-        restricted5.setLimit(10);
-       }
+      
     private void Borrar(int tipo) {
         //Elimina campos llenos en el formulario
         switch (tipo){
@@ -302,6 +293,11 @@ public class Frm_InventarioC extends javax.swing.JFrame {
                 txtNActionPerformed(evt);
             }
         });
+        txtN.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNKeyTyped(evt);
+            }
+        });
         jPanel3.add(txtN, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, 170, 30));
 
         jLabel3.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -406,6 +402,9 @@ public class Frm_InventarioC extends javax.swing.JFrame {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtPrecioKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPrecioKeyTyped(evt);
+            }
         });
         jPanel4.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 70, 30));
 
@@ -448,6 +447,9 @@ public class Frm_InventarioC extends javax.swing.JFrame {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtMargenKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtMargenKeyTyped(evt);
+            }
         });
         jPanel4.add(txtMargen, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 40, 30));
 
@@ -470,7 +472,7 @@ public class Frm_InventarioC extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel2.setText("Hacer doble click en la tabla para editar los datos.");
+        jLabel2.setText("Hacer  click en la tabla para editar los datos.");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 410, 330, -1));
 
         jScrollPane2.setViewportView(jPanel1);
@@ -798,6 +800,55 @@ if(cbxOpcion.getSelectedIndex()==1){
     }
     }//GEN-LAST:event_txtBKeyReleased
 
+    private void txtPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyTyped
+        // TODO add your handling code here:
+          char c = evt.getKeyChar();
+        int lim = txtPrecio.getText().length();
+        if (c >= 48 && c <= 57 || c == WCKeyEvent.VK_BACK) {
+            if (this.EventoKeyType(lim, 10)) {
+                evt.consume();
+                getToolkit().beep();
+            }
+        } else {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtPrecioKeyTyped
+
+    private void txtMargenKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMargenKeyTyped
+        // TODO add your handling code here:
+          char c = evt.getKeyChar();
+        int lim = txtMargen.getText().length();
+        if (c >= 48 && c <= 57 || c == WCKeyEvent.VK_BACK) {
+            if (this.EventoKeyType(lim, 3)) {
+                evt.consume();
+                getToolkit().beep();
+            }
+        } else {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtMargenKeyTyped
+
+    private void txtNKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNKeyTyped
+        // TODO add your handling code here:
+         char c = evt.getKeyChar();
+        /*verifico que el caracter sea una letra mayuscula o minuscula o sea la tecla de borrar
+         si no emito un sonido e ignoro lo que teclee*/
+        if (c >= 65 && c <= 90 || c >= 97 && c <= 122 || c >= 128 && c <= 165 ||c >= 48 && c <= 57 || c == evt.VK_SPACE ||c == WCKeyEvent.VK_BACK) {
+            //establesco limite
+            int lim = txtN.getText().length();
+            //cambie este numero que es el limite
+            if (lim >= 40) {
+                evt.consume();
+                getToolkit().beep();
+            }
+        } else {
+            evt.consume();
+            getToolkit().beep();
+        }
+    }//GEN-LAST:event_txtNKeyTyped
+
     /**
      * @param args the command line arguments
      */
@@ -870,4 +921,16 @@ if(cbxOpcion.getSelectedIndex()==1){
     private javax.swing.JTextField txtPrecio;
     private javax.swing.JTextField txtTotal;
     // End of variables declaration//GEN-END:variables
+ private boolean EventoKeyType(int valor, int limitacion){
+            //pido el valor del text y pido el valor limitante
+            if (valor >= limitacion) {
+                return true;
+            }else{
+                return false;
+            }
+    }
+
+
+
 }
+
