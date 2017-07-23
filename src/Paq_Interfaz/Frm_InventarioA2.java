@@ -80,21 +80,75 @@ public class Frm_InventarioA2 extends javax.swing.JFrame {
      public void restringir(){
         RestrictedTextField restricted3 = new RestrictedTextField(this.txtCa);
         restricted3.setOnlyNums(true);
-          restricted3.setLimit(8);
-        
-        RestrictedTextField restricted4 = new RestrictedTextField(this.txtB);
- 
-        restricted4.setLimit(10);
-       
-       
+          restricted3.setLimit(6);
+//        RestrictedTextField restricted4 = new RestrictedTextField(this.txtB);
+//        restricted4.setLimit(10);
     }
      
-     public boolean verificacion(){
-         if (txtCa.getText().equals("")) {
-             return false;
-         }else{
-             return true;
+    public boolean verificacion() {
+        fila = tbl.getSelectedRow();
+        if (fila > -1) {
+            if (!txtCa.getText().equals("")) {
+                int total = Integer.parseInt(tbl.getValueAt(fila, 4).toString()) + Integer.parseInt(txtCa.getText());
+                if (total <= getMaximo()) {
+                    return true;
+                } else {
+                    JOptionPane.showMessageDialog(null, "La cantidad no puede superar el maximo de: " + getMaximo(), null, JOptionPane.WARNING_MESSAGE);
+                    return false;
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Rellene los Campos", null, JOptionPane.WARNING_MESSAGE);
+                return false;
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleccione una fila en la tabla superior", null, JOptionPane.WARNING_MESSAGE);
+            return false;
          }
+    }
+     
+     public int getMinimo() {
+        int numero = 0;
+        try {
+            String sql = "select * from valores where id_valor= '1'";
+            ResultSet rs = operaciones.Consultar(sql);
+            while (rs.next()) {
+                numero = rs.getInt("minimo");
+            }
+            operaciones.conn.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        return numero;
+    }
+     
+        public int getMaximo() {
+        int numero = 0;
+        try {
+            String sql = "select * from valores where id_valor= '1'";
+            ResultSet rs = operaciones.Consultar(sql);
+            while (rs.next()) {
+                numero = rs.getInt("maximo");
+            }
+            operaciones.conn.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        return numero;
+    }
+    
+     public int getSeguridad() {
+        int numero = 0;
+        try {
+            String sql = "select * from valores where id_valor= '1'";
+            ResultSet rs = operaciones.Consultar(sql);
+            while (rs.next()) {
+                numero = rs.getInt("seguridad");
+            }
+            operaciones.conn.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        return numero;
     }
     
     /**

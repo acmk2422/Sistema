@@ -43,15 +43,16 @@ public class Frm_ProveedoresC extends javax.swing.JFrame {
             email=txtE.getText();
             emailCorrecto=email.matches("[-\\w.]+@\\w+\\.\\w+");  
             
-         if (txtN.getText().equals("")|| txtC.getText().equals("") || txtT1.getText().equals("")|| txtD.getText().equals("")
-                || txtE.getText().equals("") ||emailCorrecto){
-          
-            JOptionPane.showMessageDialog(null, "Verifique:\n"
-                    + "1. Que los Campos no esten vacios\n"
-                    + "2. Que los numeros telefonicos tenga 11 digitos y que el formato del correo sea correcto", "Advertencia", JOptionPane.WARNING_MESSAGE);
-            return false;
-        } else {
+         if (!txtN.getText().equals("") && !txtC.getText().equals("") && !txtT1.getText().equals("")&& !txtD.getText().equals("")
+                && !txtE.getText().equals("") && emailCorrecto){
             return true;
+        } else {
+             JOptionPane.showMessageDialog(null, "Verifique:\n"
+                    + "1. Que los Campos no esten vacios\n"
+                    + "2. Que los numeros telefonicos tenga 11 digitos\n"
+                     + "3.El formato de correo electronico sea el correcto", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            return false;
+            
         }
     }
    

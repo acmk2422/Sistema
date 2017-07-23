@@ -212,6 +212,7 @@ public class Frm_VentasA extends javax.swing.JFrame {
             }
         };
         bntElimnar = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         cbxDes = new javax.swing.JComboBox<>();
@@ -235,6 +236,7 @@ public class Frm_VentasA extends javax.swing.JFrame {
         cbxN = new javax.swing.JComboBox<>();
         jButton3 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jLabel25 = new javax.swing.JLabel();
         txtB = new javax.swing.JTextField();
@@ -337,6 +339,11 @@ public class Frm_VentasA extends javax.swing.JFrame {
         });
         jPanel2.add(bntElimnar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 150, 112, 32));
 
+        jLabel2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel2.setText("Hacer doble click en la tabla eliminar un producto");
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 330, -1));
+
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, 570, 190));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -429,11 +436,11 @@ public class Frm_VentasA extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel3.setText("Nombre/Empresa");
-        jPanel5.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, 30));
+        jPanel5.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, 30));
 
         jLabel4.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel4.setText("Cedula/RIF");
-        jPanel5.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 30, -1, 30));
+        jPanel5.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, -1, 30));
 
         txtC.setEditable(false);
         txtC.setFont(new java.awt.Font("Verdana", 0, 10)); // NOI18N
@@ -443,14 +450,14 @@ public class Frm_VentasA extends javax.swing.JFrame {
                 txtCMouseClicked(evt);
             }
         });
-        jPanel5.add(txtC, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 30, 90, 30));
+        jPanel5.add(txtC, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 20, 90, 30));
 
         cbxN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxNActionPerformed(evt);
             }
         });
-        jPanel5.add(cbxN, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, 170, 30));
+        jPanel5.add(cbxN, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, 170, 30));
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/update 16x16.png"))); // NOI18N
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -458,7 +465,7 @@ public class Frm_VentasA extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel5.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 30, 30, 30));
+        jPanel5.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 20, 30, 30));
 
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/agregar 12x12.png"))); // NOI18N
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -466,7 +473,12 @@ public class Frm_VentasA extends javax.swing.JFrame {
                 jButton6ActionPerformed(evt);
             }
         });
-        jPanel5.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 30, 30, 30));
+        jPanel5.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 20, 30, 30));
+
+        jLabel5.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel5.setText("Hacer doble click en la tabla añadir a la descripcion");
+        jPanel5.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 350, -1));
 
         jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 570, 80));
 
@@ -752,7 +764,6 @@ public class Frm_VentasA extends javax.swing.JFrame {
                 }
 
 // se almacena la venta en la bd
- System.out.println("parte 3");
                 try {
                     String sql = "insert into ventas(cod_venta, cantidad, descripcion"
                             + ", total, fecha, tipo_de_pago, responsable, descuento, cod_cliente, id_valor)"
@@ -1043,6 +1054,7 @@ public class Frm_VentasA extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
@@ -1055,6 +1067,7 @@ public class Frm_VentasA extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -1127,7 +1140,6 @@ public class Frm_VentasA extends javax.swing.JFrame {
             cantidad=JOptionPane.showInputDialog(null,"Seleccione la Cantidad a vender del producto\nEj: 1","Validacion",JOptionPane.WARNING_MESSAGE);
             entrada=cantidad.matches("\\d+");
             }  
-            System.out.println(entrada);                 
         }while(!entrada);
         /*verifcacion del joptionpanel*/
 //        res = JOptionPane.showInputDialog("Cantidad a vender del producto");
@@ -1140,7 +1152,6 @@ public class Frm_VentasA extends javax.swing.JFrame {
             int cantidadSeguridad = getSeguridad();
             int cantidadventa  = Integer.parseInt(this.tbl.getValueAt(tbl.getSelectedRow(), 4).toString())-getSeguridad();
             int resultado = cantidadTotal - Integer.parseInt(cantidad);
-            System.out.println(cantidadTotal+","+cantidadMinimo+","+cantidadSeguridad);
             if (Integer.parseInt(cantidad)<cantidadTotal) {
                if (resultado > cantidadMinimo) {
                //cantidad menor a disponible en stock

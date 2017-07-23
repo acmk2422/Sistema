@@ -8,6 +8,8 @@ import java.awt.Image;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
+import java.util.Formatter;
 import javax.swing.ComboBoxModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -45,6 +47,18 @@ public class Frm_InventarioA extends javax.swing.JFrame {
         this.restringir();
     }
     
+    public static double redondearDecimales(float valorInicial, int numeroDecimales) {
+        double parteEntera, resultado;
+        Formatter formateador = new Formatter();
+        resultado = valorInicial;
+        parteEntera = Math.floor(resultado);
+        resultado=(resultado-parteEntera)*Math.pow(10, numeroDecimales);
+        resultado=Math.round(resultado);
+        resultado=(resultado/Math.pow(10, numeroDecimales))+parteEntera;
+        resultado = Double.parseDouble(formateador.format("####.##", resultado).toString());
+        return resultado;
+    }
+    
     public void restringir(){
         RestrictedTextField restricted3 = new RestrictedTextField(this.txtC);
         restricted3.setOnlyNums(true);
@@ -52,7 +66,7 @@ public class Frm_InventarioA extends javax.swing.JFrame {
         
         RestrictedTextField restricted4 = new RestrictedTextField(this.txtCa);
         restricted4.setOnlyNums(true);
-        restricted4.setLimit(8);
+        restricted4.setLimit(6);
         
         RestrictedTextField restricted6 = new RestrictedTextField(this.txtN);
        
@@ -67,7 +81,7 @@ public class Frm_InventarioA extends javax.swing.JFrame {
         
          RestrictedTextField restricted10 = new RestrictedTextField(this.txtMargen);
         restricted10.setOnlyNums(true);
-        restricted10.setLimit(3);
+        restricted10.setLimit(2);
         
         
         RestrictedTextField r1 = new RestrictedTextField(txtPrecio, "0123456789.");
@@ -244,7 +258,7 @@ public class Frm_InventarioA extends javax.swing.JFrame {
         jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, 30));
         jPanel3.add(txtC, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, 170, 30));
 
-        cbxL.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Laton", "Ferroso", "Bronce" }));
+        cbxL.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Laton", "Ferroso", "Bronce", "Hierro" }));
         jPanel3.add(cbxL, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, 170, 30));
 
         jLabel10.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -602,7 +616,7 @@ if (this.verificacion()){
     }
     resultado = precio + (precio*(iva/100));
     resultado += (resultado*(margen/100));
-    txtTotal.setText(String.valueOf(resultado));
+    txtTotal.setText(String.valueOf(redondearDecimales(resultado, 2)));
     }//GEN-LAST:event_txtPrecioKeyReleased
 
     private void txtMargenKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMargenKeyReleased
@@ -624,7 +638,7 @@ if (this.verificacion()){
     }
     resultado = precio + (precio*(iva/100));
     resultado += (resultado*(margen/100));
-    txtTotal.setText(String.valueOf(resultado));
+    txtTotal.setText(String.valueOf(redondearDecimales(resultado, 2)));
     }//GEN-LAST:event_txtMargenKeyReleased
 
     private void txtIvaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIvaKeyReleased
@@ -646,7 +660,7 @@ if (this.verificacion()){
     }
     resultado = precio + (precio*(iva/100));
     resultado += (resultado*(margen/100));
-    txtTotal.setText(String.valueOf(resultado));
+    txtTotal.setText(String.valueOf(redondearDecimales(resultado, 2)));
     }//GEN-LAST:event_txtIvaKeyReleased
 
     private void cbxPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxPActionPerformed

@@ -177,7 +177,6 @@ public class Frm_InventarioC extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setUndecorated(true);
         setResizable(false);
         addWindowFocusListener(new java.awt.event.WindowFocusListener() {
             public void windowGainedFocus(java.awt.event.WindowEvent evt) {
@@ -804,7 +803,7 @@ if(cbxOpcion.getSelectedIndex()==1){
         // TODO add your handling code here:
           char c = evt.getKeyChar();
         int lim = txtPrecio.getText().length();
-        if (c >= 48 && c <= 57 || c == WCKeyEvent.VK_BACK) {
+        if (c >= 48 && c <= 57 || c==46 || c == WCKeyEvent.VK_BACK) {
             if (this.EventoKeyType(lim, 10)) {
                 evt.consume();
                 getToolkit().beep();
@@ -817,10 +816,10 @@ if(cbxOpcion.getSelectedIndex()==1){
 
     private void txtMargenKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMargenKeyTyped
         // TODO add your handling code here:
-          char c = evt.getKeyChar();
+        char c = evt.getKeyChar();
         int lim = txtMargen.getText().length();
         if (c >= 48 && c <= 57 || c == WCKeyEvent.VK_BACK) {
-            if (this.EventoKeyType(lim, 3)) {
+            if (this.EventoKeyType(lim, 2)) {
                 evt.consume();
                 getToolkit().beep();
             }
