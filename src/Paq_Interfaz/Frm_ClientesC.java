@@ -1167,7 +1167,7 @@ if(cbxOpcion.getSelectedIndex()==1){
          si no emito un sonido e ignoro lo que teclee*/
         if (c >= 65 && c <= 90 || c >= 97 && c <= 122 || c >= 128 && c <= 165 || c == WCKeyEvent.VK_BACK) {
             //establesco limite
-            int lim = txtN1.getText().length();
+            int lim = txtA1.getText().length();
             //cambie este numero que es el limite
             if (lim >= 10) {
                 evt.consume();

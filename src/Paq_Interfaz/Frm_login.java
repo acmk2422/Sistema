@@ -5,6 +5,7 @@
  */
 package Paq_Interfaz;
 
+import Atxy2k.CustomTextField.RestrictedTextField;
 import java.awt.Image;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -33,11 +34,17 @@ public class Frm_login extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.Ajustar(lblLogo, icon2);
+        this.restringir();
         
     }
   
-    
-    
+     public void restringir(){
+        RestrictedTextField restricted3 = new RestrictedTextField(this.txtUs);
+        restricted3.setLimit(10);
+        RestrictedTextField restricted4 = new RestrictedTextField(this.txtCo);
+        restricted4.setLimit(10);
+        
+    }
     public void look(){
         //este metodo establece el look and feels de la aplicacion
         try{

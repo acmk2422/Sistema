@@ -49,13 +49,12 @@ public class Frm_InventarioA extends javax.swing.JFrame {
     
     public static double redondearDecimales(float valorInicial, int numeroDecimales) {
         double parteEntera, resultado;
-        Formatter formateador = new Formatter();
+
         resultado = valorInicial;
         parteEntera = Math.floor(resultado);
         resultado=(resultado-parteEntera)*Math.pow(10, numeroDecimales);
         resultado=Math.round(resultado);
         resultado=(resultado/Math.pow(10, numeroDecimales))+parteEntera;
-        resultado = Double.parseDouble(formateador.format("####.##", resultado).toString());
         return resultado;
     }
     
@@ -77,7 +76,7 @@ public class Frm_InventarioA extends javax.swing.JFrame {
          
           RestrictedTextField restricted9 = new RestrictedTextField(this.txtPrecio);
         restricted9.setOnlyNums(true);
-        restricted9.setLimit(10);
+        restricted9.setLimit(9);
         
          RestrictedTextField restricted10 = new RestrictedTextField(this.txtMargen);
         restricted10.setOnlyNums(true);

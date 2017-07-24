@@ -1135,10 +1135,10 @@ public class Frm_VentasA extends javax.swing.JFrame {
         do{
             if (entrada) {
             cantidad=JOptionPane.showInputDialog(null,"Seleccione la Cantidad a vender del producto","",JOptionPane.QUESTION_MESSAGE);
-            entrada=cantidad.matches("\\d+");
+            entrada=cantidad.matches("\\d{1,6}");
             } else {
-            cantidad=JOptionPane.showInputDialog(null,"Seleccione la Cantidad a vender del producto\nEj: 1","Validacion",JOptionPane.WARNING_MESSAGE);
-            entrada=cantidad.matches("\\d+");
+            cantidad=JOptionPane.showInputDialog(null,"Seleccione la Cantidad a vender del producto\nEj: 1 Entre el rango de 1 y 999.999","Validacion",JOptionPane.WARNING_MESSAGE);
+            entrada=cantidad.matches("\\d{1,6}");
             }  
         }while(!entrada);
         /*verifcacion del joptionpanel*/

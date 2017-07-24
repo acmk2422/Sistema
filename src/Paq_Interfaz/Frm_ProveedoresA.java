@@ -62,15 +62,7 @@ public class Frm_ProveedoresA extends javax.swing.JFrame {
         
          
     }
-    private boolean verificacion(){
-            if (!"".equals(txtN.getText()) && !"".equals(txtC.getText()) && 
-            !"".equals(txtT1.getText()) && !"".equals(txtD.getText()) && !"".equals(txtE.getText())) {
-                return true; 
-            }else{
-                JOptionPane.showMessageDialog(rootPane, "Faltan Campos por llenar");
-                return false; 
-            }
-    }
+   
     private void Borrar(int tipo) {
         //Elimina campos llenos en el formulario
         switch (tipo){
@@ -331,7 +323,7 @@ public class Frm_ProveedoresA extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgActionPerformed
-    if (this.verificacion()){ 
+    if (this.verificacion2()){ 
         try {
             String sql = "insert into proveedores(nombre, rif, pais, descripcion,"
                     + "telefono1, telefono2, direccion, email, estado)"
@@ -409,6 +401,26 @@ public class Frm_ProveedoresA extends javax.swing.JFrame {
             }
         });
     }
+      
+     private boolean Verificacion2() {
+            String email;
+            boolean emailCorrecto=true;
+            email=txtE.getText();
+            emailCorrecto=email.matches("[-\\w.]+@\\w+\\.\\w+");  
+            
+         if (!txtN.getText().equals("") && !txtC.getText().equals("") && !txtT1.getText().equals("")&& !txtD.getText().equals("")
+                && !txtE.getText().equals("") && emailCorrecto){
+            return true;
+        } else {
+             JOptionPane.showMessageDialog(null, "Verifique:\n"
+                    + "1. Que los Campos no esten vacios\n"
+                    + "2. Que los numeros telefonicos tenga 11 digitos\n"
+                     + "3.El formato de correo electronico sea el correcto", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            return false;
+            
+        }
+    }
+  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnA;
@@ -447,4 +459,23 @@ public class Frm_ProveedoresA extends javax.swing.JFrame {
     private javax.swing.JTextField txtT1;
     private javax.swing.JTextField txtT2;
     // End of variables declaration//GEN-END:variables
+
+    private boolean verificacion2() {
+            String email;
+            boolean emailCorrecto=true;
+            email=txtE.getText();
+            emailCorrecto=email.matches("[-\\w.]+@\\w+\\.\\w+");  
+            
+         if (!txtN.getText().equals("") && !txtC.getText().equals("") && !txtT1.getText().equals("")&& txtT1.getText().length()==11 && !txtD.getText().equals("")
+                && !txtE.getText().equals("") && emailCorrecto){
+            return true;
+        } else {
+             JOptionPane.showMessageDialog(null, "Verifique:\n"
+                    + "1. Que los Campos no esten vacios\n"
+                    + "2. Que los numeros telefonicos tenga 11 digitos\n"
+                     + "3.El formato de correo electronico sea el correcto", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            return false;
+            
+        }
+    }
 }

@@ -474,7 +474,8 @@ public class Frm_ProveedoresC extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel1.setText("Hacer doble click en la tabla para editar los datos.");
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Hacer click en la tabla para editar los datos.");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 220, 330, -1));
 
         jScrollPane2.setViewportView(jPanel1);
