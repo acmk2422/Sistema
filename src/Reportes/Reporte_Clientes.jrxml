@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a6622fa1-389a-4a31-bc1a-4740f6efcc2e">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#EFFFEF"/>
+		</conditionalStyle>
+	</style>
+	<subDataset name="PieChartDataset" uuid="005d8692-e3a1-4e44-ae92-bbd14a526f16"/>
+	<parameter name="usuario" class="java.lang.String"/>
+	<parameter name="ruta" class="java.lang.String"/>
+	<parameter name="parameter1" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     clientes."cod_cliente" AS clientes_cod_cliente,
+     clientes."primer_nombre" AS clientes_primer_nombre,
+     clientes."primer_apellido" AS clientes_primer_apellido,
+     clientes."direccion" AS clientes_direccion,
+     clientes."telefono1" AS clientes_telefono1,
+     clientes."telefono2" AS clientes_telefono2,
+     clientes."email" AS clientes_email,
+     clientes."segundo_apellido" AS clientes_segundo_apellido,
+     clientes."nombre_empresa" AS clientes_nombre_empresa,
+     clientes."cedula" AS clientes_cedula,
+     clientes."tipo_persona" AS clientes_tipo_persona,
+     clientes."segundo_nombre" AS clientes_segundo_nombre
+FROM
+     "public"."clientes" clientes]]>
+	</queryString>
+	<field name="clientes_cod_cliente" class="java.lang.Integer"/>
+	<field name="clientes_primer_nombre" class="java.lang.String"/>
+	<field name="clientes_primer_apellido" class="java.lang.String"/>
+	<field name="clientes_direccion" class="java.lang.String"/>
+	<field name="clientes_telefono1" class="java.lang.Long"/>
+	<field name="clientes_telefono2" class="java.lang.Long"/>
+	<field name="clientes_email" class="java.lang.String"/>
+	<field name="clientes_segundo_apellido" class="java.lang.String"/>
+	<field name="clientes_nombre_empresa" class="java.lang.String"/>
+	<field name="clientes_cedula" class="java.lang.String"/>
+	<field name="clientes_tipo_persona" class="java.lang.String"/>
+	<field name="clientes_segundo_nombre" class="java.lang.String"/>
+	<title>
+		<band height="98" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="3" y="66" width="553" height="32" forecolor="#000000" backcolor="#406040" uuid="e1de3e50-76cf-47c1-aacf-d10f80c11d7d"/>
+				<staticText>
+					<reportElement style="SubTitle" x="11" y="3" width="215" height="29" forecolor="#FFFFFF" uuid="07636396-daa2-4e76-8975-84f2882789d2"/>
+					<textElement>
+						<font fontName="Verdana" size="20" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Listado de Clientes]]></text>
+				</staticText>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement x="404" y="12" width="144" height="20" forecolor="#FFFFFF" uuid="64a705cd-1c2c-4622-a8c5-40518f72cc4e"/>
+					<textElement textAlignment="Right">
+						<font fontName="Verdana" size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+			<image>
+				<reportElement x="118" y="0" width="301" height="66" uuid="dd51d4ea-95e3-4d75-9eba-697b7c1ca50e"/>
+				<imageExpression><![CDATA[$P{ruta}+"\\tornavica.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="19" splitType="Stretch">
+			<staticText>
+				<reportElement style="Column header" x="8" y="0" width="67" height="18" forecolor="#000000" uuid="239fe6bb-969f-4aba-a4fc-d8c73ba3f3d7"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="Verdana" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Codigo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="194" y="0" width="85" height="18" forecolor="#000000" uuid="3aa3ed17-10d4-46f5-a465-12c0f454b5cd"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="Verdana" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cliente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="285" y="0" width="88" height="18" forecolor="#000000" uuid="59cabce8-6027-4c02-8668-562f96e737c9"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="Verdana" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cedula]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="383" y="1" width="168" height="18" forecolor="#000000" uuid="82e41ed7-3de1-4237-aad0-d89cf77a1590"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="Verdana" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Num. Telefonicos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="78" y="0" width="109" height="18" forecolor="#000000" uuid="e5200557-3e4e-4dcc-9dbf-0f67d6a8342b"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="Verdana" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Empresa]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="31" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" isPrintRepeatedValues="false" mode="Opaque" x="0" y="1" width="553" height="20" uuid="59972cf7-d5c3-4106-9e54-7082579d92a2"/>
+				<textField>
+					<reportElement x="3" y="0" width="72" height="20" uuid="402087cb-7436-48cc-8444-f28a3498d85a"/>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression><![CDATA[$F{clientes_cod_cliente}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="194" y="0" width="45" height="20" uuid="88f75d71-259a-49ae-bdd0-fda2303528b3"/>
+					<textFieldExpression><![CDATA[$F{clientes_primer_nombre}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement x="285" y="0" width="88" height="20" uuid="f979aec9-0537-4ccf-81ec-f05e778fe52b"/>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression><![CDATA[$F{clientes_cedula}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="78" y="0" width="109" height="20" uuid="38e6d248-9694-444b-91dc-b6ab08ef6213"/>
+					<textFieldExpression><![CDATA[$F{clientes_nombre_empresa}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="234" y="0" width="45" height="20" uuid="9f87dc1f-3fe0-4133-b6a1-a48e75d19956"/>
+					<textFieldExpression><![CDATA[$F{clientes_primer_apellido}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<textField>
+				<reportElement x="383" y="0" width="168" height="31" uuid="36e81888-0784-4117-bc2d-bab08978e15d"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA["0"+$F{clientes_telefono1}+"-"+"0"+$F{clientes_telefono2}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="34" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="10" width="555" height="24" forecolor="#D0B48E" backcolor="#406040" uuid="518ec6ef-f27d-4d1c-bbb3-667d3588382a"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="513" y="0" width="40" height="20" forecolor="#FFFFFF" uuid="6f41f738-5ccc-4ccd-a4d5-47f05e0f2593"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Verdana" size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="433" y="0" width="80" height="20" forecolor="#FFFFFF" uuid="7c04512f-208a-45c0-aced-9f5bfd33c524"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Verdana" size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="245" y="4" width="100" height="20" forecolor="#FFFFFF" uuid="4a9399c2-0b4c-441d-8cd0-7611f09c2ad3"/>
+					<textElement>
+						<font fontName="Verdana"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField pattern="dd-MMM-yyyy">
+					<reportElement x="18" y="4" width="100" height="20" forecolor="#FFFFFF" uuid="2d63c194-34de-49f5-b796-897788a1c426"/>
+					<textElement>
+						<font fontName="Verdana"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+			<textField>
+				<reportElement x="3" y="0" width="177" height="10" uuid="20119361-3042-4de0-9114-fce5e1bc8c28"/>
+				<textElement>
+					<font fontName="Verdana" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Reporte Generado por: " + $P{usuario}]]></textFieldExpression>
+			</textField>
+			<textField pattern="h.mm.ss a">
+				<reportElement x="406" y="0" width="147" height="10" uuid="40f9781b-4910-49e2-a51a-4d8fec28f841"/>
+				<textElement textAlignment="Right">
+					<font fontName="Verdana" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
