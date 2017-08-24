@@ -212,6 +212,7 @@ public class Frm_AjusteInventario extends javax.swing.JFrame {
                                         txtSeguridad.setText("");
                                     }
                                     operaciones.conn.close();
+                                    this.dispose();
                                 } catch (Exception e) {
                                     JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR LOS DATOS VERIFIQUE QUE SEAN CORRECTOS\n" + e.getMessage());
                                 }
@@ -233,7 +234,7 @@ public class Frm_AjusteInventario extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "El valor de Seguridad debe ser mayo a 0");
         }
-        this.dispose();
+        
     }//GEN-LAST:event_btnEActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

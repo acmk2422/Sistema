@@ -138,7 +138,6 @@ public class Frm_InventarioC extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         txtB = new javax.swing.JTextField();
-        btnC = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl = new javax.swing.JTable();
         btnE = new javax.swing.JButton();
@@ -205,17 +204,6 @@ public class Frm_InventarioC extends javax.swing.JFrame {
             }
         });
         jPanel1.add(txtB, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 30, 180, 30));
-
-        btnC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Consultar-10.png"))); // NOI18N
-        btnC.setContentAreaFilled(false);
-        btnC.setEnabled(false);
-        btnC.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Consultar-14.png"))); // NOI18N
-        btnC.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnC, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 30, 112, 32));
 
         jScrollPane1.setEnabled(false);
 
@@ -571,48 +559,8 @@ public class Frm_InventarioC extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtBActionPerformed
 
-    private void btnCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCActionPerformed
-boolean resultado = false;
-this.Borrar(3);
-this.Deshabilitar(1);
-if(cbxOpcion.getSelectedIndex()==1){
-        try {
-            String[]titulos={"Codigo","Nombre","Descripcion","Linea","Precio",
-                "Cantidad"};
-            String sql = "select * from inventario where cod_producto= '"+this.txtB.getText()+ "'";
-            model= new DefaultTableModel(null,titulos);
-            ResultSet rs= operaciones.Consultar(sql);
-            String[]fila=new String[8];
-            while(rs.next()){
-            fila[0]=rs.getString("cod_producto");
-            fila[1]=rs.getString("nombre_producto");
-            fila[2]=rs.getString("descripcion");
-            fila[3]=rs.getString("linea_producto");
-            fila[4]=format.format(rs.getFloat("precio_venta"));
-            fila[5]=rs.getString("cantidad"); 
-                model.addRow(fila); 
-                resultado = true;
-            }
-            if (resultado) {
-                tbl.setModel(model);
-            } else {
-                JOptionPane.showMessageDialog(null, "Sin Resultados en la Busqueda"); 
-                this.llenar();
-                resultado = false;
-            }
-            operaciones.conn.close();
-            } catch (SQLException e) {
-               JOptionPane.showMessageDialog(null, e.getMessage());    
-    }
-    }
-    }//GEN-LAST:event_btnCActionPerformed
-
     private void cbxOpcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxOpcionActionPerformed
-        if (cbxOpcion.getSelectedIndex()==1) {
-            btnC.setEnabled(true);
-        } else {
-            btnC.setEnabled(false);
-        }
+       
     }//GEN-LAST:event_cbxOpcionActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -719,8 +667,10 @@ if(cbxOpcion.getSelectedIndex()==1){
     }//GEN-LAST:event_formWindowLostFocus
 
     private void txtBKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBKeyReleased
-    if(cbxOpcion.getSelectedIndex()==0){
-        try {
+int c = evt.getKeyChar();
+        if(cbxOpcion.getSelectedIndex()==0){
+            if (c >= 65 && c <= 90 || c >= 97 && c <= 122 || c >= 128 && c <= 165 || c == WCKeyEvent.VK_BACK) {
+            try {
             String[]titulos={"Codigo","Nombre","Descripcion","Linea","Precio",
                 "Cantidad"};
             String sql = "select *, proveedores.nombre from inventario inner join"
@@ -744,9 +694,44 @@ if(cbxOpcion.getSelectedIndex()==1){
             } catch (SQLException e) {
                JOptionPane.showMessageDialog(null, e.getMessage());    
     }
+        }else{
+            JOptionPane.showMessageDialog(null, "Ingrese Solo Letras","ERROR",JOptionPane.ERROR_MESSAGE);
+            this.txtB.setText("");
+        }
+    }
+        if (!"".equals(txtB.getText())){
+        if(cbxOpcion.getSelectedIndex()==1){
+    if (c >= 48 && c <= 57 || c == WCKeyEvent.VK_BACK) {
+          try {
+            String[]titulos={"Codigo","Nombre","Descripcion","Linea","Precio",
+                "Cantidad"};
+            String sql = "select * from inventario where cod_producto= '"+this.txtB.getText()+ "'";
+            model= new DefaultTableModel(null,titulos);
+            ResultSet rs= operaciones.Consultar(sql);
+            String[]fila=new String[8];
+            while(rs.next()){
+            fila[0]=rs.getString("cod_producto");
+            fila[1]=rs.getString("nombre_producto");
+            fila[2]=rs.getString("descripcion");
+            fila[3]=rs.getString("linea_producto");
+            fila[4]=format.format(rs.getFloat("precio_venta"));
+            fila[5]=rs.getString("cantidad"); 
+                model.addRow(fila); 
+            }
+                tbl.setModel(model);
+            operaciones.conn.close();
+            } catch (SQLException e) {
+               JOptionPane.showMessageDialog(null, e.getMessage());    
+    }
+        }else{
+            JOptionPane.showMessageDialog(null, "Ingrese Solo Numeros","ERROR",JOptionPane.ERROR_MESSAGE);
+            this.txtB.setText("");
+        }
+    }
     }
     if(cbxOpcion.getSelectedIndex()==2){
-        try {
+        if (c >= 65 && c <= 90 || c >= 97 && c <= 122 || c >= 128 && c <= 165 || c == WCKeyEvent.VK_BACK) {
+         try {
             String[]titulos={"Codigo","Nombre","Descripcion","Linea","Precio",
                 "Cantidad"};
             String sql = "select *, proveedores.nombre from inventario inner join"
@@ -770,6 +755,10 @@ if(cbxOpcion.getSelectedIndex()==1){
             } catch (SQLException e) {
                JOptionPane.showMessageDialog(null, e.getMessage());    
     }
+        }else{
+            JOptionPane.showMessageDialog(null, "Ingrese Solo Letras","ERROR",JOptionPane.ERROR_MESSAGE);
+            this.txtB.setText("");
+        }
     }
     if(cbxOpcion.getSelectedIndex()==3){
         try {
@@ -879,7 +868,6 @@ if(cbxOpcion.getSelectedIndex()==1){
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnC;
     private javax.swing.JButton btnE;
     private javax.swing.JComboBox<String> cbxL;
     private javax.swing.JComboBox<String> cbxOpcion;

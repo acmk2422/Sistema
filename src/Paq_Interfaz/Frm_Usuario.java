@@ -109,6 +109,7 @@ public class Frm_Usuario extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         txtNA = new javax.swing.JTextField();
         btnE1 = new javax.swing.JButton();
+        lblEstado = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -244,6 +245,9 @@ public class Frm_Usuario extends javax.swing.JFrame {
         });
         jPanel1.add(btnE1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 340, 112, 32));
 
+        lblEstado.setText("jLabel1");
+        jPanel1.add(lblEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 350, -1, -1));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 550, 380));
 
         pack();
@@ -282,7 +286,7 @@ public class Frm_Usuario extends javax.swing.JFrame {
                 char[] password = pass.getPassword();
                 if (new String(password).equals(respuesta)) {
                 JOptionPane.showMessageDialog(null, "Identificado con exito ya puede modifcar sus datos", null, JOptionPane.INFORMATION_MESSAGE,new javax.swing.ImageIcon(getClass().getResource("/imagenes/bien 48x48.png")));
-                btnA.setText("Modificar");
+                lblEstado.setText("Modificar");
                 btnE.setEnabled(true);
                 btnE1.setEnabled(true);
                 String sql1 = "select * from usuario where nombre= '" +usuario+ "'";
@@ -314,7 +318,7 @@ public class Frm_Usuario extends javax.swing.JFrame {
     }//GEN-LAST:event_txtRActionPerformed
 
     private void btnAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAActionPerformed
-if ("Modificar".equals(btnA.getText())) {
+if ("Modificar".equals(lblEstado.getText())) {
     char[] arrayC1 = txtC1.getPassword(); 
     String c1 = new String(arrayC1);
     char[] arrayC2 = txtR.getPassword(); 
@@ -334,8 +338,8 @@ if (!c1.equals("") && !c3.equals("") && !c2.equals("")) {
                 int n = ps.executeUpdate();
                 if (n > 0) {
                     JOptionPane.showMessageDialog(null, "DATOS DEL USUARIO ACTUALIZADOS CORRECTAMENTE");
-                    btnA.setText("Agregar");
-                    btnE.setEnabled(false);
+                    lblEstado.setText("Agregar");
+                    btnE.setEnabled(true);
                     btnE1.setEnabled(false);
                     txtN.setEnabled(true);
                     cbxP.setSelectedIndex(0);
@@ -394,7 +398,7 @@ this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void btnE1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnE1ActionPerformed
-if (btnA.getText().equals("Modificar")) {
+if (lblEstado.getText().equals("Modificar")) {
 int respuesta = JOptionPane.showConfirmDialog(null, "¿ESTA SEGURO QUE DESEA ELIMINAR A "+txtN.getText()+" del SISTEMA?");
         if(respuesta == JOptionPane.YES_OPTION && !txtN.getText().equals("")){       
            try {
@@ -404,7 +408,7 @@ int respuesta = JOptionPane.showConfirmDialog(null, "¿ESTA SEGURO QUE DESEA ELI
             if (n > 0) {
                 JOptionPane.showMessageDialog(null, "USUARIO ELIMINADO CORRECTAMENTE");
                 this.Borrar();
-                btnA.setText("Agregar");
+                lblEstado.setText("Agregar");
                 btnE1.setEnabled(false);
             }
             operaciones.conn.close();
@@ -482,6 +486,7 @@ int respuesta = JOptionPane.showConfirmDialog(null, "¿ESTA SEGURO QUE DESEA ELI
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lblEstado;
     private javax.swing.JLabel lblLogo;
     private javax.swing.JPasswordField txtC1;
     private javax.swing.JPasswordField txtC2;

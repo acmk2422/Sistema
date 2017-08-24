@@ -744,7 +744,21 @@ this.Borrar(1);
 
     
     private boolean verificacion(){
-            if (!"".equals(txtN.getText()) && !"".equals(txtC.getText()) && 
+        boolean cedulaRegistrada=true;
+        try {
+            String sql = "select * from inventario where cod_producto = '" +txtC.getText() + "'";
+            ResultSet rs = operaciones.Consultar(sql);
+            while(rs.next()){
+                cedulaRegistrada=false;
+            }
+            operaciones.conn.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Datos incompletos\n"+e);
+        }
+        if(cedulaRegistrada==false){
+            JOptionPane.showMessageDialog(rootPane, "Codigo Ya registrado", "ERROR", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }else if (!"".equals(txtN.getText()) && !"".equals(txtC.getText()) && 
             !"".equals(txtCa.getText()) && !"".equals(txtPrecio.getText())
                     && !"".equals(txtR.getText())) {
                 return true; 

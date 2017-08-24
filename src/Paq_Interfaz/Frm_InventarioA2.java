@@ -3,6 +3,7 @@ package Paq_Interfaz;
 
 import Atxy2k.CustomTextField.RestrictedTextField;
 import Paq_Interfaz.Frm_Menu;
+import com.sun.webkit.event.WCKeyEvent;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
@@ -192,7 +193,6 @@ public class Frm_InventarioA2 extends javax.swing.JFrame {
                 return false; //Disallow the editing of any cell
             }
         };
-        jButton4 = new javax.swing.JButton();
         lblFondo = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -338,7 +338,7 @@ public class Frm_InventarioA2 extends javax.swing.JFrame {
 
         jLabel25.setFont(new java.awt.Font("Verdana", 0, 10)); // NOI18N
         jLabel25.setText("FILTROS:");
-        jPanel6.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, 60, 20));
+        jPanel6.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, 60, 20));
 
         txtB.setFont(new java.awt.Font("Verdana", 0, 10)); // NOI18N
         txtB.addActionListener(new java.awt.event.ActionListener() {
@@ -351,11 +351,11 @@ public class Frm_InventarioA2 extends javax.swing.JFrame {
                 txtBKeyReleased(evt);
             }
         });
-        jPanel6.add(txtB, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 160, 20));
+        jPanel6.add(txtB, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 160, 20));
 
         jLabel26.setFont(new java.awt.Font("Verdana", 0, 10)); // NOI18N
         jLabel26.setText("BUSQUEDA");
-        jPanel6.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 60, 20));
+        jPanel6.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 60, 20));
 
         cbxFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nombre", "Descripcion", "Codigo" }));
         cbxFiltro.addActionListener(new java.awt.event.ActionListener() {
@@ -363,7 +363,7 @@ public class Frm_InventarioA2 extends javax.swing.JFrame {
                 cbxFiltroActionPerformed(evt);
             }
         });
-        jPanel6.add(cbxFiltro, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 20, 150, 20));
+        jPanel6.add(cbxFiltro, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, 150, 20));
 
         tbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -394,16 +394,6 @@ public class Frm_InventarioA2 extends javax.swing.JFrame {
         jScrollPane4.setViewportView(tbl);
 
         jPanel6.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 560, 110));
-
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Button-10.png"))); // NOI18N
-        jButton4.setContentAreaFilled(false);
-        jButton4.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Button-14.png"))); // NOI18N
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-        jPanel6.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 10, 112, 32));
 
         jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 590, 170));
 
@@ -472,6 +462,7 @@ this.Borrar(1);
     }//GEN-LAST:event_txtBActionPerformed
 
     private void txtBKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBKeyReleased
+        int c = evt.getKeyChar();
         if(cbxFiltro.getSelectedIndex()==0){
             try {
                 String[]titulos={"Codigo","Nombre","Descripcion","Precio",
@@ -517,6 +508,36 @@ this.Borrar(1);
                 JOptionPane.showMessageDialog(null, e.getMessage());
             }
         }
+        if (!"".equals(txtB.getText())){
+            if(cbxFiltro.getSelectedIndex()==2){
+              if (c >= 48 && c <= 57 || c == WCKeyEvent.VK_BACK) {
+         try {
+                String[]titulos={"Codigo","Nombre","Descripcion","Precio",
+                    "Cantidad"};
+                String sql="select * from inventario where cod_producto = '"+this.txtB.getText().toLowerCase()+"'";
+                model= new DefaultTableModel(null,titulos);
+                ResultSet rs= operaciones.Consultar(sql);
+                String[]fila=new String[5];
+                while(rs.next()){
+                    fila[0]=rs.getString("cod_producto");
+                    fila[1]=rs.getString("nombre_producto");
+                    fila[2]=rs.getString("descripcion");
+                    fila[3]=rs.getString("precio_venta");
+                    fila[4]=rs.getString("cantidad");
+                    model.addRow(fila);
+                }
+                tbl.setModel(model);
+                operaciones.conn.close();
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, e.getMessage());
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Ingrese Solo Numeros","ERROR",JOptionPane.ERROR_MESSAGE);
+            this.txtB.setText("");
+        }
+            
+        }
+        }
         if ("".equals(txtB.getText())){
             try {
                 String[]titulos={"Codigo","Nombre","Descripcion","Precio",
@@ -558,31 +579,6 @@ this.Borrar(1);
     private void tblKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblKeyReleased
 
     }//GEN-LAST:event_tblKeyReleased
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        if(cbxFiltro.getSelectedIndex()==2){
-            try {
-                String[]titulos={"Codigo","Nombre","Descripcion","Precio",
-                    "Cantidad"};
-                String sql="select * from inventario where cod_producto = '"+this.txtB.getText().toLowerCase()+"'";
-                model= new DefaultTableModel(null,titulos);
-                ResultSet rs= operaciones.Consultar(sql);
-                String[]fila=new String[5];
-                while(rs.next()){
-                    fila[0]=rs.getString("cod_producto");
-                    fila[1]=rs.getString("nombre_producto");
-                    fila[2]=rs.getString("descripcion");
-                    fila[3]=rs.getString("precio_venta");
-                    fila[4]=rs.getString("cantidad");
-                    model.addRow(fila);
-                }
-                tbl.setModel(model);
-                operaciones.conn.close();
-            } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, e.getMessage());
-            }
-        }
-    }//GEN-LAST:event_jButton4ActionPerformed
 
     private void txtCaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCaKeyPressed
 
@@ -636,7 +632,6 @@ this.Borrar(1);
     private javax.swing.JButton btnAt;
     private javax.swing.JComboBox<String> cbxFiltro;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;

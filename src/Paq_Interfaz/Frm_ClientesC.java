@@ -83,8 +83,16 @@ public class Frm_ClientesC extends javax.swing.JFrame {
             fila[4]=rs.getString("primer_apellido");
             fila[5]=rs.getString("segundo_apellido"); 
             fila[6]=rs.getString("cedula");
-            fila[7]=rs.getString("telefono1");
-            fila[8]=rs.getString("telefono2");
+            if (rs.getString("telefono1").length()<=10) {
+                fila[7]="0"+rs.getString("telefono1");
+            } else {
+                fila[7]=rs.getString("telefono1");
+            }
+            if (rs.getString("telefono2").length()<=10) {
+                fila[8]="0"+rs.getString("telefono2");
+            } else {
+                fila[8]=rs.getString("telefono2");
+            } 
             fila[9]=rs.getString("email");
                 model.addRow(fila);      
             }
@@ -164,18 +172,42 @@ public class Frm_ClientesC extends javax.swing.JFrame {
             emailCorrecto=email.matches("[-\\w.]+@\\w+\\.\\w+");  
             
         if (cbxN.isSelected()) {
-            if (!"".equals(txtN1.getText()) && !"".equals(txtA1.getText()) && !"".equals(txtC.getText()) && 
-            !"".equals(txtT1.getText()) && !"".equals(txtD.getText()) && !"".equals(txtE.getText()) && emailCorrecto ) {
-                return true; 
+            if (!"".equals(txtN1.getText()) && !"".equals(txtA1.getText()) && !"".equals(txtC.getText()) && !txtT1.getText().equals("")
+                 && txtT1.getText().length()>=11 && !"".equals(txtD.getText()) && !"".equals(txtE.getText()) && emailCorrecto ) {
+                if (!txtT2.getText().equals("")) {
+                 if (txtT2.getText().length()>=11) {
+                     return true;
+                 } else {
+                     JOptionPane.showMessageDialog(null, "Verifique:\n"
+                    + "1. Que los Campos no esten vacios\n"
+                    + "2. Que los numeros telefonicos tenga 11 digitos\n"
+                     + "3.El formato de correo electronico sea el correcto", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                    return false;
+                 } 
+             } else {
+                 return true;
+             }
             }else{
                 JOptionPane.showMessageDialog(rootPane, "Compruebe los siguiente:\n1.El formato del correo y telefonos\n2.No existan campos vacios"
                         + "\n3.Los telefonos tengan 11 digitos");
                 return false; 
             }
         } else {
-            if (!"".equals(txtNe.getText()) && !"".equals(txtC.getText()) && !"".equals(txtT1.getText()) 
-                && !"".equals(txtD.getText()) && !"".equals(txtE.getText())) {
-                return true; 
+            if (!"".equals(txtNe.getText()) && !"".equals(txtC.getText()) && !"".equals(txtT1.getText()) && txtT1.getText().length()>=11
+                && !"".equals(txtD.getText()) && !"".equals(txtE.getText()) && emailCorrecto) {
+                if (!txtT2.getText().equals("")) {
+                 if (txtT2.getText().length()>=11) {
+                     return true;
+                 } else {
+                     JOptionPane.showMessageDialog(null, "Verifique:\n"
+                    + "1. Que los Campos no esten vacios\n"
+                    + "2. Que los numeros telefonicos tenga 11 digitos\n"
+                     + "3.El formato de correo electronico sea el correcto", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                    return false;
+                 } 
+             } else {
+                 return true;
+             } 
             }else{
                 JOptionPane.showMessageDialog(rootPane, "Compruebe los siguiente:\n1.El formato del correo y telefonos\n2.No existan campos vacios"
                         + "\n3.Los telefonos tengan 11 digitos");
@@ -302,6 +334,7 @@ public class Frm_ClientesC extends javax.swing.JFrame {
 
         btnC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Consultar-10.png"))); // NOI18N
         btnC.setContentAreaFilled(false);
+        btnC.setEnabled(false);
         btnC.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Consultar-14.png"))); // NOI18N
         btnC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -587,6 +620,14 @@ public class Frm_ClientesC extends javax.swing.JFrame {
                 txtNeActionPerformed(evt);
             }
         });
+        txtNe.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNeKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNeKeyTyped(evt);
+            }
+        });
         jPanel2.add(txtNe, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 20, 110, -1));
 
         jLabel11.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -726,12 +767,15 @@ int respuesta = JOptionPane.showConfirmDialog(null, "¿ESTA SEGURO QUE DESEA ELI
                     ps.setString(5, this.txtA2.getText().toLowerCase());
                     ps.setString(6, this.txtD.getText().toLowerCase());
                     ps.setLong(7, Long.parseLong(this.txtT1.getText()));
-                    if(this.txtT2.getText()!="")
-                    ps.setLong(8, Long.parseLong(this.txtT2.getText()));
+                    if(!"".equals(this.txtT2.getText())){
+                         ps.setLong(8, Long.parseLong(this.txtT2.getText()));
+                    }else {
+                        ps.setLong(8, 0);
+                    }
                     ps.setString(9, this.txtE.getText().toLowerCase());
                     int n = ps.executeUpdate();
                     if (n > 0) {
-                        JOptionPane.showMessageDialog(null, "DATOS DEL ClIENTE ACTUALIZADOS CORRECTAMENTE");
+                        JOptionPane.showMessageDialog(null, "DATOS DEL CLIENTE ACTUALIZADOS CORRECTAMENTE");
                         this.Borrar(3);
                         this.Deshabilitar(3);
                     }
@@ -749,12 +793,15 @@ int respuesta = JOptionPane.showConfirmDialog(null, "¿ESTA SEGURO QUE DESEA ELI
                     ps.setString(2, this.txtNe.getText().toLowerCase());
                     ps.setString(3, this.txtD.getText().toLowerCase());
                     ps.setLong(4, Long.parseLong(this.txtT1.getText()));
-                    if(this.txtT2.getText()!="")
-                    ps.setLong(5, Long.parseLong(this.txtT2.getText()));
+                    if(!"".equals(this.txtT2.getText())){
+                         ps.setLong(5, Long.parseLong(this.txtT2.getText()));
+                    }else {
+                        ps.setLong(5, 0);
+                    }
                     ps.setString(6, this.txtE.getText().toLowerCase());
                     int n = ps.executeUpdate();
                     if (n > 0) {
-                        JOptionPane.showMessageDialog(null, "DATOS DEL ClIENTE ACTUALIZADOS CORRECTAMENTE");
+                        JOptionPane.showMessageDialog(null, "DATOS DEL CLIENTE ACTUALIZADOS CORRECTAMENTE");
                         this.Borrar(3);
                         this.Deshabilitar(3);
                     }
@@ -795,12 +842,23 @@ int respuesta = JOptionPane.showConfirmDialog(null, "¿ESTA SEGURO QUE DESEA ELI
                 if (rs.getString("segundo_apellido")!="")
                 this.txtA2.setText(rs.getString("segundo_apellido"));
 
-                if (rs.getString("telefono1")!="")
-                this.txtT1.setText(rs.getString("telefono1"));
-
-                if (rs.getString("telefono2")!="")
-                this.txtT2.setText(rs.getString("telefono2"));
+                if (rs.getString("telefono1").length()<=10) {
+                this.txtT1.setText("0"+rs.getString("telefono1"));
+                } else {
+                    this.txtT1.setText(rs.getString("telefono1"));
+                }
                 
+                if (!"".equals(rs.getString("telefono2"))){
+                if (rs.getString("telefono2").length()<=1) {
+                     this.txtT2.setText("");
+                } else {
+                    if (rs.getString("telefono2").length()==10) {
+                     this.txtT2.setText("0"+rs.getString("telefono2"));
+                }else{
+                      this.txtT2.setText(rs.getString("telefono2"));  
+                    }
+                }
+                }
                 if (rs.getString("direccion")!="")
                 this.txtD.setText(rs.getString("direccion"));
                 
@@ -953,8 +1011,10 @@ if(cbxOpcion.getSelectedIndex()==1){
     private void cbxOpcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxOpcionActionPerformed
     if(cbxOpcion.getSelectedIndex()==1){
         cbxC1.setEnabled(true);
+        btnC.setEnabled(true);
     }else{
         cbxC1.setEnabled(false);
+        btnC.setEnabled(false);
     }
     }//GEN-LAST:event_cbxOpcionActionPerformed
 
@@ -968,7 +1028,9 @@ if(cbxOpcion.getSelectedIndex()==1){
     }//GEN-LAST:event_formWindowLostFocus
 
     private void txtBKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBKeyReleased
-    if(cbxOpcion.getSelectedIndex()==1){
+int c = evt.getKeyChar();
+        if(cbxOpcion.getSelectedIndex()==1){
+        if (c >= 48 && c <= 57 || c == WCKeyEvent.VK_BACK) {
         try {
             String[]titulos={"Codigo","Empresa","Primer Nombre","Segundo Nombre","Primer Apellido","Segundo Apellido","Cedula/RIF","Telefono Principal",
                 "Telefono Secundario","Correo Electronico"};
@@ -993,6 +1055,10 @@ if(cbxOpcion.getSelectedIndex()==1){
             operaciones.conn.close();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        }else{
+            JOptionPane.showMessageDialog(null, "Ingrese Solo Numeros","ERROR",JOptionPane.ERROR_MESSAGE);
+            this.txtB.setText("");
         }
     }
     if(cbxOpcion.getSelectedIndex()==0){
@@ -1182,6 +1248,28 @@ if(cbxOpcion.getSelectedIndex()==1){
     private void txtBKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBKeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_txtBKeyTyped
+
+    private void txtNeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNeKeyPressed
+  
+    }//GEN-LAST:event_txtNeKeyPressed
+
+    private void txtNeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNeKeyTyped
+     char c = evt.getKeyChar();
+        /*verifico que el caracter sea una letra mayuscula o minuscula o sea la tecla de borrar
+         si no emito un sonido e ignoro lo que teclee*/
+        if (c >= 65 && c <= 90 || c >= 97 && c <= 122 || c >= 128 && c <= 165 || c == WCKeyEvent.VK_BACK) {
+            //establesco limite
+            int lim = txtNe.getText().length();
+            //cambie este numero que es el limite
+            if (lim >= 10) {
+                evt.consume();
+                getToolkit().beep();
+            }
+        } else {
+            evt.consume();
+            getToolkit().beep();
+        }
+    }//GEN-LAST:event_txtNeKeyTyped
 
     /**
      * @param args the command line arguments

@@ -3,6 +3,8 @@ package Paq_Interfaz;
 import Atxy2k.CustomTextField.RestrictedTextField;
 import java.awt.Image;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -463,10 +465,24 @@ public class Frm_ProveedoresA extends javax.swing.JFrame {
     private boolean verificacion2() {
             String email;
             boolean emailCorrecto=true;
-            email=txtE.getText();
-            emailCorrecto=email.matches("[-\\w.]+@\\w+\\.\\w+");  
             
-         if (!txtN.getText().equals("") && !txtC.getText().equals("") && !txtT1.getText().equals("")&& txtT1.getText().length()==11 && !txtD.getText().equals("")
+            email=txtE.getText();
+            emailCorrecto=email.matches("[-\\w.]+@\\w+\\.\\w+");
+            boolean cedulaRegistrada=true;
+        try {
+            String sql = "select * from proveedores where rif= '" + cbxC.getSelectedItem()+"-"+txtC.getText() + "'";
+            ResultSet rs = operaciones.Consultar(sql);
+            while(rs.next()){
+                cedulaRegistrada=false;
+            }
+            operaciones.conn.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Datos incompletos\n"+e);
+        }
+        if(cedulaRegistrada==false){
+            JOptionPane.showMessageDialog(rootPane, "RIF ya registrado", "ERROR", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }else if (!txtN.getText().equals("") && !txtC.getText().equals("") && !txtT1.getText().equals("")&& txtT1.getText().length()==11 && !txtD.getText().equals("")
                 && !txtE.getText().equals("") && emailCorrecto){
             return true;
         } else {

@@ -7,6 +7,9 @@ import java.awt.event.KeyEvent;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 import java.util.Random;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -37,6 +40,9 @@ public class Frm_VentasA extends javax.swing.JFrame {
     private boolean igual;
     private int acum = 0;
     private String res;
+    //con la siguiente linea cambio a que los puntos sean decimales y no las comas que viene por defecto
+    DecimalFormatSymbols simbolos = DecimalFormatSymbols.getInstance(Locale.ENGLISH);
+    private DecimalFormat format = new DecimalFormat("#0.00",simbolos);
 
     public Frm_VentasA() {
         initComponents();
@@ -101,7 +107,7 @@ public class Frm_VentasA extends javax.swing.JFrame {
                 fila[0] = rs.getString("cod_producto");
                 fila[1] = rs.getString("nombre_producto");
                 fila[2] = rs.getString("descripcion");
-                fila[3] = rs.getString("precio_venta");
+                fila[3] = (rs.getString("precio_venta"));
                 fila[4] = rs.getString("cantidad");
                 model.addRow(fila);
             }
@@ -248,7 +254,6 @@ public class Frm_VentasA extends javax.swing.JFrame {
                 return false; //Disallow the editing of any cell
             }
         };
-        jButton4 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         btnProcesar = new javax.swing.JButton();
         lblResponsable = new javax.swing.JLabel();
@@ -353,7 +358,7 @@ public class Frm_VentasA extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel6.setText("Descuento");
-        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, 70, 30));
+        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 10, 70, 20));
 
         cbxDes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "%", "Bsf" }));
         cbxDes.addActionListener(new java.awt.event.ActionListener() {
@@ -361,7 +366,7 @@ public class Frm_VentasA extends javax.swing.JFrame {
                 cbxDesActionPerformed(evt);
             }
         });
-        jPanel3.add(cbxDes, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, 50, 30));
+        jPanel3.add(cbxDes, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 30, 50, 30));
 
         txtDes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -376,23 +381,24 @@ public class Frm_VentasA extends javax.swing.JFrame {
                 txtDesKeyTyped(evt);
             }
         });
-        jPanel3.add(txtDes, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, 60, 30));
+        jPanel3.add(txtDes, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 30, 90, 30));
 
         lblIva.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         lblIva.setEnabled(false);
         jPanel3.add(lblIva, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, 110, 30));
 
-        jLabel11.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Verdana", 0, 10)); // NOI18N
         jLabel11.setText("Bsf");
-        jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, 40, 30));
+        jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 50, 40, 30));
 
         jLabel13.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel13.setText("Cantidad Productos");
-        jPanel3.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 50, 130, 30));
+        jPanel3.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 60, 130, 30));
 
+        lblCan.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblCan.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         lblCan.setEnabled(false);
-        jPanel3.add(lblCan, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 50, 50, 30));
+        jPanel3.add(lblCan, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 90, 110, 30));
 
         jLabel20.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -408,9 +414,9 @@ public class Frm_VentasA extends javax.swing.JFrame {
         lblTotal.setEnabled(false);
         jPanel3.add(lblTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 110, 30));
 
-        jLabel29.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabel29.setFont(new java.awt.Font("Verdana", 0, 10)); // NOI18N
         jLabel29.setText("Bsf");
-        jPanel3.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, 30, 30));
+        jPanel3.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, 30, 30));
 
         jLabel30.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel30.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -421,9 +427,9 @@ public class Frm_VentasA extends javax.swing.JFrame {
         lblSubtotal.setEnabled(false);
         jPanel3.add(lblSubtotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 110, 30));
 
-        jLabel32.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabel32.setFont(new java.awt.Font("Verdana", 0, 10)); // NOI18N
         jLabel32.setText("Bsf");
-        jPanel3.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, 30, 30));
+        jPanel3.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, 30, 30));
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 300, 420, 130));
 
@@ -488,7 +494,7 @@ public class Frm_VentasA extends javax.swing.JFrame {
 
         jLabel25.setFont(new java.awt.Font("Verdana", 0, 10)); // NOI18N
         jLabel25.setText("FILTROS:");
-        jPanel6.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, 60, 20));
+        jPanel6.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, 60, 20));
 
         txtB.setFont(new java.awt.Font("Verdana", 0, 10)); // NOI18N
         txtB.addActionListener(new java.awt.event.ActionListener() {
@@ -501,11 +507,11 @@ public class Frm_VentasA extends javax.swing.JFrame {
                 txtBKeyReleased(evt);
             }
         });
-        jPanel6.add(txtB, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 130, 20));
+        jPanel6.add(txtB, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, 130, 20));
 
         jLabel26.setFont(new java.awt.Font("Verdana", 0, 10)); // NOI18N
         jLabel26.setText("BUSQUEDA");
-        jPanel6.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 60, 20));
+        jPanel6.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, 60, 20));
 
         cbxFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nombre", "Descripcion", "Codigo" }));
         cbxFiltro.addActionListener(new java.awt.event.ActionListener() {
@@ -513,7 +519,7 @@ public class Frm_VentasA extends javax.swing.JFrame {
                 cbxFiltroActionPerformed(evt);
             }
         });
-        jPanel6.add(cbxFiltro, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, 140, 20));
+        jPanel6.add(cbxFiltro, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 140, 20));
 
         tbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -544,16 +550,6 @@ public class Frm_VentasA extends javax.swing.JFrame {
         jScrollPane4.setViewportView(tbl);
 
         jPanel6.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 550, 110));
-
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Button-10.png"))); // NOI18N
-        jButton4.setContentAreaFilled(false);
-        jButton4.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Button-14.png"))); // NOI18N
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-        jPanel6.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 10, 112, 32));
 
         jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 570, 170));
 
@@ -666,34 +662,9 @@ public class Frm_VentasA extends javax.swing.JFrame {
 
         if (evt.getClickCount() == 2) {
             this.Añadir();
+         this.Formatear();
         }
     }//GEN-LAST:event_tblMouseClicked
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-
-        if (cbxFiltro.getSelectedIndex() == 2) {
-            try {
-                String[] titulos = {"Codigo", "Nombre", "Descripcion", "Precio",
-                    "Cantidad"};
-                String sql = "select * from inventario where cod_producto = '" + this.txtB.getText().toLowerCase() + "'";
-                model = new DefaultTableModel(null, titulos);
-                ResultSet rs = operaciones.Consultar(sql);
-                String[] fila = new String[5];
-                while (rs.next()) {
-                    fila[0] = rs.getString("cod_producto");
-                    fila[1] = rs.getString("nombre_producto");
-                    fila[2] = rs.getString("descripcion");
-                    fila[3] = rs.getString("precio_venta");
-                    fila[4] = rs.getString("cantidad");
-                    model.addRow(fila);
-                }
-                tbl.setModel(model);
-                operaciones.conn.close();
-            } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, e.getMessage());
-            }
-        }
-    }//GEN-LAST:event_jButton4ActionPerformed
 
     private void bntElimnarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntElimnarActionPerformed
         int fila = this.tbl2.getSelectedRow();
@@ -887,6 +858,7 @@ public class Frm_VentasA extends javax.swing.JFrame {
     }//GEN-LAST:event_tblKeyReleased
 
     private void txtBKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBKeyReleased
+    int c = evt.getKeyChar();
         if (cbxFiltro.getSelectedIndex() == 0) {
             try {
                 String[] titulos = {"Codigo", "Nombre", "Descripcion", "Precio",
@@ -921,7 +893,7 @@ public class Frm_VentasA extends javax.swing.JFrame {
                     fila[0] = rs.getString("cod_producto");
                     fila[1] = rs.getString("nombre_producto");
                     fila[2] = rs.getString("descripcion");
-                    fila[3] = rs.getString("precio_venta");
+                    fila[3] = format.format(rs.getLong("precio_venta"));
                     fila[4] = rs.getString("cantidad");
                     model.addRow(fila);
                     tbl.setModel(model);
@@ -931,6 +903,37 @@ public class Frm_VentasA extends javax.swing.JFrame {
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e.getMessage());
             }
+        }
+         if (!"".equals(txtB.getText())){
+            if(cbxFiltro.getSelectedIndex()==2){
+              if (c >= 48 && c <= 57 || c == WCKeyEvent.VK_BACK) {
+         if (cbxFiltro.getSelectedIndex() == 2) {
+            try {
+                String[] titulos = {"Codigo", "Nombre", "Descripcion", "Precio",
+                    "Cantidad"};
+                String sql = "select * from inventario where cod_producto = '" + this.txtB.getText().toLowerCase() + "'";
+                model = new DefaultTableModel(null, titulos);
+                ResultSet rs = operaciones.Consultar(sql);
+                String[] fila = new String[5];
+                while (rs.next()) {
+                    fila[0] = rs.getString("cod_producto");
+                    fila[1] = rs.getString("nombre_producto");
+                    fila[2] = rs.getString("descripcion");
+                    fila[3] = rs.getString("precio_venta");
+                    fila[4] = rs.getString("cantidad");
+                    model.addRow(fila);
+                }
+                tbl.setModel(model);
+                operaciones.conn.close();
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, e.getMessage());
+            }
+        }
+        }else{
+            JOptionPane.showMessageDialog(null, "Ingrese Solo Numeros","ERROR",JOptionPane.ERROR_MESSAGE);
+            this.txtB.setText("");
+        }
+        }
         }
         if ("".equals(txtB.getText())) {
             try {
@@ -954,6 +957,7 @@ public class Frm_VentasA extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, e.getMessage());
             }
         }
+       
     }//GEN-LAST:event_txtBKeyReleased
 
     private void cbxFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxFiltroActionPerformed
@@ -965,13 +969,13 @@ public class Frm_VentasA extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowLostFocus
 
     private void txtDesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDesKeyReleased
-
                    this.Calcular();
-
+                   this.Formatear();
     }//GEN-LAST:event_txtDesKeyReleased
 
     private void cbxDesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxDesActionPerformed
         this.Calcular();
+        this.Formatear();
     }//GEN-LAST:event_cbxDesActionPerformed
 
     private void txtDesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDesActionPerformed
@@ -1049,7 +1053,6 @@ public class Frm_VentasA extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
@@ -1142,25 +1145,23 @@ public class Frm_VentasA extends javax.swing.JFrame {
             }  
         }while(!entrada);
         /*verifcacion del joptionpanel*/
-//        res = JOptionPane.showInputDialog("Cantidad a vender del producto");
-//        if ("".equals(res)) {
-//            res = "1";
-//        }
+//        
         if (entrada) {
             int cantidadTotal = Integer.parseInt(this.tbl.getValueAt(tbl.getSelectedRow(), 4).toString());
             int cantidadMinimo = getMinimo();
             int cantidadSeguridad = getSeguridad();
             int cantidadventa  = Integer.parseInt(this.tbl.getValueAt(tbl.getSelectedRow(), 4).toString())-getSeguridad();
             int resultado = cantidadTotal - Integer.parseInt(cantidad);
+            
             if (Integer.parseInt(cantidad)<cantidadTotal) {
                if (resultado > cantidadMinimo) {
                //cantidad menor a disponible en stock
                 fila1[0] = tbl.getValueAt(this.tbl.getSelectedRow(), 0).toString();
                 fila1[1] = tbl.getValueAt(this.tbl.getSelectedRow(), 1).toString();
                 fila1[2] = cantidad;
-                fila1[3] = tbl.getValueAt(this.tbl.getSelectedRow(), 3).toString();
+                fila1[3] = format.format(Float.parseFloat(tbl.getValueAt(this.tbl.getSelectedRow(), 3).toString()));
                 if (tbl2.getRowCount() == 0) {
-                    fila1[4] = String.valueOf(Float.parseFloat(fila1[2]) * Float.parseFloat(fila1[3]));
+                    fila1[4] = format.format(Float.parseFloat(fila1[2]) * Float.parseFloat(fila1[3]));
                     modelo.addRow(fila1);
                 } else {
                     for (int i = 0; i < tbl2.getRowCount(); i++) {
@@ -1171,7 +1172,7 @@ public class Frm_VentasA extends javax.swing.JFrame {
                         }
                     }
                     if (igual == false) {
-                        fila1[4] = String.valueOf(Float.parseFloat(fila1[2]) * Float.parseFloat(fila1[3]));
+                        fila1[4] = format.format(Float.parseFloat(fila1[2]) * Float.parseFloat(fila1[3]));
                         modelo.addRow(fila1);
                     }
                 }
@@ -1189,9 +1190,9 @@ public class Frm_VentasA extends javax.swing.JFrame {
                     fila1[0] = tbl.getValueAt(this.tbl.getSelectedRow(), 0).toString();
                     fila1[1] = tbl.getValueAt(this.tbl.getSelectedRow(), 1).toString();
                     fila1[2] = cantidad;
-                    fila1[3] = tbl.getValueAt(this.tbl.getSelectedRow(), 3).toString();
+                    fila1[3] = format.format(tbl.getValueAt(this.tbl.getSelectedRow(), 3).toString());
                     if (tbl2.getRowCount() == 0) {
-                        fila1[4] = String.valueOf(Float.parseFloat(fila1[2]) * Float.parseFloat(fila1[3]));
+                        fila1[4] = format.format(Float.parseFloat(fila1[2]) * Float.parseFloat(fila1[3]));
                         modelo.addRow(fila1);
                     } else {
                         for (int i = 0; i < tbl2.getRowCount(); i++) {
@@ -1202,7 +1203,7 @@ public class Frm_VentasA extends javax.swing.JFrame {
                             }
                         }
                         if (igual == false) {
-                            fila1[4] = String.valueOf(Float.parseFloat(fila1[2]) * Float.parseFloat(fila1[3]));
+                            fila1[4] = format.format(Float.parseFloat(fila1[2]) * Float.parseFloat(fila1[3]));
                             modelo.addRow(fila1);
                         }
                     }
@@ -1241,5 +1242,11 @@ public class Frm_VentasA extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Seleccione al menos producto", null, JOptionPane.ERROR_MESSAGE);
             return false;
         }
+    }
+
+    private void Formatear() {
+        lblSubtotal.setText(format.format(Float.parseFloat(lblSubtotal.getText())));
+        lblIva.setText(format.format(Float.parseFloat(lblIva.getText())));
+        lblTotal.setText(format.format(Float.parseFloat(lblTotal.getText())));
     }
 }

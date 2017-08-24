@@ -1,6 +1,7 @@
 package Paq_Interfaz;
 
 import Atxy2k.CustomTextField.RestrictedTextField;
+import com.sun.webkit.event.WCKeyEvent;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -93,7 +94,6 @@ public class Frm_VentasC extends javax.swing.JFrame {
                 return false; //Disallow the editing of any cell
             }
         };
-        jButton4 = new javax.swing.JButton();
 
         jDialog2.setModal(true);
 
@@ -135,7 +135,7 @@ public class Frm_VentasC extends javax.swing.JFrame {
 
         jLabel25.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel25.setText("FILTROS:");
-        jPanel6.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 20, 60, 20));
+        jPanel6.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 30, 60, 20));
 
         txtB1.setFont(new java.awt.Font("Verdana", 0, 10)); // NOI18N
         txtB1.addActionListener(new java.awt.event.ActionListener() {
@@ -148,11 +148,11 @@ public class Frm_VentasC extends javax.swing.JFrame {
                 txtB1KeyReleased(evt);
             }
         });
-        jPanel6.add(txtB1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 160, 20));
+        jPanel6.add(txtB1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 30, 160, 20));
 
         jLabel26.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel26.setText("BUSQUEDA");
-        jPanel6.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 80, 20));
+        jPanel6.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, 80, 20));
 
         cbxFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Codigo", "Cliente", "Fecha" }));
         cbxFiltro.addActionListener(new java.awt.event.ActionListener() {
@@ -160,7 +160,7 @@ public class Frm_VentasC extends javax.swing.JFrame {
                 cbxFiltroActionPerformed(evt);
             }
         });
-        jPanel6.add(cbxFiltro, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 20, 150, 20));
+        jPanel6.add(cbxFiltro, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 30, 150, 20));
 
         tbl.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 102, 51), new java.awt.Color(0, 153, 51), new java.awt.Color(0, 102, 51), new java.awt.Color(0, 153, 51))));
         tbl.setModel(new javax.swing.table.DefaultTableModel(
@@ -193,16 +193,6 @@ public class Frm_VentasC extends javax.swing.JFrame {
 
         jPanel6.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 710, 110));
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Consultar-10.png"))); // NOI18N
-        jButton4.setContentAreaFilled(false);
-        jButton4.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Consultar-14.png"))); // NOI18N
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-        jPanel6.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 20, 112, 32));
-
         jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 730, 180));
 
         jScrollPane2.setViewportView(jPanel1);
@@ -216,12 +206,30 @@ public class Frm_VentasC extends javax.swing.JFrame {
     this.requestFocus();
     }//GEN-LAST:event_formWindowLostFocus
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        if(cbxFiltro.getSelectedIndex()==0){
-            try {
+    private void tblKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblKeyReleased
+
+    }//GEN-LAST:event_tblKeyReleased
+
+    private void tblKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblKeyPressed
+
+    }//GEN-LAST:event_tblKeyPressed
+
+    private void tblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMouseClicked
+
+    }//GEN-LAST:event_tblMouseClicked
+
+    private void cbxFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxFiltroActionPerformed
+       // TODO add your handling code here:
+    }//GEN-LAST:event_cbxFiltroActionPerformed
+
+    private void txtB1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtB1KeyReleased
+int c = evt.getKeyChar();
+if(cbxFiltro.getSelectedIndex()==0){
+    if (c >= 48 && c <= 57 || c == WCKeyEvent.VK_BACK) {
+         try {
                 String[]titulos={"Codigo","Fecha","Cliente","Cantidad","Total"};
                 String sql="select * from ventas inner join clientes on clientes.cod_cliente = ventas.cod_cliente " +
-                "where cod_venta ='"+this.txtB1.getText().toLowerCase()+"'";
+                "where cod_venta like '"+this.txtB1.getText().toLowerCase()+"%'";
                 model= new DefaultTableModel(null,titulos);
                 ResultSet rs= operaciones.Consultar(sql);
                 String[]fila=new String[5];
@@ -242,27 +250,13 @@ if (rs.getString("tipo_persona").equals("juridica")) {
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e.getMessage());
             }
+        }else{
+            JOptionPane.showMessageDialog(null, "Ingrese Solo Numeros","ERROR",JOptionPane.ERROR_MESSAGE);
+            this.txtB1.setText("");
         }
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void tblKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblKeyReleased
-
-    }//GEN-LAST:event_tblKeyReleased
-
-    private void tblKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblKeyPressed
-
-    }//GEN-LAST:event_tblKeyPressed
-
-    private void tblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMouseClicked
-
-    }//GEN-LAST:event_tblMouseClicked
-
-    private void cbxFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxFiltroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbxFiltroActionPerformed
-
-    private void txtB1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtB1KeyReleased
+        }
         if(cbxFiltro.getSelectedIndex()==1){
+             if (c >= 65 && c <= 90 || c >= 97 && c <= 122 || c >= 128 && c <= 165 || c == WCKeyEvent.VK_BACK) {
             try {
                 String[]titulos={"Codigo","Fecha","Cliente","Cantidad","Total"};
                 String sql="select * from ventas inner join clientes on clientes.cod_cliente = ventas.cod_cliente " +
@@ -287,6 +281,10 @@ if (rs.getString("tipo_persona").equals("juridica")) {
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e.getMessage());
             }
+        }else{
+            JOptionPane.showMessageDialog(null, "Ingrese Solo Letras","ERROR",JOptionPane.ERROR_MESSAGE);
+            this.txtB1.setText("");
+        }
         }
         if(cbxFiltro.getSelectedIndex()==2){
             try {
@@ -357,7 +355,6 @@ if (rs.getString("tipo_persona").equals("juridica")) {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cbxFiltro;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton6;
     private javax.swing.JDialog jDialog2;
     private javax.swing.JLabel jLabel25;

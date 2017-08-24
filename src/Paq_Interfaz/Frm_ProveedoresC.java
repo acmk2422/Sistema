@@ -43,9 +43,22 @@ public class Frm_ProveedoresC extends javax.swing.JFrame {
             email=txtE.getText();
             emailCorrecto=email.matches("[-\\w.]+@\\w+\\.\\w+");  
             
-         if (!txtN.getText().equals("") && !txtC.getText().equals("") && !txtT1.getText().equals("")&& !txtD.getText().equals("")
+         if (!txtN.getText().equals("") && !txtC.getText().equals("") && !txtT1.getText().equals("")
+                 && txtT1.getText().length()>=11 && !txtD.getText().equals("")
                 && !txtE.getText().equals("") && emailCorrecto){
-            return true;
+             if (!txtT2.getText().equals("")) {
+                 if (txtT2.getText().length()>=11) {
+                     return true;
+                 } else {
+                     JOptionPane.showMessageDialog(null, "Verifique:\n"
+                    + "1. Que los Campos no esten vacios\n"
+                    + "2. Que los numeros telefonicos tenga 11 digitos\n"
+                     + "3.El formato de correo electronico sea el correcto", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                    return false;
+                 } 
+             } else {
+                 return true;
+             }
         } else {
              JOptionPane.showMessageDialog(null, "Verifique:\n"
                     + "1. Que los Campos no esten vacios\n"
@@ -88,8 +101,16 @@ public class Frm_ProveedoresC extends javax.swing.JFrame {
             fila[1]=rs.getString("nombre");
             fila[2]=rs.getString("rif");
             fila[3]=rs.getString("pais");
-            fila[4]=rs.getString("telefono1");
-            fila[5]=rs.getString("telefono2"); 
+            if (rs.getString("telefono1").length()<=10) {
+                fila[4]="0"+rs.getString("telefono1");
+            } else {
+                fila[4]=rs.getString("telefono1");
+            }
+            if (rs.getString("telefono2").length()<=10) {
+                fila[5]="0"+rs.getString("telefono2");
+            } else {
+                fila[5]=rs.getString("telefono2");
+            } 
             fila[6]=rs.getString("email");
             fila[7]=rs.getString("descripcion");
             fila[8]=rs.getString("estado");
@@ -499,8 +520,11 @@ public class Frm_ProveedoresC extends javax.swing.JFrame {
                     ps.setString(2, this.txtN.getText().toLowerCase());
                     ps.setString(3, this.txtD.getText().toLowerCase());
                     ps.setLong(4, Long.parseLong(this.txtT1.getText()));
-                    if(this.txtT2.getText()!="")
-                    ps.setLong(5, Long.parseLong(this.txtT2.getText()));
+                    if(!"".equals(this.txtT2.getText())){
+                         ps.setLong(5, Long.parseLong(this.txtT2.getText()));
+                    }else {
+                        ps.setLong(5, 0);
+                    }
                     ps.setString(6, this.txtE.getText().toLowerCase());
                     ps.setString(7, this.txtCo.getText().toLowerCase());
                     ps.setString(8, this.cbxP.getSelectedItem().toString().toLowerCase());
@@ -541,12 +565,23 @@ public class Frm_ProveedoresC extends javax.swing.JFrame {
                 if (rs.getString("direccion")!="")
                 this.txtD.setText(rs.getString("direccion"));
 
-                if (rs.getString("telefono1")!="")
-                this.txtT1.setText(rs.getString("telefono1"));
-
-                if (rs.getString("telefono2")!="")
-                this.txtT2.setText(rs.getString("telefono2"));
-
+                if (rs.getString("telefono1").length()<=10) {
+                this.txtT1.setText("0"+rs.getString("telefono1"));
+                } else {
+                    this.txtT1.setText(rs.getString("telefono1"));
+                }
+                
+                if (!"".equals(rs.getString("telefono2"))){
+                if (rs.getString("telefono2").length()<=1) {
+                     this.txtT2.setText("");
+                } else {
+                    if (rs.getString("telefono2").length()==10) {
+                     this.txtT2.setText("0"+rs.getString("telefono2"));
+                }else{
+                      this.txtT2.setText(rs.getString("telefono2"));  
+                    }
+                }
+                }
                 if (rs.getString("pais")!="")
                 this.cbxP.setSelectedItem(rs.getString("pais"));
 
@@ -597,8 +632,11 @@ public class Frm_ProveedoresC extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowLostFocus
 
     private void txtBKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBKeyReleased
-//select * from EMPLEADOS where APELLIDOS like 'R%' 
+int c = evt.getKeyChar();
     if(cbxOpcion.getSelectedIndex()==1){
+        
+        //verifico que ingrese solo numero y tecla borrar
+        if (c >= 48 && c <= 57 || c == WCKeyEvent.VK_BACK) {
         try {
             String[]titulos={"Codigo","Nombre","RIF","Pais","Telefono Principal",
                 "Telefono Secundario","Correo Electronico","Descripcion","Estado"};
@@ -623,8 +661,13 @@ public class Frm_ProveedoresC extends javax.swing.JFrame {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
+        }else{
+            JOptionPane.showMessageDialog(null, "Ingrese Solo Numeros","ERROR",JOptionPane.ERROR_MESSAGE);
+            this.txtB.setText("");
+        }
     }
     if(cbxOpcion.getSelectedIndex()==0){
+        
         try {
             String[]titulos={"Codigo","Nombre","RIF","Pais","Telefono Principal",
                 "Telefono Secundario","Correo Electronico","Descripcion","Estado"};

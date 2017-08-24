@@ -6,6 +6,8 @@ import com.sun.webkit.event.WCKeyEvent;
 import java.awt.Image;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -664,10 +666,25 @@ if (this.verificacion()){
     private boolean verificacion(){
              String email;
             boolean emailCorrecto=true;
+            boolean cedulaRegistrada=true;
             email=txtE.getText();
             emailCorrecto=email.matches("[-\\w.]+@\\w+\\.\\w+");  
             
-        if (cbxN.isSelected()) {
+            try {
+            String sql = "select * from clientes where cedula= '" + cbxC.getSelectedItem()+"-"+txtC.getText() + "'";
+            ResultSet rs = operaciones.Consultar(sql);
+            while(rs.next()){
+                cedulaRegistrada=false;
+            }
+            operaciones.conn.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Datos incompletos\n"+e);
+        }
+        if(cedulaRegistrada==false){
+            JOptionPane.showMessageDialog(rootPane, "Cedula ya registrada", "ERROR", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }else{
+            if (cbxN.isSelected()) {
             if (!"".equals(txtN1.getText()) && !"".equals(txtA1.getText()) && !"".equals(txtC.getText()) && 
             !"".equals(txtT1.getText()) && !"".equals(txtD.getText()) && !"".equals(txtE.getText()) && emailCorrecto ) {
                 return true; 
@@ -686,6 +703,7 @@ if (this.verificacion()){
                 return false; 
             }
         }
+        }  
     } 
 
    
