@@ -43,6 +43,7 @@ public class Frm_VentasA extends javax.swing.JFrame {
     //con la siguiente linea cambio a que los puntos sean decimales y no las comas que viene por defecto
     DecimalFormatSymbols simbolos = DecimalFormatSymbols.getInstance(Locale.ENGLISH);
     private DecimalFormat format = new DecimalFormat("#0.00",simbolos);
+    private DecimalFormat formato = new DecimalFormat("##########",simbolos);
 
     public Frm_VentasA() {
         initComponents();
@@ -99,7 +100,7 @@ public class Frm_VentasA extends javax.swing.JFrame {
         try {
             String[] titulos = {"Codigo", "Nombre", "Descripcion", "Precio",
                 "Cantidad"};
-            String sql = "select * from inventario where cantidad > 5";
+            String sql = "select * from inventario where cantidad > '"+getSeguridad()+"'";
             model = new DefaultTableModel(null, titulos);
             ResultSet rs = operaciones.Consultar(sql);
             String[] fila = new String[5];
@@ -690,6 +691,7 @@ public class Frm_VentasA extends javax.swing.JFrame {
     private void btnProcesarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcesarActionPerformed
         if (verificacion()) {
 //se actualiza la BD con los datos de la tabla 1
+System.out.println("inicio de añadir a actualizar inventario");
         if (!txtC.getText().equals("")) {
             if (tbl2.getRowCount() > 0) {
                 for (int i = 0; i < tbl.getRowCount(); i++) {
@@ -699,15 +701,15 @@ public class Frm_VentasA extends javax.swing.JFrame {
                         PreparedStatement ps = operaciones.Actualizar(sql);
                         ps.setInt(1, Integer.parseInt(this.tbl.getValueAt(i, 4).toString()));
                         int n = ps.executeUpdate();
-                        if (n > 0 && tbl.getRowCount() == (i + 1)) {
-                            //JOptionPane.showMessageDialog(null, "VENDIDO CON EXITO");
-                        }
+//                        if (n > 0 && tbl.getRowCount() == (i + 1)) {
+//                            //JOptionPane.showMessageDialog(null, "VENDIDO CON EXITO");
+//                        }
                         operaciones.conn.close();
                     } catch (Exception e) {
                         JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR LOS DATOS VERIFIQUE QUE SEAN CORRECTOS\n" + e.getMessage());
                     }
                 }
-
+System.out.println("inicio de añadir a descripcion");
                 //añadir en descripcion
                 String codigoDes = "";
                 for (int i = 0; i < tbl2.getRowCount(); i++) {
@@ -721,7 +723,7 @@ public class Frm_VentasA extends javax.swing.JFrame {
                         codigoDes = CodigoNumeroAleatorio();
                         PreparedStatement ps = operaciones.Ingresar(sql);
                         ps.setString(1, codigoDes);
-                        ps.setInt(2, Integer.parseInt(tbl.getValueAt(i, 0).toString()));
+                        ps.setLong(2, Long.parseLong(tbl2.getValueAt(i, 0).toString()));
                         ps.setFloat(3, Float.parseFloat(tbl2.getValueAt(i, 2).toString()));
                         ps.setFloat(4, Float.parseFloat(tbl2.getValueAt(i, 3).toString()));
                         ps.setFloat(5, total);
@@ -735,6 +737,7 @@ public class Frm_VentasA extends javax.swing.JFrame {
                 }
 
 // se almacena la venta en la bd
+System.out.println("inicion de añadir a ventas");
                 try {
                     String sql = "insert into ventas(cod_venta, cantidad, descripcion"
                             + ", total, fecha, tipo_de_pago, responsable, descuento, cod_cliente, id_valor)"
@@ -1190,7 +1193,7 @@ public class Frm_VentasA extends javax.swing.JFrame {
                     fila1[0] = tbl.getValueAt(this.tbl.getSelectedRow(), 0).toString();
                     fila1[1] = tbl.getValueAt(this.tbl.getSelectedRow(), 1).toString();
                     fila1[2] = cantidad;
-                    fila1[3] = format.format(tbl.getValueAt(this.tbl.getSelectedRow(), 3).toString());
+                    fila1[3] = format.format(Float.parseFloat(tbl.getValueAt(this.tbl.getSelectedRow(), 3).toString()));
                     if (tbl2.getRowCount() == 0) {
                         fila1[4] = format.format(Float.parseFloat(fila1[2]) * Float.parseFloat(fila1[3]));
                         modelo.addRow(fila1);

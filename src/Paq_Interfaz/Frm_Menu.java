@@ -63,8 +63,26 @@ public class Frm_Menu extends javax.swing.JFrame implements Runnable {
         h1.start();
         setLocationRelativeTo(null);
         setVisible(true);
+        this.Llenar();
         this.Ajustar(lblFondo, icon1);
         lblfecha.setText(new Paq_Clases.Cla_Fecha().getFecha());
+    }
+    
+    public void Llenar(){
+        try {
+            String sql = "select * from clientes";
+            ResultSet rs = operaciones.Consultar(sql);
+            while (rs.next()) {
+                if (rs.getString("primer_nombre") == null) {
+                    cbxN.addItem(rs.getString("nombre_empresa"));
+                } else {
+                    cbxN.addItem(rs.getString("primer_nombre") + " " + rs.getString("primer_apellido"));
+                }
+            }
+            operaciones.conn.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }
 
     public void look() {
@@ -110,6 +128,15 @@ public class Frm_Menu extends javax.swing.JFrame implements Runnable {
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jYearChooser1 = new com.toedter.calendar.JYearChooser();
+        jFrame4 = new javax.swing.JFrame();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        txtC = new javax.swing.JTextField();
+        cbxN = new javax.swing.JComboBox<>();
+        jButton10 = new javax.swing.JButton();
+        jButton11 = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -268,6 +295,62 @@ public class Frm_Menu extends javax.swing.JFrame implements Runnable {
         jPanel4.add(jYearChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, 100, -1));
 
         jFrame3.getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 120));
+
+        jFrame4.setMaximumSize(new java.awt.Dimension(500, 120));
+        jFrame4.setResizable(false);
+        jFrame4.setSize(new java.awt.Dimension(510, 150));
+        jFrame4.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 102, 51), new java.awt.Color(0, 153, 51), new java.awt.Color(0, 102, 51), new java.awt.Color(0, 153, 51)), "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 3, 14), new java.awt.Color(0, 153, 51))); // NOI18N
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel7.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabel7.setText("Seleccione un cliente de la lista");
+        jPanel5.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 350, 30));
+
+        jLabel8.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabel8.setText("Cedula/RIF");
+        jPanel5.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 40, -1, 30));
+
+        txtC.setEditable(false);
+        txtC.setFont(new java.awt.Font("Verdana", 0, 10)); // NOI18N
+        txtC.setEnabled(false);
+        txtC.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtCMouseClicked(evt);
+            }
+        });
+        jPanel5.add(txtC, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 40, 90, 30));
+
+        cbxN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxNActionPerformed(evt);
+            }
+        });
+        jPanel5.add(cbxN, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, 170, 30));
+
+        jButton10.setText("Consultar");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
+        jPanel5.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, -1, -1));
+
+        jButton11.setText("Cancelar");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
+        jPanel5.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 90, 80, -1));
+
+        jLabel9.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabel9.setText("Nombre/Empresa");
+        jPanel5.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, 30));
+
+        jFrame4.getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 120));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -830,24 +913,61 @@ public class Frm_Menu extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_jFrame3WindowLostFocus
 
     private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
-        String entrada2 = "";
-        boolean entrada2Correcto = true;
-        do {
-            if (entrada2Correcto) {
-                entrada2 = JOptionPane.showInputDialog(null, "Ingrese el nombre del cliente:", null, JOptionPane.INFORMATION_MESSAGE);
-                entrada2Correcto = entrada2.matches("[a-z]+");
-            } else {
-                entrada2 = JOptionPane.showInputDialog(null, "Ingrese el nombre del cliente:", null, JOptionPane.WARNING_MESSAGE);
-                entrada2Correcto = entrada2.matches("[a-z]+");
+        this.jFrame4.setLocationRelativeTo(null);
+        this.jFrame4.setVisible(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem16ActionPerformed
+
+    private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
+        new Paq_Interfaz.Frm_AjusteInventario().setVisible(true);
+    }//GEN-LAST:event_jMenuItem19ActionPerformed
+
+    private void txtCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCMouseClicked
+
+    }//GEN-LAST:event_txtCMouseClicked
+
+    private void cbxNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxNActionPerformed
+            //variable para determinar si consiguio algo en clientes
+            boolean resultado = false;
+            try {
+                String sql = "select * from clientes where primer_nombre ='" + this.Desencadenar(cbxN.getSelectedItem().toString()) + "'";
+                ResultSet rs = operaciones.Consultar(sql);
+                while (rs.next()) {
+                    txtC.setText(rs.getString("cedula"));
+                    resultado = true;
+                }
+                operaciones.conn.close();
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, e.getMessage());
             }
-        } while (!entrada2Correcto);
-        String codigo;
+            if (resultado == false) {
+                try {
+                    String sql = "select * from clientes where nombre_empresa ='" + cbxN.getSelectedItem() + "'";
+                    ResultSet rs = operaciones.Consultar(sql);
+                    while (rs.next()) {
+                        txtC.setText(rs.getString("cedula"));
+                        resultado = true;
+                    }
+                    operaciones.conn.close();
+                } catch (SQLException e) {
+                    JOptionPane.showMessageDialog(null, e.getMessage());
+                }
+            }
+    }//GEN-LAST:event_cbxNActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+String codigo, nombre;
         boolean encontro = false;
         try {
-            String sql = "select * from clientes where primer_nombre = '" + entrada2 + "' or nombre_empresa = '" + entrada2 + "'";
+            String sql = "select * from clientes where cedula = '" +txtC.getText()+"'";
             ResultSet rs = operaciones.Consultar(sql);
             while (rs.next()) {
                 codigo = rs.getString("cod_cliente");
+                if (!rs.getString("primer_nombre").equals("")) {
+                     nombre = rs.getString("primer_nombre");
+                }else{
+                    nombre = rs.getString("nombre_empresa");
+                }
                 encontro = true;
                 try {
                     conn = Paq_Base_Datos.Conexion_DB.geConnection();
@@ -855,12 +975,13 @@ public class Frm_Menu extends javax.swing.JFrame implements Runnable {
                     Map<String, Object> p2 = new HashMap<>();
                     p2.put("usuario", usuario);
                     p2.put("ruta", ruta.getRuta());
-                    p2.put("nombre", entrada2);
+                    p2.put("nombre", nombre);
                     p2.put("codigo", codigo);
                     JasperReport reporteJasper = JasperCompileManager.compileReport(dir);
                     JasperPrint mostrarReporte = JasperFillManager.fillReport(reporteJasper, p2, conn);
                     JasperViewer visor = new JasperViewer(mostrarReporte, false);
                     visor.setVisible(true);
+                    this.jFrame4.dispose();
                 } catch (JRException ex) {
                     JOptionPane.showMessageDialog(null, "OCURRIO UN ERROR AL CARGAR EL REPORTE.\n" + ex, "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
@@ -872,12 +993,11 @@ public class Frm_Menu extends javax.swing.JFrame implements Runnable {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem16ActionPerformed
+    }//GEN-LAST:event_jButton10ActionPerformed
 
-    private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
-        new Paq_Interfaz.Frm_AjusteInventario().setVisible(true);
-    }//GEN-LAST:event_jMenuItem19ActionPerformed
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton11ActionPerformed
 
     public void run() {
         //metodo run para que hilo inicie llamando la funcion calcula tiempo y establece el tiempo en el label
@@ -918,7 +1038,10 @@ public class Frm_Menu extends javax.swing.JFrame implements Runnable {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cbxN;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -929,12 +1052,16 @@ public class Frm_Menu extends javax.swing.JFrame implements Runnable {
     private javax.swing.JFrame jFrame1;
     private javax.swing.JFrame jFrame2;
     private javax.swing.JFrame jFrame3;
+    private javax.swing.JFrame jFrame4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -964,9 +1091,26 @@ public class Frm_Menu extends javax.swing.JFrame implements Runnable {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private com.toedter.calendar.JYearChooser jYearChooser1;
     private javax.swing.JLabel lblFondo;
     public javax.swing.JLabel lblUsuario;
     private javax.swing.JLabel lblfecha;
+    private javax.swing.JTextField txtC;
     // End of variables declaration//GEN-END:variables
+
+public String Desencadenar(String datos) {
+        //funcion para separar cedula de la letra
+        String nombre = "";
+        int i = 0, j = 0;
+        for (i = 0; i < datos.length(); i++) {
+            if (datos.charAt(i) == ' ') {
+
+                break;
+            } else {
+                nombre += datos.charAt(i) + "";
+            }
+        }
+        return nombre;
+    }
 }
