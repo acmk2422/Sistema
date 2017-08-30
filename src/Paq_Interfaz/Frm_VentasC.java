@@ -256,6 +256,7 @@ if (rs.getString("tipo_persona").equals("juridica")) {
         }
         }
         if(cbxFiltro.getSelectedIndex()==1){
+            //solo letras
              if (c >= 65 && c <= 90 || c >= 97 && c <= 122 || c >= 128 && c <= 165 || c == WCKeyEvent.VK_BACK) {
             try {
                 String[]titulos={"Codigo","Fecha","Cliente","Cantidad","Total"};
