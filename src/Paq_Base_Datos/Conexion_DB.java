@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
  */
 public class Conexion_DB {
 
-    private static String bd="sistema_ventas", user="postgres",pass="123456", url="jdbc:postgresql://192.168.0.106:5432/"+bd;
+    private static String bd="sistema_ventas", user="postgres",pass="123456", url="jdbc:postgresql://192.168.0.101:5432/"+bd;
     private static Connection conn;
     
 public static Connection geConnection(){
