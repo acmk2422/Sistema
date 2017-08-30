@@ -1116,7 +1116,7 @@ System.out.println("inicion de añadir a ventas");
                 lblTotal.setText(String.valueOf(Float.parseFloat(lblTotal.getText()) - descuento));
             }
         }
-//para obtener  la cantidad
+
         for (int i = 0; i < modelo.getRowCount(); i++) {
             acum += Integer.parseInt(modelo.getValueAt(i, 2).toString());
         }
@@ -1145,15 +1145,7 @@ System.out.println("inicion de añadir a ventas");
             } else {
             cantidad=JOptionPane.showInputDialog(null,"Seleccione la Cantidad a vender del producto\nEj: 1 Entre el rango de 1 y 999.999","Validacion",JOptionPane.WARNING_MESSAGE);
             entrada=cantidad.matches("\\d{1,6}");
-            }
-            if (entrada) {
-                if (Integer.parseInt(cantidad) <= 0) {
-                    JOptionPane.showMessageDialog(null, "Ingrese una cantidad Mayor a 0", "Error", JOptionPane.ERROR_MESSAGE);
-                    entrada = false;
-                } else {
-                    entrada = true;
-                }
-            }
+            }  
         }while(!entrada);
         /*verifcacion del joptionpanel*/
 //        
