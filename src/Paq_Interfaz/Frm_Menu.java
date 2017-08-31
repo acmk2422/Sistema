@@ -296,18 +296,20 @@ public class Frm_Menu extends javax.swing.JFrame implements Runnable {
 
         jFrame3.getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 120));
 
-        jFrame4.setMaximumSize(new java.awt.Dimension(500, 120));
+        jFrame4.setMaximumSize(new java.awt.Dimension(510, 160));
+        jFrame4.setMinimumSize(new java.awt.Dimension(510, 160));
+        jFrame4.setPreferredSize(new java.awt.Dimension(510, 160));
         jFrame4.setResizable(false);
-        jFrame4.setSize(new java.awt.Dimension(510, 150));
+        jFrame4.setSize(new java.awt.Dimension(510, 160));
         jFrame4.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 102, 51), new java.awt.Color(0, 153, 51), new java.awt.Color(0, 102, 51), new java.awt.Color(0, 153, 51)), "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 3, 14), new java.awt.Color(0, 153, 51))); // NOI18N
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel7.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Verdana", 3, 12)); // NOI18N
         jLabel7.setText("Seleccione un cliente de la lista");
-        jPanel5.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 350, 30));
+        jPanel5.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 0, 220, 30));
 
         jLabel8.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel8.setText("Cedula/RIF");
@@ -330,27 +332,33 @@ public class Frm_Menu extends javax.swing.JFrame implements Runnable {
         });
         jPanel5.add(cbxN, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, 170, 30));
 
-        jButton10.setText("Consultar");
+        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Consultar-10.png"))); // NOI18N
+        jButton10.setBorderPainted(false);
+        jButton10.setContentAreaFilled(false);
+        jButton10.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Consultar-14.png"))); // NOI18N
         jButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton10ActionPerformed(evt);
             }
         });
-        jPanel5.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, -1, -1));
+        jPanel5.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 120, -1));
 
-        jButton11.setText("Cancelar");
+        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Atras-10.png"))); // NOI18N
+        jButton11.setBorderPainted(false);
+        jButton11.setContentAreaFilled(false);
+        jButton11.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Atras-14.png"))); // NOI18N
         jButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton11ActionPerformed(evt);
             }
         });
-        jPanel5.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 90, 80, -1));
+        jPanel5.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 90, 110, -1));
 
         jLabel9.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel9.setText("Nombre/Empresa");
         jPanel5.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, 30));
 
-        jFrame4.getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 120));
+        jFrame4.getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 160));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -997,6 +1005,7 @@ String codigo, nombre;
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         // TODO add your handling code here:
+        this.jFrame4.dispose();
     }//GEN-LAST:event_jButton11ActionPerformed
 
     public void run() {

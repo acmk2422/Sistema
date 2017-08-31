@@ -53,8 +53,7 @@ public class Frm_ProveedoresA extends javax.swing.JFrame {
         restricted5.setOnlyNums(true);
          restricted5.setLimit(11);
          
-          RestrictedTextField restricted6 = new RestrictedTextField(this.txtN);
-        restricted6.setOnlyText(true);
+          RestrictedTextField restricted6 = new RestrictedTextField(this.txtN,"qwertyuiopasdfghjklñzxcvbnm. 1234567890");
         restricted6.setLimit(15);
         
          RestrictedTextField restricted7 = new RestrictedTextField(this.txtE);
