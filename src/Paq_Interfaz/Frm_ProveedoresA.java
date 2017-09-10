@@ -180,6 +180,11 @@ public class Frm_ProveedoresA extends javax.swing.JFrame {
         jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 130, 30));
 
         txtT2.setSelectionColor(new java.awt.Color(0, 102, 51));
+        txtT2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtT2ActionPerformed(evt);
+            }
+        });
         jPanel2.add(txtT2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 70, 110, 30));
 
         jLabel7.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -379,6 +384,10 @@ public class Frm_ProveedoresA extends javax.swing.JFrame {
         
     }//GEN-LAST:event_formWindowLostFocus
 
+    private void txtT2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtT2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtT2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -403,25 +412,6 @@ public class Frm_ProveedoresA extends javax.swing.JFrame {
         });
     }
       
-     private boolean Verificacion2() {
-            String email;
-            boolean emailCorrecto=true;
-            email=txtE.getText();
-            emailCorrecto=email.matches("[-\\w.]+@\\w+\\.\\w+");  
-            
-         if (!txtN.getText().equals("") && !txtC.getText().equals("") && !txtT1.getText().equals("")&& !txtD.getText().equals("")
-                && !txtE.getText().equals("") && emailCorrecto){
-            return true;
-        } else {
-             JOptionPane.showMessageDialog(null, "Verifique:\n"
-                    + "1. Que los Campos no esten vacios\n"
-                    + "2. Que los numeros telefonicos tenga 11 digitos\n"
-                     + "3.El formato de correo electronico sea el correcto", "Advertencia", JOptionPane.WARNING_MESSAGE);
-            return false;
-            
-        }
-    }
-  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnA;
@@ -483,7 +473,16 @@ public class Frm_ProveedoresA extends javax.swing.JFrame {
             return false;
         }else if (!txtN.getText().equals("") && !txtC.getText().equals("") && !txtT1.getText().equals("")&& txtT1.getText().length()==11 && !txtD.getText().equals("")
                 && !txtE.getText().equals("") && emailCorrecto){
-            return true;
+            if  (!txtT2.getText().equals("")) {
+                 if (Integer.parseInt(txtT2.getText())>=11) {
+                     return true;
+                 } else {
+                     JOptionPane.showMessageDialog(null, "El numero de digitos del telefono debe ser igual a 11\n");
+                     return false;
+                 }
+             }else{
+                return true;
+            }
         } else {
              JOptionPane.showMessageDialog(null, "Verifique:\n"
                     + "1. Que los Campos no esten vacios\n"

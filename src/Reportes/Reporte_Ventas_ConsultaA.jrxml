@@ -58,26 +58,19 @@ WHERE
 			</image>
 			<frame>
 				<reportElement mode="Opaque" x="3" y="66" width="553" height="32" forecolor="#000000" backcolor="#406040" uuid="e1de3e50-76cf-47c1-aacf-d10f80c11d7d"/>
-				<textField pattern="EEEEE dd MMMMM yyyy">
-					<reportElement x="404" y="12" width="144" height="20" forecolor="#FFFFFF" uuid="64a705cd-1c2c-4622-a8c5-40518f72cc4e"/>
-					<textElement textAlignment="Right">
-						<font fontName="Verdana" size="12"/>
-					</textElement>
-					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
-				</textField>
 				<textField>
-					<reportElement x="226" y="3" width="80" height="29" forecolor="#FFFFFF" uuid="21ec2cde-419f-460c-bb06-de108f97b3ef"/>
+					<reportElement x="288" y="0" width="222" height="29" forecolor="#FFFFFF" uuid="21ec2cde-419f-460c-bb06-de108f97b3ef"/>
 					<textElement verticalAlignment="Middle">
-						<font fontName="Verdana" size="10" isBold="true"/>
+						<font fontName="Verdana" size="20" isBold="false"/>
 					</textElement>
 					<textFieldExpression><![CDATA["Año: "+$P{fecha}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement style="SubTitle" x="15" y="3" width="205" height="29" forecolor="#FFFFFF" uuid="ed8b6327-6c69-4c54-95c8-f2292582a86b"/>
+					<reportElement style="SubTitle" x="15" y="3" width="279" height="29" forecolor="#FFFFFF" uuid="ed8b6327-6c69-4c54-95c8-f2292582a86b"/>
 					<textElement>
 						<font fontName="Verdana" size="20" isBold="false"/>
 					</textElement>
-					<text><![CDATA[Ventas Realizadas fecha:]]></text>
+					<text><![CDATA[Ventas Realizadas en el]]></text>
 				</staticText>
 			</frame>
 		</band>
@@ -151,7 +144,7 @@ WHERE
 			<textField>
 				<reportElement x="11" y="0" width="67" height="20" uuid="e63b89fb-b2c6-4d68-9edb-7a895f75e522"/>
 				<textElement textAlignment="Center">
-					<font fontName="Verdana" isBold="false"/>
+					<font fontName="SansSerif" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{ventas_cod_venta}]]></textFieldExpression>
 			</textField>
@@ -206,7 +199,7 @@ WHERE
 					<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 				</textField>
 				<textField pattern="dd-MMM-yyyy">
-					<reportElement x="18" y="4" width="100" height="20" forecolor="#FFFFFF" uuid="2d63c194-34de-49f5-b796-897788a1c426"/>
+					<reportElement x="18" y="4" width="136" height="20" forecolor="#FFFFFF" uuid="2d63c194-34de-49f5-b796-897788a1c426"/>
 					<textElement>
 						<font fontName="Verdana"/>
 					</textElement>

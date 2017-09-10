@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a6622fa1-389a-4a31-bc1a-4740f6efcc2e">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="47"/>
 	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
 	<style name="SubTitle" forecolor="#666666" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
 	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
@@ -18,6 +18,7 @@
 	<parameter name="codigo" class="java.lang.Integer"/>
 	<parameter name="nombre" class="java.lang.String"/>
 	<parameter name="ruta" class="java.lang.String"/>
+	<parameter name="empresa" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT
      clientes."primer_nombre" AS clientes_primer_nombre,
@@ -94,19 +95,12 @@ WHERE
 			</image>
 			<frame>
 				<reportElement mode="Opaque" x="3" y="66" width="553" height="32" forecolor="#000000" backcolor="#406040" uuid="e1de3e50-76cf-47c1-aacf-d10f80c11d7d"/>
-				<textField pattern="EEEEE dd MMMMM yyyy">
-					<reportElement x="404" y="12" width="144" height="20" forecolor="#FFFFFF" uuid="64a705cd-1c2c-4622-a8c5-40518f72cc4e"/>
-					<textElement textAlignment="Right">
-						<font fontName="Verdana" size="12"/>
-					</textElement>
-					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
-				</textField>
 				<textField>
-					<reportElement x="0" y="3" width="369" height="29" forecolor="#FFFFFF" uuid="2368182e-1acb-4c78-992d-7cf7d056ca05"/>
+					<reportElement x="0" y="3" width="387" height="29" forecolor="#FFFFFF" uuid="2368182e-1acb-4c78-992d-7cf7d056ca05"/>
 					<textElement>
 						<font fontName="Verdana" size="20" isBold="false"/>
 					</textElement>
-					<textFieldExpression><![CDATA["Ventas al Cliente: "+$P{nombre}]]></textFieldExpression>
+					<textFieldExpression><![CDATA["Ventas al Cliente:$F{clientes_primer_nombre} $F{clientes_primer_apellido}]]></textFieldExpression>
 				</textField>
 			</frame>
 		</band>
@@ -188,7 +182,7 @@ WHERE
 	<columnFooter>
 		<band height="65" splitType="Stretch">
 			<textField>
-				<reportElement x="179" y="33" width="127" height="15" uuid="0ec4df06-dd8d-4d3a-8d82-e503ee34a73f"/>
+				<reportElement x="179" y="33" width="294" height="15" uuid="0ec4df06-dd8d-4d3a-8d82-e503ee34a73f"/>
 				<textElement textAlignment="Left"/>
 				<textFieldExpression><![CDATA[$V{ventas_total_2}+" Bsf"]]></textFieldExpression>
 			</textField>
@@ -207,7 +201,7 @@ WHERE
 				<text><![CDATA[Total Producto Vendidos]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="180" y="17" width="126" height="15" uuid="cef3c269-54f0-4409-a61e-1407dcf2589a"/>
+				<reportElement x="180" y="17" width="293" height="15" uuid="cef3c269-54f0-4409-a61e-1407dcf2589a"/>
 				<textFieldExpression><![CDATA[$V{ventas_cantidad_1}]]></textFieldExpression>
 			</textField>
 			<staticText>
@@ -225,7 +219,7 @@ WHERE
 				<text><![CDATA[Total Ventas]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="180" y="48" width="126" height="16" uuid="c88d4f6b-44ed-40fc-8a5a-daa0c13b79e1"/>
+				<reportElement x="180" y="48" width="293" height="16" uuid="c88d4f6b-44ed-40fc-8a5a-daa0c13b79e1"/>
 				<textFieldExpression><![CDATA[$V{ventas_cod_venta_2}]]></textFieldExpression>
 			</textField>
 		</band>
