@@ -3,13 +3,17 @@ package Paq_Interfaz;
 import Atxy2k.CustomTextField.RestrictedTextField;
 import com.sun.webkit.event.WCKeyEvent;
 import java.awt.Image;
+import java.awt.List;
 import java.awt.event.KeyEvent;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Random;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -18,6 +22,15 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanArrayDataSource;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.data.JRTableModelDataSource;
+import net.sf.jasperreports.view.JasperViewer;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -44,6 +57,7 @@ public class Frm_VentasA extends javax.swing.JFrame {
     DecimalFormatSymbols simbolos = DecimalFormatSymbols.getInstance(Locale.ENGLISH);
     private DecimalFormat format = new DecimalFormat("#0.00",simbolos);
     private DecimalFormat formato = new DecimalFormat("##########",simbolos);
+    Paq_Clases.Cla_Ruta ruta = new Paq_Clases.Cla_Ruta();
 
     public Frm_VentasA() {
         initComponents();
@@ -539,6 +553,9 @@ public class Frm_VentasA extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                tblMouseEntered(evt);
+            }
         });
         tbl.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -690,8 +707,8 @@ public class Frm_VentasA extends javax.swing.JFrame {
 
     private void btnProcesarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcesarActionPerformed
         if (verificacion()) {
+    boolean proceso = true;
 //se actualiza la BD con los datos de la tabla 1
-System.out.println("inicio de añadir a actualizar inventario");
         if (!txtC.getText().equals("")) {
             if (tbl2.getRowCount() > 0) {
                 for (int i = 0; i < tbl.getRowCount(); i++) {
@@ -709,7 +726,6 @@ System.out.println("inicio de añadir a actualizar inventario");
                         JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR LOS DATOS VERIFIQUE QUE SEAN CORRECTOS\n" + e.getMessage());
                     }
                 }
-System.out.println("inicio de añadir a descripcion");
                 //añadir en descripcion
                 String codigoDes = "";
                 for (int i = 0; i < tbl2.getRowCount(); i++) {
@@ -735,9 +751,36 @@ System.out.println("inicio de añadir a descripcion");
                         JOptionPane.showMessageDialog(null, "ERROR AL GUARDAR\ncodigo error:" + e.getMessage());
                     }
                 }
-
+//genero el reporte
+ try {
+            String dir = ruta.getRuta() + "\\report2.jrxml";
+            Map<String, Object> p2 = new HashMap<>();
+            p2.put("usuario", lblResponsable.getText());
+            p2.put("ruta", ruta.getRuta());
+            p2.put("registro", lblNumeroRegistro.getText());
+            p2.put("nombre", cbxN.getSelectedItem().toString());
+            p2.put("cedula", txtC.getText());
+            p2.put("cantidad", lblCan.getText());
+            if (txtDes.getText().equals("")) {
+                p2.put("descuento", "0");
+            } else {
+               p2.put("descuento", txtDes.getText());
+            }
+            p2.put("pago", cbxPago.getSelectedItem().toString());
+            p2.put("subtotal", lblSubtotal.getText());
+            p2.put("iva", lblIva.getText());
+            p2.put("total", lblTotal.getText());
+            p2.put("fecha", lblFecha.getText());
+            JasperReport reporteJasper = JasperCompileManager.compileReport(dir);
+            JasperPrint mostrarReporte = JasperFillManager.fillReport(reporteJasper, p2, new JRTableModelDataSource(tbl2.getModel()));
+            JasperViewer visor = new JasperViewer(mostrarReporte, false);
+            visor.setVisible(true);
+            JOptionPane.showMessageDialog(null, "Venta Exitosa");
+        } catch (JRException ex) {
+            JOptionPane.showMessageDialog(null, "OCURRIO UN ERROR AL CARGAR EL REPORTE SIN EMBARGO LA VENTA SE REALIZO CON EXITO.\n" + ex, "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+//fin genero reporte         
 // se almacena la venta en la bd
-System.out.println("inicion de añadir a ventas");
                 try {
                     String sql = "insert into ventas(cod_venta, cantidad, descripcion"
                             + ", total, fecha, tipo_de_pago, responsable, descuento, cod_cliente, id_valor)"
@@ -760,7 +803,6 @@ System.out.println("inicion de añadir a ventas");
                     ps.setInt(10, 1);
                     int n = ps.executeUpdate();
                     if (n > 0) {
-                        JOptionPane.showMessageDialog(null, "Venta Exitosa");
                         int y = modelo.getRowCount();
                         for (int z = 1; z <= y; z++) {
                             modelo.removeRow(0);
@@ -1005,6 +1047,10 @@ System.out.println("inicion de añadir a ventas");
             evt.consume();
         }
     }//GEN-LAST:event_txtDesKeyTyped
+
+    private void tblMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tblMouseEntered
 
     public String Desencadenar(String datos) {
         //funcion para separar cedula de la letra

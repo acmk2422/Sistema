@@ -654,12 +654,10 @@ public class Frm_Menu extends javax.swing.JFrame implements Runnable {
                 new Object[]{"Nuevo", "Existente"}, // null para YES, NO y CANCEL
                 "Nuevo");
         if (seleccion == 0) {
-            System.out.println("seleccionada opcion " + (seleccion + 1));
             Paq_Interfaz.Frm_InventarioA ventana = new Paq_Interfaz.Frm_InventarioA();
             ventana.setVisible(true);
             ventana.txtR.setText(usuario);
         } else if (seleccion == 1) {
-            System.out.println("seleccionada opcion " + (seleccion + 1));
             Paq_Interfaz.Frm_InventarioA2 ventana = new Paq_Interfaz.Frm_InventarioA2();
             ventana.setVisible(true);
             ventana.txtR.setText(usuario);
@@ -721,15 +719,23 @@ public class Frm_Menu extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+//Ejemplo 1 reporte con paso de conexion a bd
         try {
+            //asigno la conexion 
             conn = Paq_Base_Datos.Conexion_DB.geConnection();
+            //asigno ruta del reporte. la cual esta guardada en la bd
             String dir = ruta.getRuta() + "\\Reporte_Ventas.jrxml";
+            //creo objeto map y paso parametros de nombre de usuario y la ruta
             Map<String, Object> p2 = new HashMap<>();
             p2.put("usuario", usuario);
             p2.put("ruta", ruta.getRuta());
+            //creo variable del reporte compilado en la direccion dir
             JasperReport reporteJasper = JasperCompileManager.compileReport(dir);
+            //paso parametros para construccion del reporte, parametros: reporte, los parametros que usa y la conexion
             JasperPrint mostrarReporte = JasperFillManager.fillReport(reporteJasper, p2, conn);
+            //declaro el visor que mostrara el reporte
             JasperViewer visor = new JasperViewer(mostrarReporte, false);
+            //muestro el visor
             visor.setVisible(true);
         } catch (JRException ex) {
             JOptionPane.showMessageDialog(null, "OCURRIO UN ERROR AL CARGAR EL REPORTE.\n" + ex, "ERROR", JOptionPane.ERROR_MESSAGE);
