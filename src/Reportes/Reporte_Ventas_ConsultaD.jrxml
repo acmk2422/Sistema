@@ -63,25 +63,18 @@ where
 			<frame>
 				<reportElement mode="Opaque" x="3" y="66" width="553" height="32" forecolor="#000000" backcolor="#406040" uuid="e1de3e50-76cf-47c1-aacf-d10f80c11d7d"/>
 				<staticText>
-					<reportElement style="SubTitle" x="11" y="3" width="205" height="29" forecolor="#FFFFFF" uuid="07636396-daa2-4e76-8975-84f2882789d2"/>
+					<reportElement style="SubTitle" x="11" y="3" width="248" height="29" forecolor="#FFFFFF" uuid="07636396-daa2-4e76-8975-84f2882789d2"/>
 					<textElement>
 						<font fontName="Verdana" size="20" isBold="false"/>
 					</textElement>
-					<text><![CDATA[Ventas Realizadas fecha:]]></text>
+					<text><![CDATA[Ventas Realizadas el ]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="216" y="3" width="80" height="29" forecolor="#FFFFFF" uuid="feff0c55-35d1-435a-a0de-fa6c5cda6e8f"/>
+					<reportElement x="261" y="2" width="234" height="29" forecolor="#FFFFFF" uuid="feff0c55-35d1-435a-a0de-fa6c5cda6e8f"/>
 					<textElement verticalAlignment="Middle">
-						<font fontName="Verdana" size="10" isBold="true"/>
+						<font fontName="Verdana" size="20" isBold="false"/>
 					</textElement>
 					<textFieldExpression><![CDATA["Dia: "+$P{Fecha}]]></textFieldExpression>
-				</textField>
-				<textField pattern="EEEEE dd MMMMM yyyy">
-					<reportElement x="404" y="12" width="144" height="20" forecolor="#FFFFFF" uuid="64a705cd-1c2c-4622-a8c5-40518f72cc4e"/>
-					<textElement textAlignment="Right">
-						<font fontName="Verdana" size="12"/>
-					</textElement>
-					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 				</textField>
 			</frame>
 		</band>

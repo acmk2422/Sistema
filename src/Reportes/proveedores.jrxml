@@ -48,13 +48,6 @@ FROM
 			</frame>
 			<frame>
 				<reportElement mode="Opaque" x="0" y="67" width="553" height="32" forecolor="#000000" backcolor="#406040" uuid="cc18e09d-9b36-4868-9454-2f4b842ce488"/>
-				<textField pattern="EEEEE dd MMMMM yyyy">
-					<reportElement x="409" y="12" width="144" height="20" forecolor="#FFFFFF" uuid="70e92d64-c1d1-437b-b779-ff83b8b9445f"/>
-					<textElement textAlignment="Right">
-						<font fontName="Verdana" size="12"/>
-					</textElement>
-					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
-				</textField>
 				<staticText>
 					<reportElement style="SubTitle" x="11" y="3" width="281" height="29" forecolor="#FFFFFF" uuid="5247a56f-05d1-474b-af10-35b0d5fc24db"/>
 					<textElement>
@@ -91,15 +84,15 @@ FROM
 					<text><![CDATA[Descripcion]]></text>
 				</staticText>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="88" y="136" width="98" height="18" uuid="2a09777c-a189-4882-b0de-ec6ab2f0389e"/>
+					<reportElement style="Detail" positionType="Float" x="88" y="136" width="401" height="18" uuid="2a09777c-a189-4882-b0de-ec6ab2f0389e"/>
 					<textElement textAlignment="Left">
 						<font fontName="Verdana" size="10"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{proveedores_descripcion}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="88" y="0" width="18" height="18" uuid="05c180de-6db9-46fa-9127-95a5e423db20"/>
-					<textElement textAlignment="Center">
+					<reportElement style="Detail" positionType="Float" x="88" y="0" width="401" height="18" uuid="05c180de-6db9-46fa-9127-95a5e423db20"/>
+					<textElement textAlignment="Left">
 						<font fontName="Verdana" size="10"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{proveedores_cod_proveedor}]]></textFieldExpression>
@@ -126,7 +119,7 @@ FROM
 					<text><![CDATA[Rif]]></text>
 				</staticText>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="88" y="47" width="98" height="18" uuid="2f816806-e40b-4626-af64-993809dd525a"/>
+					<reportElement style="Detail" positionType="Float" x="88" y="47" width="401" height="18" uuid="2f816806-e40b-4626-af64-993809dd525a"/>
 					<textElement textAlignment="Left">
 						<font fontName="Verdana" size="10"/>
 					</textElement>
@@ -140,7 +133,7 @@ FROM
 					<text><![CDATA[Nombre]]></text>
 				</staticText>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="88" y="91" width="98" height="18" uuid="1a3e2e87-f204-4ac9-9d2f-38b2f0e2489f"/>
+					<reportElement style="Detail" positionType="Float" x="88" y="91" width="401" height="18" uuid="1a3e2e87-f204-4ac9-9d2f-38b2f0e2489f"/>
 					<textElement textAlignment="Left">
 						<font fontName="Verdana" size="10"/>
 					</textElement>
@@ -154,21 +147,21 @@ FROM
 					<text><![CDATA[Direccion]]></text>
 				</staticText>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="88" y="113" width="98" height="18" uuid="ae20016d-c9a2-4ad0-824e-9c12259fa1c6"/>
+					<reportElement style="Detail" positionType="Float" x="88" y="113" width="401" height="18" uuid="ae20016d-c9a2-4ad0-824e-9c12259fa1c6"/>
 					<textElement textAlignment="Left">
 						<font fontName="Verdana" size="10"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{proveedores_telefono1}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="88" y="69" width="99" height="18" uuid="335c151d-ec54-4ce0-8b79-fe55cec926b9"/>
+					<reportElement style="Detail" positionType="Float" x="88" y="69" width="402" height="18" uuid="335c151d-ec54-4ce0-8b79-fe55cec926b9"/>
 					<textElement textAlignment="Left">
 						<font fontName="Verdana" size="10"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{proveedores_email}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="88" y="24" width="99" height="18" uuid="8cc09342-54b0-4c39-88ff-e525aea3ba55"/>
+					<reportElement style="Detail" positionType="Float" x="88" y="24" width="402" height="18" uuid="8cc09342-54b0-4c39-88ff-e525aea3ba55"/>
 					<textElement textAlignment="Left">
 						<font fontName="Verdana" size="10"/>
 					</textElement>

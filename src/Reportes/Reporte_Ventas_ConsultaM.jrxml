@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a6622fa1-389a-4a31-bc1a-4740f6efcc2e">
 	<property name="ireport.zoom" value="1.5"/>
-	<property name="ireport.x" value="0"/>
+	<property name="ireport.x" value="17"/>
 	<property name="ireport.y" value="0"/>
 	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
 	<style name="SubTitle" forecolor="#666666" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
@@ -63,25 +63,18 @@ WHERE
 			<frame>
 				<reportElement mode="Opaque" x="3" y="66" width="553" height="32" forecolor="#000000" backcolor="#406040" uuid="e1de3e50-76cf-47c1-aacf-d10f80c11d7d"/>
 				<staticText>
-					<reportElement style="SubTitle" x="12" y="3" width="205" height="29" forecolor="#FFFFFF" uuid="07636396-daa2-4e76-8975-84f2882789d2"/>
+					<reportElement style="SubTitle" x="12" y="3" width="273" height="29" forecolor="#FFFFFF" uuid="07636396-daa2-4e76-8975-84f2882789d2"/>
 					<textElement>
 						<font fontName="Verdana" size="20" isBold="false"/>
 					</textElement>
-					<text><![CDATA[Ventas Realizadas fecha:]]></text>
+					<text><![CDATA[Ventas Realizadas en el ]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="217" y="3" width="80" height="29" forecolor="#FFFFFF" uuid="feff0c55-35d1-435a-a0de-fa6c5cda6e8f"/>
+					<reportElement x="285" y="0" width="235" height="29" forecolor="#FFFFFF" uuid="feff0c55-35d1-435a-a0de-fa6c5cda6e8f"/>
 					<textElement verticalAlignment="Middle">
-						<font fontName="Verdana" size="10" isBold="true"/>
+						<font fontName="Verdana" size="20" isBold="false"/>
 					</textElement>
 					<textFieldExpression><![CDATA["Mes: "+$P{Fecha}]]></textFieldExpression>
-				</textField>
-				<textField pattern="EEEEE dd MMMMM yyyy">
-					<reportElement x="404" y="12" width="144" height="20" forecolor="#FFFFFF" uuid="64a705cd-1c2c-4622-a8c5-40518f72cc4e"/>
-					<textElement textAlignment="Right">
-						<font fontName="Verdana" size="12"/>
-					</textElement>
-					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 				</textField>
 			</frame>
 		</band>
@@ -213,7 +206,7 @@ WHERE
 					<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 				</textField>
 				<textField pattern="dd-MMM-yyyy">
-					<reportElement x="18" y="4" width="100" height="20" forecolor="#FFFFFF" uuid="2d63c194-34de-49f5-b796-897788a1c426"/>
+					<reportElement x="18" y="4" width="147" height="20" forecolor="#FFFFFF" uuid="2d63c194-34de-49f5-b796-897788a1c426"/>
 					<textElement>
 						<font fontName="Verdana"/>
 					</textElement>
