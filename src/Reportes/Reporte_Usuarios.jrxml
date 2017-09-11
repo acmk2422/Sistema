@@ -125,12 +125,12 @@ FROM
 					<textElement textAlignment="Center"/>
 					<textFieldExpression><![CDATA[$F{usuario_nombret}]]></textFieldExpression>
 				</textField>
-				<textField>
+				<textField isBlankWhenNull="true">
 					<reportElement x="350" y="0" width="104" height="20" uuid="16a92db0-e26d-4e0b-94db-bd2e6cd27826"/>
 					<textElement textAlignment="Center"/>
 					<textFieldExpression><![CDATA[$F{usuario_fecha_creacion}]]></textFieldExpression>
 				</textField>
-				<textField>
+				<textField isBlankWhenNull="true">
 					<reportElement x="456" y="0" width="96" height="20" uuid="4d3a44fb-e949-41c9-bf42-dd34298c61be"/>
 					<textElement textAlignment="Center"/>
 					<textFieldExpression><![CDATA[$F{usuario_ultimo_acceso}]]></textFieldExpression>

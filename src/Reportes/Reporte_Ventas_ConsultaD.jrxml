@@ -148,7 +148,7 @@ where
 					<textElement textAlignment="Center"/>
 					<textFieldExpression><![CDATA[$F{ventas_cantidad}]]></textFieldExpression>
 				</textField>
-				<textField isBlankWhenNull="true">
+				<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
 					<reportElement x="362" y="0" width="79" height="20" uuid="5ebae214-0900-4940-b870-37b4b8473d69"/>
 					<textElement textAlignment="Center"/>
 					<textFieldExpression><![CDATA[$F{ventas_total}]]></textFieldExpression>

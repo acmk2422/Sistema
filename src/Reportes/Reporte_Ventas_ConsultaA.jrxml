@@ -136,7 +136,7 @@ WHERE
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{ventas_cantidad}]]></textFieldExpression>
 			</textField>
-			<textField isBlankWhenNull="true">
+			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
 				<reportElement x="370" y="0" width="79" height="20" uuid="3a47a250-7c93-4680-99c5-85efdc8c1a21"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{ventas_total}]]></textFieldExpression>

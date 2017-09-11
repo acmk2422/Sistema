@@ -100,7 +100,7 @@ WHERE
 					<textElement>
 						<font fontName="Verdana" size="20" isBold="false"/>
 					</textElement>
-					<textFieldExpression><![CDATA["Ventas al Cliente:$F{clientes_primer_nombre} $F{clientes_primer_apellido}]]></textFieldExpression>
+					<textFieldExpression><![CDATA["Ventas al Cliente: "+$P{nombre}]]></textFieldExpression>
 				</textField>
 			</frame>
 		</band>
@@ -156,10 +156,10 @@ WHERE
 					<textElement textAlignment="Center"/>
 					<textFieldExpression><![CDATA[$F{ventas_cod_venta}]]></textFieldExpression>
 				</textField>
-				<textField>
+				<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="false">
 					<reportElement x="323" y="0" width="100" height="20" uuid="c74a62fa-6f8b-4f31-83a5-adf77fd449af"/>
 					<textElement textAlignment="Center"/>
-					<textFieldExpression><![CDATA[$F{ventas_total}+" Bsf"]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{ventas_total}]]></textFieldExpression>
 				</textField>
 				<textField>
 					<reportElement x="206" y="1" width="99" height="19" uuid="ac2d13b7-864d-43b4-85c8-5d9350db2fb0"/>
@@ -181,10 +181,10 @@ WHERE
 	</detail>
 	<columnFooter>
 		<band height="65" splitType="Stretch">
-			<textField>
+			<textField pattern="#,##0.00;-#,##0.00">
 				<reportElement x="179" y="33" width="294" height="15" uuid="0ec4df06-dd8d-4d3a-8d82-e503ee34a73f"/>
 				<textElement textAlignment="Left"/>
-				<textFieldExpression><![CDATA[$V{ventas_total_2}+" Bsf"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$V{ventas_total_2}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="8" y="32" width="172" height="16" uuid="0129b08f-c314-4f2f-96d3-22dff62e6598"/>

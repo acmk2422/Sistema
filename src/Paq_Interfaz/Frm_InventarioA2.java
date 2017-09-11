@@ -421,9 +421,10 @@ if (this.verificacion()){
         }
         cantidad += Integer.parseInt(txtCa.getText());
         try {
-            String sql = "UPDATE inventario set cantidad=? WHERE cod_producto = '"+model.getValueAt(fila, 0)+"'";
+            String sql = "UPDATE inventario set cantidad=?, fecha_ingreso=? WHERE cod_producto = '"+model.getValueAt(fila, 0)+"'";
             PreparedStatement ps = operaciones.Actualizar(sql);
             ps.setInt(1, cantidad);
+            ps.setString(2, txtF.getText());
             int n = ps.executeUpdate();
                 if (n > 0) {
                     JOptionPane.showMessageDialog(null, "PRODUCTO AÑADIDO CON EXITO");

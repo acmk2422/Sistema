@@ -31,7 +31,9 @@
      inventario."cod_producto" AS inventario_cod_producto,
      inventario."cod_proveedor" AS inventario_cod_proveedor
 FROM
-     "public"."inventario" inventario]]>
+     "public"."inventario" inventario
+where
+      inventario."linea_producto" = '$P!{Fecha}']]>
 	</queryString>
 	<field name="inventario_nombre_producto" class="java.lang.String"/>
 	<field name="inventario_descripcion" class="java.lang.String"/>
@@ -58,20 +60,13 @@ FROM
 			</frame>
 			<frame>
 				<reportElement mode="Opaque" x="2" y="70" width="795" height="32" forecolor="#000000" backcolor="#406040" uuid="9b141f3d-7ad2-46ef-9adf-188ac335ee37"/>
-				<textField pattern="EEEEE dd MMMMM yyyy">
-					<reportElement x="651" y="12" width="144" height="20" forecolor="#FFFFFF" uuid="d7fb909c-5e43-4502-9300-ac9efb234233"/>
-					<textElement textAlignment="Right">
-						<font fontName="Verdana" size="12"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="16" y="0" width="728" height="32" forecolor="#FFFFFF" uuid="1ff2d85e-6da4-4a48-948c-d1bd362a193b"/>
+					<textElement>
+						<font fontName="Verdana" size="22" isBold="false"/>
 					</textElement>
-					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+					<textFieldExpression><![CDATA["Listado de inventario Linea: "+$P{Fecha}]]></textFieldExpression>
 				</textField>
-				<staticText>
-					<reportElement style="SubTitle" x="14" y="3" width="316" height="29" forecolor="#FFFFFF" uuid="df9e24a7-53fe-4e73-9486-202540657e68"/>
-					<textElement textAlignment="Left">
-						<font fontName="Verdana" size="22" isBold="true"/>
-					</textElement>
-					<text><![CDATA[Listado de Productos]]></text>
-				</staticText>
 			</frame>
 		</band>
 	</title>
@@ -88,21 +83,21 @@ FROM
 				<text><![CDATA[Codigo]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="75" y="0" width="100" height="18" forecolor="#000000" uuid="b01816a2-a7fd-4fe1-a30c-ec3c1c508107"/>
+				<reportElement style="Column header" x="74" y="0" width="100" height="18" forecolor="#000000" uuid="b01816a2-a7fd-4fe1-a30c-ec3c1c508107"/>
 				<textElement textAlignment="Center">
 					<font fontName="Verdana" size="12" isBold="true" isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[Nombre]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="175" y="0" width="85" height="18" forecolor="#000000" uuid="99e299f3-7b14-43dc-b268-c8e07fc3aae2"/>
+				<reportElement style="Column header" x="174" y="0" width="85" height="18" forecolor="#000000" uuid="99e299f3-7b14-43dc-b268-c8e07fc3aae2"/>
 				<textElement textAlignment="Center">
 					<font fontName="Verdana" size="12" isBold="true" isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[Linea]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="266" y="0" width="266" height="18" forecolor="#000000" uuid="8766a8e9-f6ff-483b-bd1e-462056f98457"/>
+				<reportElement style="Column header" x="264" y="0" width="268" height="18" forecolor="#000000" uuid="8766a8e9-f6ff-483b-bd1e-462056f98457"/>
 				<textElement textAlignment="Center">
 					<font fontName="Verdana" size="12" isBold="true" isUnderline="false"/>
 				</textElement>
@@ -143,21 +138,21 @@ FROM
 					<textFieldExpression><![CDATA[$F{inventario_cod_producto}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="75" y="0" width="100" height="18" uuid="839424e3-3951-49a9-96e6-6771bdfc13cf"/>
+					<reportElement style="Detail" positionType="Float" x="74" y="0" width="100" height="18" uuid="839424e3-3951-49a9-96e6-6771bdfc13cf"/>
 					<textElement textAlignment="Center">
 						<font fontName="Verdana" size="10" isBold="false"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{inventario_nombre_producto}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="175" y="0" width="85" height="18" uuid="c8014b85-8c67-4cfc-9bd8-1e83946eb5cd"/>
+					<reportElement style="Detail" positionType="Float" x="174" y="0" width="85" height="18" uuid="c8014b85-8c67-4cfc-9bd8-1e83946eb5cd"/>
 					<textElement textAlignment="Center">
 						<font fontName="Verdana" size="10" isBold="false"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{inventario_linea_producto}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="267" y="0" width="265" height="18" uuid="97d383ed-0c4b-4724-921a-6eebe4e6dbfc"/>
+					<reportElement style="Detail" positionType="Float" x="265" y="0" width="267" height="18" uuid="97d383ed-0c4b-4724-921a-6eebe4e6dbfc"/>
 					<textElement textAlignment="Center">
 						<font fontName="Verdana" size="10" isBold="false"/>
 					</textElement>
