@@ -252,7 +252,6 @@ public class Frm_ClientesC extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         cbxC1 = new javax.swing.JComboBox<>();
         txtB = new javax.swing.JTextField();
-        btnC = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl = new javax.swing.JTable();
         btnE = new javax.swing.JButton();
@@ -331,17 +330,6 @@ public class Frm_ClientesC extends javax.swing.JFrame {
             }
         });
         jPanel1.add(txtB, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 30, 180, 30));
-
-        btnC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Consultar-10.png"))); // NOI18N
-        btnC.setContentAreaFilled(false);
-        btnC.setEnabled(false);
-        btnC.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Consultar-14.png"))); // NOI18N
-        btnC.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnC, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 30, 112, 32));
 
         jScrollPane1.setEnabled(false);
 
@@ -899,122 +887,11 @@ int respuesta = JOptionPane.showConfirmDialog(null, "¿ESTA SEGURO QUE DESEA ELI
         
     }//GEN-LAST:event_txtT2ActionPerformed
 
-    private void btnCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCActionPerformed
-boolean resultado = false;
-this.Borrar(3);
-this.Deshabilitar(3);
-if(cbxOpcion.getSelectedIndex()==1){
-    cbxC1.setEnabled(true);
-        try {
-            String[]titulos={"Codigo","Empresa","Primer Nombre","Segundo Nombre","Primer Apellido","Segundo Apellido","Cedula/RIF","Telefono Principal",
-                "Telefono Secundario","Correo Electronico"};
-            String sql = "select * from clientes where cedula= '"+this.cbxC1.getSelectedItem()+"-"+this.txtB.getText()+ "'";
-            model = new DefaultTableModel(null, titulos);
-            ResultSet rs = operaciones.Consultar(sql);
-            String[]fila=new String[10];
-            while(rs.next()){
-            fila[0]=rs.getString("cod_cliente");
-            fila[1]=rs.getString("nombre_empresa");
-            fila[2]=rs.getString("primer_nombre");
-            fila[3]=rs.getString("segundo_nombre");
-            fila[4]=rs.getString("primer_apellido");
-            fila[5]=rs.getString("segundo_apellido"); 
-            fila[6]=rs.getString("cedula");
-            fila[7]=rs.getString("telefono1");
-            fila[8]=rs.getString("telefono2");
-            fila[9]=rs.getString("email");
-            model.addRow(fila);  
-            resultado = true;
-            }
-            if (resultado) {
-                tbl.setModel(model);
-            } else {
-                JOptionPane.showMessageDialog(null, "Sin Resultados en la Busqueda");
-                this.llenar();
-                resultado = false;
-            }
-            
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-        }
-    }else if(cbxOpcion.getSelectedIndex()==0){
-        cbxC1.setEnabled(false);
-        try {
-            String[]titulos={"Codigo","Empresa","Primer Nombre","Segundo Nombre","Primer Apellido","Segundo Apellido","Cedula/RIF","Telefono Principal",
-                "Telefono Secundario","Correo Electronico"};
-            String sql = "select * from clientes where primer_nombre= '" + this.txtB.getText() + "'";
-            model = new DefaultTableModel(null, titulos);
-            ResultSet rs = operaciones.Consultar(sql);
-            String[]fila=new String[10];
-                while(rs.next()){
-                fila[0]=rs.getString("cod_cliente");
-                fila[1]=rs.getString("nombre_empresa");
-                fila[2]=rs.getString("primer_nombre");
-                fila[3]=rs.getString("segundo_nombre");
-                fila[4]=rs.getString("primer_apellido");
-                fila[5]=rs.getString("segundo_apellido"); 
-                fila[6]=rs.getString("cedula");
-                fila[7]=rs.getString("telefono1");
-                fila[8]=rs.getString("telefono2");
-                fila[9]=rs.getString("email");
-                model.addRow(fila);
-                resultado = true;
-            }
-            if (resultado) {
-                tbl.setModel(model);
-            } else {
-                JOptionPane.showMessageDialog(null, "Sin Resultados en la Busqueda");
-                this.llenar();
-                resultado = false;
-            }
-            operaciones.conn.close();
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-        }
-    }else if(cbxOpcion.getSelectedIndex()==2){
-        cbxC1.setEnabled(false);
-        try {
-            String[]titulos={"Codigo","Empresa","Primer Nombre","Segundo Nombre","Primer Apellido","Segundo Apellido","Cedula/RIF","Telefono Principal",
-                "Telefono Secundario","Correo Electronico"};
-            String sql = "select * from clientes where nombre_empresa= '" + this.txtB.getText() + "'";
-            model = new DefaultTableModel(null, titulos);
-            ResultSet rs = operaciones.Consultar(sql);
-            String[]fila=new String[10];
-                while(rs.next()){
-                fila[0]=rs.getString("cod_cliente");
-                fila[1]=rs.getString("nombre_empresa");
-                fila[2]=rs.getString("primer_nombre");
-                fila[3]=rs.getString("segundo_nombre");
-                fila[4]=rs.getString("primer_apellido");
-                fila[5]=rs.getString("segundo_apellido"); 
-                fila[6]=rs.getString("cedula");
-                fila[7]=rs.getString("telefono1");
-                fila[8]=rs.getString("telefono2");
-                fila[9]=rs.getString("email");
-                model.addRow(fila);
-                resultado = true;
-            }
-            if (resultado) {
-                tbl.setModel(model);
-            } else {
-                JOptionPane.showMessageDialog(null, "Sin Resultados en la Busqueda");
-                this.llenar();
-                resultado = false;
-            }
-            operaciones.conn.close();
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-        }
-    }
-    }//GEN-LAST:event_btnCActionPerformed
-
     private void cbxOpcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxOpcionActionPerformed
     if(cbxOpcion.getSelectedIndex()==1){
         cbxC1.setEnabled(true);
-        btnC.setEnabled(true);
     }else{
         cbxC1.setEnabled(false);
-        btnC.setEnabled(false);
     }
     }//GEN-LAST:event_cbxOpcionActionPerformed
 
@@ -1062,6 +939,7 @@ int c = evt.getKeyChar();
         }
     }
     if(cbxOpcion.getSelectedIndex()==0){
+        if (c >= 65 && c <= 90 || c >= 97 && c <= 122 || c >= 128 && c <= 165 || c == evt.VK_SPACE ||c == WCKeyEvent.VK_BACK) {
         try {
             String[]titulos={"Codigo","Empresa","Primer Nombre","Segundo Nombre","Primer Apellido","Segundo Apellido","Cedula/RIF","Telefono Principal",
                 "Telefono Secundario","Correo Electronico"};
@@ -1086,6 +964,10 @@ int c = evt.getKeyChar();
             operaciones.conn.close();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        }else{
+            JOptionPane.showMessageDialog(null, "Ingrese Solo Letras","ERROR",JOptionPane.ERROR_MESSAGE);
+            this.txtB.setText("");
         }
     }
         if(cbxOpcion.getSelectedIndex()==2){
@@ -1304,7 +1186,6 @@ private boolean EventoKeyType(int valor, int limitacion){
             }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnC;
     private javax.swing.JButton btnE;
     public javax.swing.JComboBox<String> cbxC;
     private javax.swing.JComboBox<String> cbxC1;
