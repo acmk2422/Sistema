@@ -26,6 +26,7 @@ import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRTableModelDataSource;
 import net.sf.jasperreports.view.JasperViewer;
 
 /*
@@ -179,6 +180,7 @@ public class Frm_Menu extends javax.swing.JFrame implements Runnable {
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem12 = new javax.swing.JMenuItem();
         jMenuItem16 = new javax.swing.JMenuItem();
+        jMenuItem28 = new javax.swing.JMenuItem();
         jMenu8 = new javax.swing.JMenu();
         jMenuItem17 = new javax.swing.JMenuItem();
         jMenuItem23 = new javax.swing.JMenuItem();
@@ -691,6 +693,15 @@ public class Frm_Menu extends javax.swing.JFrame implements Runnable {
             }
         });
         jMenu6.add(jMenuItem16);
+
+        jMenuItem28.setFont(new java.awt.Font("Verdana", 3, 12)); // NOI18N
+        jMenuItem28.setText("Registro de Venta");
+        jMenuItem28.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem28ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem28);
 
         jMenu7.add(jMenu6);
 
@@ -1494,6 +1505,37 @@ try {
         }   
     }//GEN-LAST:event_jMenuItem27ActionPerformed
 
+    private void jMenuItem28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem28ActionPerformed
+String registro;
+        boolean entrada=true;
+        do{
+            if (entrada) {
+            registro=JOptionPane.showInputDialog(null,"Ingrese el numero de Registro a Consultar","",JOptionPane.QUESTION_MESSAGE);
+            entrada=registro.matches("\\d{1,9}");
+            } else {
+            registro=JOptionPane.showInputDialog(null,"Ingrese el numero de Registro Valido\nQue sea solo numerico y no exceda los 9 digitos\nEj: 123456789","Validacion",JOptionPane.WARNING_MESSAGE);
+            entrada=registro.matches("\\d{1,9}");
+            }  
+}while(!entrada);
+        if (entrada) {
+            try {
+            conn = Paq_Base_Datos.Conexion_DB.geConnection();
+            String dir = ruta.getRuta() + "\\report3.jrxml";
+            Map<String, Object> p2 = new HashMap<>();
+            p2.put("usuario", lblUsuario.getText());
+            p2.put("ruta", ruta.getRuta());
+            p2.put("registro", registro);
+            JasperReport reporteJasper = JasperCompileManager.compileReport(dir);
+            JasperPrint mostrarReporte = JasperFillManager.fillReport(reporteJasper, p2, conn);
+            JasperViewer visor = new JasperViewer(mostrarReporte, false);
+            visor.setVisible(true);
+        } catch (JRException ex) {
+            JOptionPane.showMessageDialog(null, "OCURRIO UN ERROR AL CARGAR EL REPORTE SIN EMBARGO LA VENTA SE REALIZO CON EXITO.\n" + ex, "ERROR", JOptionPane.ERROR_MESSAGE);
+        } 
+        }
+               // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem28ActionPerformed
+
     public void run() {
         //metodo run para que hilo inicie llamando la funcion calcula tiempo y establece el tiempo en el label
         Thread ct = Thread.currentThread();
@@ -1599,6 +1641,7 @@ try {
     private javax.swing.JMenuItem jMenuItem25;
     private javax.swing.JMenuItem jMenuItem26;
     private javax.swing.JMenuItem jMenuItem27;
+    private javax.swing.JMenuItem jMenuItem28;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
