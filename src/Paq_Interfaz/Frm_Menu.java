@@ -517,7 +517,7 @@ public class Frm_Menu extends javax.swing.JFrame implements Runnable {
         lblFondo.setMaximumSize(new java.awt.Dimension(700, 400));
         lblFondo.setMinimumSize(new java.awt.Dimension(700, 400));
         lblFondo.setPreferredSize(new java.awt.Dimension(700, 400));
-        jPanel2.add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 620, 330));
+        jPanel2.add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 320));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 320));
 
