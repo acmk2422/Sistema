@@ -92,7 +92,7 @@ public class Frm_InventarioA extends javax.swing.JFrame {
     
     public void Llenar(){
         try {
-            String sql = "select * from proveedores";
+            String sql = "select * from proveedores where estado='activo'";
             ResultSet rs= operaciones.Consultar(sql);
             while(rs.next()){
             cbxP.addItem(rs.getString("nombre")); 

@@ -203,7 +203,7 @@ public class Frm_InventarioC extends javax.swing.JFrame {
                 txtBKeyReleased(evt);
             }
         });
-        jPanel1.add(txtB, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 30, 180, 30));
+        jPanel1.add(txtB, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 30, 200, 30));
 
         jScrollPane1.setEnabled(false);
 
@@ -669,7 +669,6 @@ public class Frm_InventarioC extends javax.swing.JFrame {
     private void txtBKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBKeyReleased
 int c = evt.getKeyChar();
         if(cbxOpcion.getSelectedIndex()==0){
-            if (c >= 65 && c <= 90 || c >= 97 && c <= 122 || c >= 128 && c <= 165 || c == WCKeyEvent.VK_BACK) {
             try {
             String[]titulos={"Codigo","Nombre","Descripcion","Linea","Precio",
                 "Cantidad"};
@@ -694,10 +693,7 @@ int c = evt.getKeyChar();
             } catch (SQLException e) {
                JOptionPane.showMessageDialog(null, e.getMessage());    
     }
-        }else{
-            JOptionPane.showMessageDialog(null, "Ingrese Solo Letras","ERROR",JOptionPane.ERROR_MESSAGE);
-            this.txtB.setText("");
-        }
+        
     }
         if (!"".equals(txtB.getText())){
         if(cbxOpcion.getSelectedIndex()==1){
