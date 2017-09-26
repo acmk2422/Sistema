@@ -40,6 +40,7 @@ public class Frm_ClientesA extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         this.Ajustar(lblIcono, icon1);
         this.Ajustar(lblLogo, icon2);
+        this.llenarcombo();
     }
         
     public void restringir(){
@@ -71,19 +72,26 @@ public class Frm_ClientesA extends javax.swing.JFrame {
         restricted11.setOnlyText(true);
         restricted11.setLimit(10);
          
-          RestrictedTextField restricted14= new RestrictedTextField(this.txtNe);
-        restricted14.setOnlyText(true);
+          RestrictedTextField restricted14= new RestrictedTextField(this.txtNe,"1234567890qwertyuiopasdfghjklñzxcvbnm");
         restricted14.setLimit(10);
          
     
          RestrictedTextField restricted7 = new RestrictedTextField(this.txtE);
          restricted7.setLimit(40);
-         
-      
-         
-         
     }
     
+    public void llenarcombo(){
+        cbxC.removeAllItems();
+        if (cbxN.isSelected()) {
+            cbxC.addItem("V");
+            cbxC.addItem("E");
+        } else {
+            cbxC.addItem("J");
+            cbxC.addItem("G");
+            cbxC.addItem("C");
+        }
+        
+    }
     public void Ajustar(JLabel label, ImageIcon icon){
         //esta funcion ajusta un icono(parametro) al tamaño del label (parametro)
         Icon icono = new ImageIcon(icon.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_DEFAULT));
@@ -262,7 +270,7 @@ public class Frm_ClientesA extends javax.swing.JFrame {
         jLabel11.setText("Primer Nombre");
         jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 100, 20));
 
-        cbxC.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "V", "E", "P", "G", "J", "C" }));
+        cbxC.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "V", "E", "G ", "J ", "C" }));
         jPanel2.add(cbxC, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, 50, -1));
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -486,6 +494,7 @@ if (this.verificacion()){
 
     private void cbxNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxNActionPerformed
      if (cbxN.isSelected()) {
+         llenarcombo();
             cbxJ.setSelected(false);
             txtNe.setText(null);
             txtNe.setEnabled(false);
@@ -510,6 +519,7 @@ if (this.verificacion()){
             txtN2.setEnabled(false);
             txtA1.setEnabled(false);
             txtA2.setEnabled(false); 
+            llenarcombo();
         } else {
     }
     }//GEN-LAST:event_cbxJActionPerformed

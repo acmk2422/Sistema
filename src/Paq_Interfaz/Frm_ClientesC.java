@@ -622,7 +622,7 @@ public class Frm_ClientesC extends javax.swing.JFrame {
         jLabel11.setText("Primer Nombre");
         jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 100, 20));
 
-        cbxC.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "V", "E", "P", "G", "J", "C" }));
+        cbxC.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "V", "E", "G ", "J ", "C" }));
         cbxC.setEnabled(false);
         jPanel2.add(cbxC, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, 50, -1));
 

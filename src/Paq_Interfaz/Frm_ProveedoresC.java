@@ -370,7 +370,7 @@ public class Frm_ProveedoresC extends javax.swing.JFrame {
         });
         jPanel4.add(cbxP, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 180, 30));
 
-        cbxC.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "V", "E", "P", "G", "J", "C" }));
+        cbxC.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "V", "E", "G ", "J ", "C" }));
         jPanel4.add(cbxC, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, 50, 30));
 
         jLabel22.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N

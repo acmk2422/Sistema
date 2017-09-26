@@ -37,9 +37,6 @@ public class Frm_InventarioA extends javax.swing.JFrame {
     Paq_Base_Datos.Operaciones_BD operaciones = new Paq_Base_Datos.Operaciones_BD();
     Paq_Clases.Cla_Fecha fecha = new Paq_Clases.Cla_Fecha();
     private boolean update;
-    private DecimalFormat format = new DecimalFormat("##,###,###,##0.00");
-    float resultado = 0;
-
     
     public Frm_InventarioA() {
         initComponents();
@@ -92,7 +89,7 @@ public class Frm_InventarioA extends javax.swing.JFrame {
     
     public void Llenar(){
         try {
-            String sql = "select * from proveedores where estado='activo'";
+            String sql = "select * from proveedores";
             ResultSet rs= operaciones.Consultar(sql);
             while(rs.next()){
             cbxP.addItem(rs.getString("nombre")); 
@@ -159,12 +156,12 @@ public class Frm_InventarioA extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         cbxP = new javax.swing.JComboBox<>();
         jButton4 = new javax.swing.JButton();
+        jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
-        jLabel27 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         txtCa = new javax.swing.JTextField();
@@ -194,7 +191,6 @@ public class Frm_InventarioA extends javax.swing.JFrame {
         jLabel25 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
         lblLogo = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         lblFondo = new javax.swing.JLabel();
@@ -283,6 +279,11 @@ public class Frm_InventarioA extends javax.swing.JFrame {
         });
         jPanel3.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 100, 30, 30));
 
+        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel17.setText("*");
+        jPanel3.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 20, 30));
+
         jLabel18.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(204, 0, 0));
         jLabel18.setText("*");
@@ -310,11 +311,6 @@ public class Frm_InventarioA extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 100, 30, 30));
-
-        jLabel27.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel27.setForeground(new java.awt.Color(204, 0, 0));
-        jLabel27.setText("*");
-        jPanel3.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 20, 30));
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 330, 270));
 
@@ -506,10 +502,6 @@ public class Frm_InventarioA extends javax.swing.JFrame {
         jLabel28.setText("*");
         jPanel4.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, 20, 30));
 
-        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        jLabel17.setText("use punto (.) para separar decimales");
-        jPanel4.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 220, 30));
-
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 240, 330, 120));
 
         lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tornavica.png"))); // NOI18N
@@ -558,7 +550,7 @@ if (this.verificacion()){
             ps.setString(7, txtF.getText().toLowerCase());
             ps.setString(8, txtR.getText().toLowerCase());
             if(!"".equals(txtTotal.getText())){
-              ps.setFloat(9, resultado);  
+              ps.setFloat(9, Float.parseFloat(txtTotal.getText()));  
             }else{
               ps.setFloat(9, 0); 
             }
@@ -605,7 +597,11 @@ if (this.verificacion()){
     }//GEN-LAST:event_txtPrecioKeyPressed
 
     private void txtPrecioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyReleased
-    float iva = 0, margen = 0, precio=0;
+    float resultado = 0, iva = 0, margen = 0, precio=0;
+    if (txtPrecio.getText().equals("0")||txtPrecio.getText().equals(".")) {
+            txtPrecio.setText("");
+    }
+    
     if (!txtIva.getText().equals("")){
         iva = Float.parseFloat(txtIva.getText());
     }else{
@@ -623,11 +619,11 @@ if (this.verificacion()){
     }
     resultado = precio + (precio*(iva/100));
     resultado += (resultado*(margen/100));
-    txtTotal.setText(String.valueOf(format.format(resultado)));
+    txtTotal.setText(String.valueOf(redondearDecimales(resultado, 2)));
     }//GEN-LAST:event_txtPrecioKeyReleased
 
     private void txtMargenKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMargenKeyReleased
-    float iva = 0, margen = 0, precio=0;
+    float resultado = 0, iva = 0, margen = 0, precio=0;
     if (!txtIva.getText().equals("")){
         iva = Float.parseFloat(txtIva.getText());
     }else{
@@ -645,11 +641,11 @@ if (this.verificacion()){
     }
     resultado = precio + (precio*(iva/100));
     resultado += (resultado*(margen/100));
-    txtTotal.setText(String.valueOf(format.format(resultado)));
+    txtTotal.setText(String.valueOf(redondearDecimales(resultado, 2)));
     }//GEN-LAST:event_txtMargenKeyReleased
 
     private void txtIvaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIvaKeyReleased
-    float iva = 0, margen = 0, precio=0;
+    float resultado = 0, iva = 0, margen = 0, precio=0;
     if (!txtIva.getText().equals("")){
         iva = Float.parseFloat(txtIva.getText());
     }else{
@@ -667,7 +663,7 @@ if (this.verificacion()){
     }
     resultado = precio + (precio*(iva/100));
     resultado += (resultado*(margen/100));
-    txtTotal.setText(String.valueOf(format.format(resultado)));
+    txtTotal.setText(String.valueOf(redondearDecimales(resultado, 2)));
     }//GEN-LAST:event_txtIvaKeyReleased
 
     private void cbxPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxPActionPerformed
@@ -744,21 +740,7 @@ this.Borrar(1);
 
     
     private boolean verificacion(){
-        boolean cedulaRegistrada=true;
-        try {
-            String sql = "select * from inventario where cod_producto = '" +txtC.getText() + "'";
-            ResultSet rs = operaciones.Consultar(sql);
-            while(rs.next()){
-                cedulaRegistrada=false;
-            }
-            operaciones.conn.close();
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Datos incompletos\n"+e);
-        }
-        if(cedulaRegistrada==false){
-            JOptionPane.showMessageDialog(rootPane, "Codigo Ya registrado", "ERROR", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }else if (!"".equals(txtN.getText()) && !"".equals(txtC.getText()) && 
+            if (!"".equals(txtN.getText()) && !"".equals(txtC.getText()) && 
             !"".equals(txtCa.getText()) && !"".equals(txtPrecio.getText())
                     && !"".equals(txtR.getText())) {
                 return true; 
@@ -808,7 +790,6 @@ this.Borrar(1);
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;

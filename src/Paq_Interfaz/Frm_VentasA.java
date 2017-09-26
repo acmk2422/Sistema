@@ -225,6 +225,7 @@ public class Frm_VentasA extends javax.swing.JFrame {
         jLabel36 = new javax.swing.JLabel();
         jLabel40 = new javax.swing.JLabel();
         lblFecha = new javax.swing.JLabel();
+        lblTransaccion = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbl2 = new javax.swing.JTable(){
@@ -301,7 +302,7 @@ public class Frm_VentasA extends javax.swing.JFrame {
 
         jLabel34.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel34.setText("Forma de Pago");
-        jPanel7.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, 100, 30));
+        jPanel7.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, 100, 30));
 
         cbxPago.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         cbxPago.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Efectivo", "Transferencia", "Debito", "Cheque", "Credito", "Otro" }));
@@ -310,7 +311,7 @@ public class Frm_VentasA extends javax.swing.JFrame {
                 cbxPagoActionPerformed(evt);
             }
         });
-        jPanel7.add(cbxPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 50, 150, 30));
+        jPanel7.add(cbxPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 40, 150, 30));
 
         jLabel36.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel36.setText("Numero Registro");
@@ -323,6 +324,22 @@ public class Frm_VentasA extends javax.swing.JFrame {
         lblFecha.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         lblFecha.setEnabled(false);
         jPanel7.add(lblFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, 110, 30));
+
+        lblTransaccion.setEnabled(false);
+        lblTransaccion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lblTransaccionActionPerformed(evt);
+            }
+        });
+        lblTransaccion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                lblTransaccionKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                lblTransaccionKeyTyped(evt);
+            }
+        });
+        jPanel7.add(lblTransaccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 150, 30));
 
         jPanel1.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 140, 420, 120));
 
@@ -698,6 +715,11 @@ public class Frm_VentasA extends javax.swing.JFrame {
     }//GEN-LAST:event_bntElimnarActionPerformed
 
     private void cbxPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxPagoActionPerformed
+        if (cbxPago.getSelectedIndex()!=0) {
+            lblTransaccion.setEnabled(true);
+        }else{
+            lblTransaccion.setEnabled(false);
+        }
         // TODO add your handling code here:
     }//GEN-LAST:event_cbxPagoActionPerformed
 
@@ -783,8 +805,8 @@ public class Frm_VentasA extends javax.swing.JFrame {
 // se almacena la venta en la bd
                 try {
                     String sql = "insert into ventas(cod_venta, cantidad, descripcion"
-                            + ", total, fecha, tipo_de_pago, responsable, descuento, cod_cliente, id_valor)"
-                            + "values(?,?,?,?,?,?,?,?,?,?)";
+                            + ", total, fecha, tipo_de_pago, responsable, descuento, cod_cliente, id_valor,transaccion)"
+                            + "values(?,?,?,?,?,?,?,?,?,?,?)";
                     String acum = "";
                     PreparedStatement ps = operaciones.Ingresar(sql);
                     ps.setString(1, lblNumeroRegistro.getText());
@@ -801,6 +823,7 @@ public class Frm_VentasA extends javax.swing.JFrame {
                     }
                     ps.setInt(9, getCodigoCli(txtC.getText()));
                     ps.setInt(10, 1);
+                    ps.setString(11, lblTransaccion.getText());
                     int n = ps.executeUpdate();
                     if (n > 0) {
                         int y = modelo.getRowCount();
@@ -1052,6 +1075,28 @@ public class Frm_VentasA extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tblMouseEntered
 
+    private void lblTransaccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblTransaccionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblTransaccionActionPerformed
+
+    private void lblTransaccionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lblTransaccionKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblTransaccionKeyReleased
+
+    private void lblTransaccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lblTransaccionKeyTyped
+char c = evt.getKeyChar();
+        int lim = lblTransaccion.getText().length();
+        if (c >= 48 && c <= 57 || c == WCKeyEvent.VK_BACK) {
+            if (this.EventoKeyType(lim, 20)) {
+                    evt.consume();
+                    getToolkit().beep();
+            }
+        } else {
+            getToolkit().beep();
+            evt.consume();
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_lblTransaccionKeyTyped
+
     public String Desencadenar(String datos) {
         //funcion para separar cedula de la letra
         String nombre = "";
@@ -1138,6 +1183,7 @@ public class Frm_VentasA extends javax.swing.JFrame {
     public javax.swing.JLabel lblResponsable;
     private javax.swing.JLabel lblSubtotal;
     private javax.swing.JLabel lblTotal;
+    private javax.swing.JTextField lblTransaccion;
     private javax.swing.JTable tbl;
     private javax.swing.JTable tbl2;
     private javax.swing.JTextField txtB;
@@ -1291,7 +1337,14 @@ public class Frm_VentasA extends javax.swing.JFrame {
 
     private boolean verificacion() {
         if (tbl2.getRowCount()>0 && !cbxN.getSelectedItem().toString().equals("")) {
-            return true;
+            if (lblTransaccion.getText().equals("")&&cbxPago.getSelectedIndex()==0) {
+                return true;
+            } else if (!lblTransaccion.getText().equals("")&&cbxPago.getSelectedIndex()!=0){
+                return true;
+            }else{
+                JOptionPane.showMessageDialog(null, "Ingrese numero de transaccion", null, JOptionPane.ERROR_MESSAGE);
+            return false;
+            }
         } else {
             JOptionPane.showMessageDialog(null, "Seleccione al menos producto", null, JOptionPane.ERROR_MESSAGE);
             return false;

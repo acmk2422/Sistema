@@ -4,13 +4,9 @@
  */
 package Paq_Base_Datos;
 
-import Paq_Base_Datos.Conexion_DB;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 import java.sql.Statement;
 
 
