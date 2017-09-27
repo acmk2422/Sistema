@@ -135,7 +135,7 @@ clientes."tipo_persona" = 'juridica']]>
 					<textElement textAlignment="Center">
 						<font isItalic="false"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{clientes_primer_nombre}+" "+$F{clientes_primer_apellido}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{clientes_nombre_empresa}]]></textFieldExpression>
 				</textField>
 			</frame>
 		</band>
